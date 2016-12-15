@@ -16,3 +16,7 @@ The Linux image to run on the BeagleBone's eMMC can be downloaded, decompressed,
 
 The compressed sd card image is linked here: https://www.dropbox.com/s/j8maeqj8ru7p7ck/truck-duck-18sept2016.7z?dl=0
 ## 
+Reference Website: https://truckhacking.github.io/
+
+Default Credentials
+U: ubuntu P: truckduck
