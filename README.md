@@ -20,3 +20,16 @@ Reference Website: https://truckhacking.github.io/
 
 Default Credentials
 U: ubuntu P: truckduck
+
+##Convert to a default datalogger
+To make a logger, you can automatically start candump.
+
+Add the following to the /etc/init/truckduck/truckduck.conf file at the end:
+```
+#set up to automatically log on boot.
+cd /home/ubuntu
+candump -l any &
+
+end script
+
+```
