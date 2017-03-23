@@ -96,8 +96,10 @@ Add the following to the /etc/init/truckduck/truckduck.conf file at the end:
 ```#set up to automatically log on boot.
 cd /home/ubuntu
 candump -l any &
-end script```
-The dated data files will be available on the 
+end script
+
+```
+The dated data files will be available in the home directory. You will have to log in to
 
 ## Challenge Assignments
 ### Log all data to an SD Card
@@ -108,3 +110,13 @@ Add the ability to set the time using the an I2C based Real Time Clock chip. Nor
 
 ### Add LIN 
 A LIN transceiver is on the Truck Cape. Enable this feature by using a built in serial port. 
+
+### Support the Quadrature Input Knob
+Add the ability for Linux to see the quadrature knob input for additional user input.
+
+### Send and Receive CAN messages over UDP
+Build a network bridge for CAN and Ethernet. 
+
+### Build a can-utils website
+Hose a website on the Beaglebone to interface with socket CAN
+
