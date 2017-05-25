@@ -33,7 +33,8 @@ Please change the password if this is connected to the Internet.
 
 An ASCII art image of a duck should appear.
 
-###
+### Logging Out or Shutting Down
+The system will shut down if the +12V feed is removed, even if the USB or 5V power jack is connected. Be sure to shut down the Linux system before unplugging the device. 
 
 ### Change the Baud Rate
 To figure out the bitrate of the devices, issue the following command
