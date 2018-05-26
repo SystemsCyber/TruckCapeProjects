@@ -1,0 +1,26 @@
+Comment,Description,Designator,Footprint,Quantity,Manufacturer,PartNumber,Supplier 1,Supplier Part Number 1
+,,,,,,,,
+BeagleBoneBlack,"46 Positions Header, Breakaway Connector 0.100 (2.54mm) Through Hole Tin""",BeagleBoneBlack1,Beagleboneblack,2,Sullins Connector Solutions,PREC023DAAN-RC,Digi-Key,S2012EC-23-ND
+0.1uF,CAP CER 0.1UF 100V X7R RADIAL,"C1, C4, C5, C6, C9",CAPR5-4X5,5,Vishay BC Components,K104K20X7RH53H5,Digi-Key,BC5139-ND
+1uF,CAP CER 1UF 100V X7R RADIAL,"C2, C3, C10",CAPR5-4X5,3,Murata Electronics North America,RDER72A105K2M1H03A,Digi-Key,490-9198-1-ND
+220uF,"220µF 50V Aluminum Electrolytic Capacitors Radial, Can 175 mOhm @ 10kHz 5000 Hrs @ 105°C","C7, C8",Elec. Cap 5 x 10mm,2,EPCOS (TDK),B41858C6227M000,Digi-Key,495-6000-ND
+STPS2150,Diode Schottky 150V 2A Through Hole DO-15,D1,DO-41,1,STMicroelectronics,STPS2150,Digi-Key,497-3213-1-ND
+10 Pos Mini-Fit Jr.,10 Positions Header Connector 0.165 (4.20mm) Through Hole," Right Angle Tin""",10 pos Mini-Fit Jr. R/A Header,1,Molex,39-30-1100,Digi-Key,WM1355-ND
+Vehicle Interface Cable Connector,"Receptacle Assembly, 15 Position, Right Angle, 8.08mm Series, Amplimite, with Screwlocks",J15,DB15,1,Amphenol FCI,D15S33E4GX00LF,Digi-Key,609-1499-ND
+Debug Header,"6 Positions Header, Breakaway Connector 0.100"" (2.54mm) Through Hole Tin",P1,HDR1X6,1,Sullins Connector Solutions,PREC006SAAN-RC,Digi-Key,S1012EC-06-ND
+Terminal Block," 6 Position Wire to Board Terminal Block Horizontal with Board 0.100 (2.54mm) Through Hole""","P2, P3",HDR1X6,2,TE Connectivity AMP Connectors,282834-6,Digi-Key,A98337-ND
+RKEF110,"Polymeric PTC Resettable Fuse 60V 1.1A Ih Through Hole Radial, Disc",PTC1,PTC,1,Littelfuse Inc.,RKEF110,Digi-Key,RKEF110HF-ND
+4.7k,RES SMD 4.7K OHM 1% 1/10W 0603,"R1, R2, R3, R6, R7, R10",Axial-0.4,6,Yageo,CFR-25JB-52-4K7,Digi-Key,4.7KQBK-ND
+47,"47 Ohms ±5% 0.25W, 1/4W Through Hole Resistor Axial  Carbon Film","R4, R5, R8, R9",Axial-0.4,4,Yageo,CFR-25JB-52-47R,Digi-Key,47QBK-ND
+SN74LS126AN,Quad 3-State Buffer,U1,N14A,1,Texas Instruments,SN74LS126AN,Digi-Key,296-3643-5-ND
+Opto,4-Pin Phototransistor Optocoupler,U2,DIP-4,1,Lite-On Inc.,LTV-816,Digi-Key,160-1360-5-ND
+MCP2562,1/1 Transceiver Half CAN 8-PDIP,"U3, U5",PDIP300-P8,2,Microchip Technology,MCP2562-E/P,Digi-Key,MCP2562-E/P-ND
+SN75HVD12,IC 3.3V DIFF TXRX 8-SOIC,"U4, U7",PDIP300-P8,2,Texas Instruments,SN75HVD12P,Digi-Key,SN75HVD12P
+OKI-78SR,5V DC/DC Converter (7805 replacement),U6,OKI-78SR,1,Murata Power Solutions Inc.,OKI-78SR-5/1.5-W36H-C,Digi-Key,811-2692-ND
+SN74AHC14N,Inverter IC 6 Channel Schmitt Trigger 14-PDIP,U8,N14A,1,Texas Instruments,SN74AHC14N,Digi-Key,296-4550-5-ND
+TP1.5KE30CA,TVS DIODE 25.6V 41.4V DO201,Z1,DIODE-0.7,1,Littelfuse Inc.,TP1.5KE30CA,Digi-Key,F7610CT-ND
+Debug Socket,6,J1,HDR1X6,1,Sullins Connector Solutions,PPTC061LFBN-RC,Digi-Key,S7004-ND
+Bbone Black,AM3358BZCZ BeagleBone Black Sitara™ MPU ARM® Cortex®-A8 Embedded Evaluation Board,BBB,BBB,1,"GHI Electronics, LLC",BBB01-SC-505,Digi-Key,BBB01-SC-505-ND
+,,,,,,,,
+,,,Enclosure,1,Hammond Mfg.,1455K1202BK,Digi-Key,HM1724-ND
+,,,PCB,1,,,OSHPARK,https://oshpark.com/shared_projects/FXh7K628
