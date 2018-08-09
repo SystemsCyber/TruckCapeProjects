@@ -1,6 +1,10 @@
 # TruckCapeProjects
 Projects teaching the basics of using the TruckDuck or Truck Cape on a Beagle Bone Black with Python.
 
+## Hardware
+See the docs directory for details. You can buy the board directly from OSHPark and source the parts from Digikey or Mouser. 
+
+## Linux
 The Linux image to run on the BeagleBone's eMMC can be downloaded, decompressed, imaged to an SD card. When the BeagleBone Black boots from the SD card, it will burn the eMMC to have the necessary contents to run the exercises in this repository. More specifically, the image will have the following:
 
 1. ARM Linux Kernel 3. 
