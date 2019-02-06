@@ -23,7 +23,7 @@ except OSError:
     sys.exit()
 
 #setup tcp client for CAN data transfer
-SERVER_IP = "127.0.0.1"
+SERVER_IP = "127.0.0.1" #insert IP address of server here
 SERVER_PORT = 2319
 
 print("Streaming CAN data to IP Address {} on Port {}.", SERVER_IP, SERVER_PORT)
@@ -34,7 +34,7 @@ tcpSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
 	tcpSocket.connect((SERVER_IP, SERVER_PORT))
 except OSError:
-	print("Could not connect TCP Socket.")
+	print("Could not connect TCP Socket. Make sure SERVER_IP is correct.")
 	sys.exit()
 
 #initilization of looping parameters TCP packet/Ethernet frame refering to same message
