@@ -46,7 +46,7 @@ print("socket.CAN_ERR_FLAG = 0x{:08X}".format(socket.CAN_ERR_FLAG))"""
 #setup tcp server for CAN data reception
 SERVER_IP = "127.0.0.1"
 SERVER_PORT = 2319
-BUFFER_SIZE = 1489 #maximum amount of data to receive at once for 93 CAN frames and 1 counter byte 16*93+1 = 1489
+BUFFER_SIZE = 1425 #maximum amount of data to receive at once for 89 CAN frames and 1 counter byte 16*89+1 = 1425
 SIZE_OF_CAN_FRAME = 16
 COUNTER_OFFSET = 1 #number of bytes at the start of ethernet packet not part of a CAN frame
 print('---------------------------------------------------------------------')
