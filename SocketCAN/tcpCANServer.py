@@ -5,20 +5,6 @@ import socket
 import struct
 import sys
 
-# Open a socket and bind to it from SocketCAN
-sock = socket.socket(socket.PF_CAN, socket.SOCK_RAW, socket.CAN_RAW)
-
-# The interface can be seen from the command prompt (ifconfig)
-# The can channel must be configured using the ip link commands
-interface = "can1"
-
-# Bind to the interface
-try:
-    sock.bind((interface,))
-except OSError:
-    print("Could not bind to interface '%s'\n" % interface)
-    sys.exit()
-
 # The basic CAN frame structure and the sockaddr structure are defined
 #   in include/linux/can.h:
 #     struct can_frame {
@@ -41,10 +27,21 @@ can_frame_format = "<LL8s"
 """print("socket.CAN_EFF_MASK = 0x{:08X}".format(socket.CAN_EFF_MASK))
 print("socket.CAN_EFF_FLAG = 0x{:08X}".format(socket.CAN_EFF_FLAG))
 print("socket.CAN_RTR_FLAG = 0x{:08X}".format(socket.CAN_RTR_FLAG))
-print("socket.CAN_ERR_FLAG = 0x{:08X}".format(socket.CAN_ERR_FLAG))"""
+print("socket.CAN_ERR_FLAG = 0x{:08X}".format(socket.CAN_ERR_FLAG))
+print("socket.CAN_ERR_FLAG = 0x{:08X}".format(socket.CAN_SFF_MASK))"""
+
+CAN_EFF_MASK = 0x1FFFFFFF #assigned to remove socketCAN dependencies, values obtained by above print statements using socketCAN
+CAN_EFF_FLAG = -0x80000000
+CAN_RTR_FLAG = 0x40000000
+CAN_ERR_FLAG = 0x20000000
+CAN_SFF_MASK = 0x000007FF #standard CAN format 
 
 #setup tcp server for CAN data reception
 SERVER_IP = "127.0.0.1"
+try:
+	SERVER_IP = socket.gethostbyname(socket.gethostname()) #gets IP address of machine this is running on
+except Exception as e:
+	print("Could not get this machine's IP address, defaulting to 127.0.0.1")
 SERVER_PORT = 2319
 BUFFER_SIZE = 1425 #maximum amount of data to receive at once for 89 CAN frames and 1 counter byte 16*89+1 = 1425
 SIZE_OF_CAN_FRAME = 16
@@ -76,19 +73,19 @@ while True:
 		can_dlc = (can_dlc_and_microTimer & 0x000000FF)  #first byte is dlc b/c little endian
 		can_microTimer = (can_dlc_and_microTimer & 0xFFFFFF00) >> 8 #first three bytes are microseconds timestamp
 
-		extended_frame = bool(can_id & socket.CAN_EFF_FLAG)
-		error_frame = bool(can_id & socket.CAN_ERR_FLAG)
-		remote_tx_req_frame = bool(can_id & socket.CAN_RTR_FLAG)
+		extended_frame = bool(can_id & CAN_EFF_FLAG)
+		error_frame = bool(can_id & CAN_ERR_FLAG)
+		remote_tx_req_frame = bool(can_id & CAN_RTR_FLAG)
 	
 		if error_frame:
-			can_id &= socket.CAN_ERR_MASK
+			can_id &= CAN_ERR_MASK
 			can_id_string = "{:08X} (ERROR)".format(can_id)
 		else: #Data Frame
 			if extended_frame:
-				can_id &= socket.CAN_EFF_MASK
+				can_id &= CAN_EFF_MASK
 				can_id_string = "{:08X}".format(can_id)
 			else: #Standard Frame
-				can_id &= socket.CAN_SFF_MASK
+				can_id &= CAN_SFF_MASK
 				can_id_string = "{:03X}".format(can_id)
 		
 		if remote_tx_req_frame:
