@@ -41,7 +41,7 @@ except OSError:
 numCANFrames = 0 #used to store number of CAN frames in tcp packet
 ethData = b'' #used to store payload of ethernet frame
 MIN_ETH_PAYLOAD = 46 #min size of eth packet
-TIMEOUT = 1 #amount of time in seconds allowed to not receive a CAN Frame
+TIMEOUT = 5 #amount of time in seconds allowed to not receive a CAN Frame
 MAX_CAN_PER_TCP = 89 #the maxiumum number of allowed can frames in each tcp packet
 ###  NOTE: The client will shutdown if the timeout is reached, otherwise it will keep sending 
 ###        only the maximum amount of CAN frames in each tcp packet. MAX_CAN_PER_TCP maxes out at
