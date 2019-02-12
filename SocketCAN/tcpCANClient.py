@@ -7,7 +7,7 @@ import select
 
 # Open a socket and bind to it from SocketCAN
 canSock = socket.socket(socket.PF_CAN, socket.SOCK_RAW, socket.CAN_RAW)
-
+sock.setsockopt(socket.SOL_CAN_RAW, socket.CAN_RAW_ERR_FILTER, socket.CAN_ERR_MASK) #allows socket to receive error frames
 # The interface can be seen from the command prompt (ifconfig)
 # The can channel must be configured using the ip link commands
 interface = input("Pick an interface! ( can1 | can0 ): ")
