@@ -4,6 +4,7 @@ import time
 import socket
 import struct
 import sys
+import uuid
 
 # The basic CAN frame structure and the sockaddr structure are defined
 #   in include/linux/can.h:
@@ -47,7 +48,8 @@ SERVER_PORT = 2319
 BUFFER_SIZE = 1425 #maximum amount of data to receive at once for 89 CAN frames and 1 counter byte 16*89+1 = 1425
 SIZE_OF_CAN_FRAME = 16
 COUNTER_OFFSET = 1 #number of bytes at the start of ethernet packet not part of a CAN frame
-LOG_FILE_NAME = 'canlog.txt'
+DIRECTORY_NAME = '' #change to appropriate local directory of form 'directoryName/', empty string stores in same directory as tcpCANServer.py
+LOG_FILE_NAME = 'canlog_{}.txt'.format(uuid.uuid4()) #uuid4 generates a random universally unique identifier
 print('---------------------------------------------------------------------')
 print("\nHosting TCP server for CAN data at IP Address {} on Port {}".format(SERVER_IP, SERVER_PORT))
 print('---------------------------------------------------------------------')
@@ -63,7 +65,7 @@ tcpSocket.listen(1)
 conn, addr = tcpSocket.accept()
 print("Connection Address:",addr)
 
-with open (LOG_FILE_NAME, 'w') as file:
+with open (DIRECTORY_NAME+LOG_FILE_NAME, 'w') as file:
 	while True:
 		ethData = conn.recv(BUFFER_SIZE)
 		if not ethData: break;
