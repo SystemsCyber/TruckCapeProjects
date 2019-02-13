@@ -16,5 +16,6 @@ Using TCP means TCP packets are guarunteed to arrive and guarunteed to arrive in
 2. Install all dependencies and put tcpCANClient.py on the node connected to the vehicle network.
 3. Execute tcpCANServer.py on the server machine.
 4. Set the variable SERVER_IP in tcpCANClient.py to the displayed IP address from the tcpCANServer.py script.
+5. Set the variable DIRECTORY_NAME in tcpCANClient.py to appropriate logging directory. (Default is where tcpCANServer.py is stored.)
 5. Execute tcpCANClient.py
 
