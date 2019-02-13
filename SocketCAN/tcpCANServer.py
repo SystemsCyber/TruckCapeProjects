@@ -34,6 +34,7 @@ CAN_EFF_MASK = 0x1FFFFFFF #assigned to remove socketCAN dependencies, values obt
 CAN_EFF_FLAG = -0x80000000
 CAN_RTR_FLAG = 0x40000000
 CAN_ERR_FLAG = 0x20000000
+CAN_ERR_MASK = 0x1FFFFFFF
 CAN_SFF_MASK = 0x000007FF #standard CAN format 
 
 #setup tcp server for CAN data reception
@@ -97,3 +98,4 @@ with open (LOG_FILE_NAME, 'w') as file:
 			print("{:12.2f} {} [{}] {}".format(can_microTimer, can_id_string, can_dlc, hex_data_print))
 			file.write("{:12.2f} {} [{}] {}\n".format(can_microTimer, can_id_string, can_dlc, hex_data_print))
 	conn.close()
+
