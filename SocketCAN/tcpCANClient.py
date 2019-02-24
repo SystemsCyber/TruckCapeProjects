@@ -39,15 +39,19 @@ try:
         canIntf = sys.argv[1]
         canComm = sys.argv[2]
         if canCommands[canComm][1] > 0:
-            parameter = int(sys.argv[3]).to_bytes(canCommands[canComm][1], byteorder = 'big') #sets parameter bytes of message based off number of bytes of parameters
+            try:
+                parameter = int(sys.argv[3]).to_bytes(canCommands[canComm][1], byteorder = 'big') #sets parameter bytes of message based off number of bytes of parameters
+            except ValueError:
+                printHelp()
+                sys.exit()
         else:
             if len(sys.argv) > 3: #parameters given when none should be given
                 printHelp()
                 sys.exit()
-            parameter = b'\x00'
+            parameter = b''
 
         ethData = canInterfaces[canIntf] + canCommands[canComm][0] + parameter #bytes of message to send
-        print("Sending {}".format(ethData))
+        print("\nSending {}".format(ethData))
     else: #not enough or too many arguments
         printHelp()
         sys.exit()
@@ -60,15 +64,16 @@ except IndexError:
 
 
 
-print("Sending Control Message to IP Address {} on Port {}.", SERVER_IP, SERVER_PORT)
-
+print("\nSending Control Message to IP Address {} on Port {}.\n".format(SERVER_IP, SERVER_PORT))
 tcpSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
-    pass #tcpSocket.connect((SERVER_IP, SERVER_PORT))
+    tcpSocket.connect((SERVER_IP, SERVER_PORT))
 except OSError:
     print("Could not connect TCP Socket. Make sure SERVER_IP is correct.")
     sys.exit()
+
+tcpSocket.send(ethData)
 
 
 
