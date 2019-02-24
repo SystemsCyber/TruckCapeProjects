@@ -53,7 +53,7 @@ The server accepts commands from TCP packets in the following format.
     - setbitrate: 3 bytes storing the desired bitrate in hexadecimal big-endian format.
 
 Examples:
-    - Turning on stream to transfer received vehicle messages on can0: b'\x00\x00'
-    - Reseting can1 Interface: b'\x01\x06'
-    - Setting all Interfaces to 250,000 bitrate: b'\xFF\x07\x03\xD0\x90'
+- Turning on stream to transfer received vehicle messages on can0: b'\x00\x00'
+- Reseting can1 Interface: b'\x01\x06'
+- Setting all Interfaces to 250,000 bitrate: b'\xFF\x07\x03\xD0\x90'
 
