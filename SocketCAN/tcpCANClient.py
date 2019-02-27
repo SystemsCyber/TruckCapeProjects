@@ -51,7 +51,6 @@ try:
             parameter = b''
 
         ethData = canInterfaces[canIntf] + canCommands[canComm][0] + parameter #bytes of message to send
-        print("\nSending {}".format(ethData))
     else: #not enough or too many arguments
         printHelp()
         sys.exit()
@@ -62,8 +61,7 @@ except IndexError:
     printHelp()
     sys.exit()
 
-
-
+print("\nSending {}".format(ethData))
 print("\nSending Control Message to IP Address {} on Port {}.\n".format(SERVER_IP, SERVER_PORT))
 tcpSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 

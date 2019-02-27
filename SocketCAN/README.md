@@ -21,14 +21,14 @@ Using TCP means TCP packets are guarunteed to arrive and guarunteed to arrive in
 5. Set the variable DIRECTORY_NAME in tcpCANrxClient.py to appropriate logging directory. (Default is where tcpCANrxServer.py is stored.)
 6. Execute tcpCANrxClient.py
 
-# Regarding tcpCANClient.py and tcpCANServer.py
+# Regarding tcpCANClient.py, tcpCANServer.py, and rxServers.py
 
 **These scripts are used to establish a control server that accepts request to transfer and receive CAN data on different interface.**
 
 **tcpCANServer.py** should be hosted on the node connect to the vehicle interface.
 - Running on a BeagleBone might require editing the file /etc/hosts to an appropriate IP address for the hostname.
 
-**tcpCANClient.py** should be executed on the machine where CAN related commands are required.
+**tcpCANClient.py** should be executed on the machine where CAN data is desired.
 
 The server accepts commands from TCP packets in the following format.
 
@@ -53,7 +53,25 @@ The server accepts commands from TCP packets in the following format.
     - setbitrate: 3 bytes storing the desired bitrate in hexadecimal big-endian format.
 
 Examples:
-- Turning on stream to transfer received vehicle messages on can0: b'\x00\x00'
-- Reseting can1 Interface: b'\x01\x06'
-- Setting all Interfaces to 250,000 bitrate: b'\xFF\x07\x03\xD0\x90'
+- Turning on stream to transfer received vehicle messages on can0: b'\x00\x00' (python3 tcpCANClient.py can0 rxon)
+- Reseting can1 Interface: b'\x01\x06' (python3 tcpCANClient.py can1 reset)
+- Setting all Interfaces to 250,000 bitrate: b'\xFF\x07\x03\xD0\x90' (python3 tcpCANClient.py any setbitrate 250000)
 
+## Setting Up
+
+1. Install all dependencies and put tcpCANServer.py on the node connected to the vehicle network.
+2. Install all dependencies and put tcpCANClient.py and rxServers.py on the desired machine to receive CAN frames.
+3. Set the variable DIRECTORY_NAME in rxServers.py to appropriate logging directory. (Default is where rxServers.py is stored.)
+4. Set the variable SERVER_IP in tcpCANClient.py to the displayed IP address from the tcpCANServer.py script.
+5. Execute rxServers.py. This script must be restarted after the messages have stopped if another logging event is desired.
+6. Execute tcpCANServer.py.
+7. Execute tcpCANClient.py with command line arguments as documented when running 'python3 tcpCANClient.py' for the desired command.
+
+**NOTE:** If IP addresses are not properly displayed, configuration files may not be accurate and need to be edited.
+
+When turning off rx streaming channels, the process will terminate *After* a timeout or *After* the latest TCP packet is filled and sent.
+So, terminating any can interface with the command (python3 tcpCANClient.py any rxoff) will end one interface after the other in the order specified in the intfOrder list within tcpCANServer.py.
+Therefore, it might take time to close all communication channels if the interfaces have a low percentage busload.
+This design is to ensure that the last messages are not dropped.
+
+The tcpCANClient.py is used to issue commands to the tcpCANServer.py. rxServers.py are the servers on the destination machine that receives the vehicle messages from the TCP connection.
