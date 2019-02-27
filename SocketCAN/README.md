@@ -70,7 +70,7 @@ Examples:
 **NOTE:** If IP addresses are not properly displayed, configuration files may not be accurate and need to be edited.
 
 When turning off rx streaming channels, the process will terminate *After* a timeout or *After* the latest TCP packet is filled and sent.
-So, terminating any can interface with the command (python3 tcpCANClient.py any rxoff) will end one interface after the other in the order specified in the intfOrder list within tcpCANServer.py.
+So, terminating any CAN interface with the command (python3 tcpCANClient.py any rxoff) will end one interface after the other in the order specified in the intfOrder list within tcpCANServer.py.
 Therefore, it might take time to close all communication channels if the interfaces have a low percentage busload.
 This design is to ensure that the last messages are not dropped.
 

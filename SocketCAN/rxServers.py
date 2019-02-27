@@ -48,7 +48,7 @@ BUFFER_SIZE = 1425 #maximum amount of data to receive at once for 89 CAN Frames 
 SIZE_OF_CAN_FRAME = 16
 COUNTER_OFFSET = 1
 DIRECTORY_NAME = ''
-LOG_FILE_NAME = 'canlog_{}.txt'.format(uuid.uuid4())
+LOG_FILE_NAME = 'canlog_{}'.format(uuid.uuid4())
 rxProcesses = [None for i in range(len(canPorts))]
 
 def rxServer(interface):
@@ -62,7 +62,7 @@ def rxServer(interface):
 	conn, addr = tcpSock.accept()
 	print("Connection Address:", addr)
 
-	with open(DIRECTORY_NAME+LOG_FILE_NAME+"_"+interface, 'w') as file:
+	with open(DIRECTORY_NAME+LOG_FILE_NAME+"_"+interface+".txt", 'w') as file:
 		while True:
 			ethData = conn.recv(BUFFER_SIZE)
 			if not ethData: break;
