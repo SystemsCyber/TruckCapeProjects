@@ -2,6 +2,7 @@
 
 import socket
 import sys
+import time
 
 def printHelp():
     print("\n\nUsage: python3 tcpCANClient.py <CAN interface> <CAN command> [parameters]\n\n")
@@ -27,6 +28,10 @@ def printHelp():
 
 SERVER_IP = "127.0.0.1"
 SERVER_PORT = 2319
+MAX_CAN_PER_TCP = 89
+CAN_ID_CANGEN = 0x98FEBF0B
+DLC_CANGEN = 8
+DELAY_BETWEEN_MSGS = 1 #seconds between TCP packets so buffer overflow doesn't happen
 
 canInterfaces = {'can0': b'\x00', 'can1': b'\x01', 'any': b'\xFF'} #dictionary mapping interface name to byte value for tcp packet
 
@@ -34,10 +39,37 @@ canCommands = {'rxon':   [b'\x00',0],  'rxoff':  [b'\x01',0], 'txon':       [b'\
                'up' :    [b'\x05',0],   'reset': [b'\x06',0], 'setbitrate': [b'\x07',3], 'busload': [b'\x08',0], 'rxmsgs': [b'\x09',0],
                'txmsgs': [b'\x10',0]} #dictionary correlating command line abbreviation with list of byte value of tcp packet to send and the number of bytes for parameters
 
+canPorts = {'can0': 2321, 'can1': 2323} # ports used for receiving CAN servers
+
 try:
     if len(sys.argv) > 2 and len(sys.argv) < 5: #if there are two arguments but no more than 4, assuming 1 parameter
         canIntf = sys.argv[1]
         canComm = sys.argv[2]
+        if canComm == 'cangen': #transmitting tcp packets of CAN messages, any is not functional here. use multiple instances if needed
+            j = 0
+            tcpSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            try:
+                tcpSock.connect((SERVER_IP, canPorts[canIntf]))
+            except OSError:
+                print("Could not connect to TCP Socket.")
+            except KeyError:
+                print("Interface not found. Any is not an acceptable interface on this command.")
+            while True: #procedural cangen that transmits fixed ID with incrementing payload
+                ethData = (MAX_CAN_PER_TCP).to_bytes(1, 'little') #num frames to transmit
+                for i in range(MAX_CAN_PER_TCP):
+                    ethData = ethData + (CAN_ID_CANGEN).to_bytes(4, 'little') + (DLC_CANGEN).to_bytes(1, 'little') + (0).to_bytes(3, 'little') #padded bytes
+                    counter = j*MAX_CAN_PER_TCP + i
+                    ethData = ethData + (counter).to_bytes(8, 'big')
+                #ethData frame ready
+                print("Sending frame of CAN messages")
+                print(str(ethData) + str(len(ethData)))
+                tcpSock.send(ethData)
+                time.sleep(DELAY_BETWEEN_MSGS)
+                ethData = b''
+
+                j += 1
+
+
         if canCommands[canComm][1] > 0:
             try:
                 parameter = int(sys.argv[3]).to_bytes(canCommands[canComm][1], byteorder = 'big') #sets parameter bytes of message based off number of bytes of parameters

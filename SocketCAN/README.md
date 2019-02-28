@@ -57,6 +57,10 @@ Examples:
 - Reseting can1 Interface: b'\x01\x06' (python3 tcpCANClient.py can1 reset)
 - Setting all Interfaces to 250,000 bitrate: b'\xFF\x07\x03\xD0\x90' (python3 tcpCANClient.py any setbitrate 250000)
 
+* An additional command exists with the form 'python3 tcpCANClient.py <interface> cangen' where interface is can0 or can1.
+	- This command loops TCP frames to the txservers which are transmitted on the vehicle network.
+	- txon must be used first
+
 ## Setting Up
 
 1. Install all dependencies and put tcpCANServer.py on the node connected to the vehicle network.
@@ -72,6 +76,32 @@ Examples:
 When turning off rx streaming channels, the process will terminate *After* a timeout or *After* the latest TCP packet is filled and sent.
 So, terminating any CAN interface with the command (python3 tcpCANClient.py any rxoff) will end one interface after the other in the order specified in the intfOrder list within tcpCANServer.py.
 Therefore, it might take time to close all communication channels if the interfaces have a low percentage busload.
-This design is to ensure that the last messages are not dropped.
+This design is to ensure that the last messages are not dropped. This means, rxServers.py must not be closed. It will close itself upon last packet.
 
 The tcpCANClient.py is used to issue commands to the tcpCANServer.py. rxServers.py are the servers on the destination machine that receives the vehicle messages from the TCP connection.
+
+Transferring CAN messages for RX and TX is done in the following format
+
+    ------------------------------------------------------------------
+    | Number of CAN Frames | CAN Frame | CAN Frame | ... | CAN Frame |
+    ------------------------------------------------------------------
+
+* Number of CAN Frames: One byte indicating number of CAN Frames that follow (0 to 89)
+* CAN Frame: 16 bytes similar to socketCAN format
+   
+    ------------------------------------
+    | Identifier | DLC | Micros | Data |
+    ------------------------------------
+- Identifier: 4 bytes for the ID of the CAN frame
+- Data Length Code (DLC): 1 byte for the number of bytes in Data (0 to 8)
+- Micros: 3 bytes for an elapsed microseconds timer from start of transfer (Doesn't apply to TX)
+- Data: 0 to 8 bytes payload
+
+
+**IF NO BUFFER SPACE AVAILABLE ERROR ENCOUNTERED ON TX SERVERS**
+Run command 'sudo ifconfig can1 txqueuelen 1000' for each interface, where can1 can be replaced with the specific CAN interface name (can0/can1/etc.)
+
+TX Sending can run into issues if needing to buffer due to priority/ high busload.
+
+When sending frames using the tx servers, additional txon commands are needed if the connection is severed. 
+For instance, if TCPCAN messages are sent to the tx server in a loop and CTRL+C is used on the looped TCP client, the txon command will need to be used again before trying to send more messages.

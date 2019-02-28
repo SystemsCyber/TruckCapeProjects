@@ -126,7 +126,7 @@ MAX_CAN_PER_TCP = 89 #the maxiumum number of allowed can frames in each tcp pack
 ###        only the maximum amount of CAN frames in each tcp packet. MAX_CAN_PER_TCP maxes out at
 ###        89 CAN frames since the number of bytes of the payload in the packet is 1424, and the
 ###        max size of an ethernet payload is 1500 bytes and each CAN frame takes 16 bytes.
-###        IP header takes 20 bytes and TCP header with options => 40 bytes to be safe. Total bytes = 1500
+###        IP header takes 20 bytes and TCP header with options 40 bytes => 60 bytes to be safe. Total bytes = 1500
 startTime = time.time() #start time of data transfer
 currentTime = time.time() #current time in seconds
 lastCANReadTime = time.time() #stores the time of the last read message starting at current time

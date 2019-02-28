@@ -11,10 +11,12 @@ try:
 except Exception as e:
 	print("Could not get this machine's IP address, defaulting to 127.0.0.1")
 SERVER_PORT = 2319 #control server port
-BUFFER_SIZE = 10 #max amount of data to receive
+BUFFER_SIZE = 1425 #max amount of data to receive
 TIMEOUT = 5 # number of seconds before sending padded tcp frame in cases of low or non-existant traffic
 MAX_CAN_PER_TCP = 89 #the max number of allowed CAN frames in each TCP packet
 MIN_ETH_PAYLOAD = 46 #min number of payload bytes needed for ethernet frame
+BYTES_PER_CANFRAME = 16
+COUNTER_OFFSET = 1
 
 print('---------------------------------------------------------------------')
 print("\nHosting TCP server for CAN data at IP Address {} on Port {}".format(SERVER_IP, SERVER_PORT))
@@ -89,21 +91,47 @@ def rxClient(interface, isAlive, address): #method called for transferring CAN m
 		currentTime = time.time() #resets current time
 		lastCANReadTime = time.time() #resets last read time so it can begin reading from vehicle network again
 
+	print("Closing rxClient for", interface, "to port", address[1])
 	tcpSock.close()
 	return 0
 
 def txServer(interface, isAlive, address): #method called for receiving CAN messages on TCP Server and trasmitting on vehicle network
 	canSock = socket.socket(socket.PF_CAN, socket.SOCK_RAW, socket.CAN_RAW)
 	canSock.setsockopt(socket.SOL_CAN_RAW, socket.CAN_RAW_ERR_FILTER, socket.CAN_ERR_MASK)
+	tcpSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	try:
 		canSock.bind((interface,))
 	except:
 		print("Could not bind to interface '%s' \n" % interface)
+		isAlive.value = 0 #stop process
+	try:
+		tcpSock.bind((address[0], address[1])) #address contains [ipAddress, portnumber] of server to connect to
+	except Exception as e:
+		print("Could not connect TCP Socket at {}:{}\n".format(address[0], address[1]) + str(e))
+		isAlive.value = 0 #stop process
+	tcpSock.listen(1) #listens for tcp packets to parse and send on vehicle network
+	conn, addr = tcpSock.accept()
+	print("Connection Address:",addr)
 	while isAlive.value: #shared variable when non-zero is true, 0 is false. Server open until commanded to close on command port
 		#keep server alive waiting for tcp messages containing CAN data
+		ethData = conn.recv(BUFFER_SIZE)
+		if not ethData: break;
 		#read the desginated number of frames decided by first byte in message, and send on specified CAN interface
-		print("TX Server Active:", interface)
-		print(address[0]+":"+str(address))
+		print("Received", int(ethData[0]), "CAN Frames")
+		print("Transmitting onto Vehicle Network Interface:", interface)
+		for i in range(int(ethData[0])): # for the number of can frames
+			can_packet = ethData[i*BYTES_PER_CANFRAME + COUNTER_OFFSET: i*BYTES_PER_CANFRAME + COUNTER_OFFSET + BYTES_PER_CANFRAME] #offset of 1 for the counter, multiply by 16 b/c 16 bytes per
+			canSock.send(can_packet)
+			#print("CAN FRAME:", str(can_packet))
+
+		#parse messages
+
+		#send on CAN interface
+
+		"""print("TX Server Active:", interface)
+		print(address[0]+":"+str(address))"""
+	print("Closing txServer for", interface, "on port", address[1])
+	tcpSock.close()
 	return 0
 
 
@@ -189,7 +217,7 @@ while True: #control server open until CTRL+C
 				print("Start TX Server for",intfOrder[i],'\n')
 				#start processes with each interface name and value to decide if server should still be running
 				keepTxAlive[i].value = 1
-				txProcesses[i] = Process(target = txServer, args=(intfOrder[i], keepTxAlive[i], [addr[0], canPorts[intfOrder[i]][1]]))
+				txProcesses[i] = Process(target = txServer, args=(intfOrder[i], keepTxAlive[i], [SERVER_IP, canPorts[intfOrder[i]][1]]))
 				txProcesses[i].start()
 		else:
 			print("Turning on server port to send CAn frames on port", canPorts[canIntf][1])
@@ -199,7 +227,7 @@ while True: #control server open until CTRL+C
 				if intf == canIntf:
 					print("Found the chosen interface", intf)
 					keepTxAlive[i].value = 1
-					txProcesses[i] = Process(target = txServer, args = (intf, keepTxAlive[i], [addr[0], canPorts[canIntf][1]]))
+					txProcesses[i] = Process(target = txServer, args = (intf, keepTxAlive[i], [SERVER_IP, canPorts[canIntf][1]]))
 					txProcesses[i].start()
 	elif command == 'stream tcp socket tx off':
 		print("Turning off server port to send CAN frames")
