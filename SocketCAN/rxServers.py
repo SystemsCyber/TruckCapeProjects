@@ -23,7 +23,7 @@ except Exception as e:
 
 # To match this data structure, the following struct format can be used:
 can_frame_format = "<LL8s"
-# Unsigned Long Integer (little endian), unsigned char (byte), three pad bytes, eight chars (bytes)
+# Unsigned Long Integer (little endian), Unsigned Long Integer (DLC and Micros), eight chars (bytes)
 # Note: this is 16 bytes
 
 
@@ -36,7 +36,7 @@ print("socket.CAN_ERR_FLAG = 0x{:08X}".format(socket.CAN_ERR_FLAG))
 print("socket.CAN_ERR_FLAG = 0x{:08X}".format(socket.CAN_SFF_MASK))"""
 
 CAN_EFF_MASK = 0x1FFFFFFF #assigned to remove socketCAN dependencies, values obtained by above print statements using socketCAN
-CAN_EFF_FLAG = -0x80000000
+CAN_EFF_FLAG = 0x80000000
 CAN_RTR_FLAG = 0x40000000
 CAN_ERR_FLAG = 0x20000000
 CAN_ERR_MASK = 0x1FFFFFFF
@@ -73,7 +73,7 @@ def rxServer(interface):
 				try:
 					can_id, can_dlc_and_microTimer, can_data = struct.unpack(can_frame_format, can_packet)
 
-					can_dlc = (can_dlc_and_microTimer & 0x000000FF)  #first byte is dlc b/c little endian
+					can_dlc = (can_dlc_and_microTimer & 0x000000FF)  #last byte is dlc b/c little endian
 					can_microTimer = (can_dlc_and_microTimer & 0xFFFFFF00) >> 8 #first three bytes are microseconds timestamp
 
 					extended_frame = bool(can_id & CAN_EFF_FLAG)

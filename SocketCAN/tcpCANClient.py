@@ -104,6 +104,6 @@ except OSError:
     sys.exit()
 
 tcpSocket.send(ethData)
-
+print("Control Message Sent!")
 
 
