@@ -10,7 +10,7 @@ try:
 except Exception as e:
 	print("Could not get this machine's IP address, defaulting to 127.0.0.1")
 
-# The basic CAN frame structure and the sockaddr structure are defined
+# The original CAN frame structure and the sockaddr structure are defined
 #   in include/linux/can.h:
 #     struct can_frame {
 #             canid_t can_id;  /* 32 bit CAN_ID + EFF/RTR/ERR flags */
@@ -19,9 +19,19 @@ except Exception as e:
 #             __u8    __res0;  /* reserved / padding */
 #             __u8    __res1;  /* reserved / padding */
 #             __u8    data[8] __attribute__((aligned(8)));
+#     };
+
+# The implemented CAN frame structure and the sockaddr structure are defined as
+#     struct can_frame {
+#             canid_t can_id;  /* 32 bit CAN_ID + EFF/RTR/ERR flags */
+#             __u8    can_dlc; /* frame payload length in byte (0 .. 8) */
+#             __u8    __micros0;   /* first byte of microsecond timer */
+#             __u8    __micros1;  /* second byte of microsecond timer */
+#             __u8    __micros2;  /* third byte of microsecond timer */
+#             __u8    data[8] __attribute__((aligned(8)));
 #     };   
 
-# To match this data structure, the following struct format can be used:
+# To match this data structure, the following struct format can be used, grouping micros and dlc as a 32 bit unsigned long integer
 can_frame_format = "<LL8s"
 # Unsigned Long Integer (little endian), Unsigned Long Integer (DLC and Micros), eight chars (bytes)
 # Note: this is 16 bytes

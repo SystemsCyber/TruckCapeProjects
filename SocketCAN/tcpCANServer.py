@@ -4,6 +4,7 @@ import socket
 from multiprocessing import Process, Value
 import time
 import select
+import struct
 
 SERVER_IP = "127.0.0.1"
 try:
@@ -17,6 +18,7 @@ MAX_CAN_PER_TCP = 89 #the max number of allowed CAN frames in each TCP packet
 MIN_ETH_PAYLOAD = 46 #min number of payload bytes needed for ethernet frame
 BYTES_PER_CANFRAME = 16
 COUNTER_OFFSET = 1
+PARAM_START_IND = 2 #index where parameters start
 
 print('---------------------------------------------------------------------')
 print("\nHosting TCP server for CAN data at IP Address {} on Port {}".format(SERVER_IP, SERVER_PORT))
@@ -229,6 +231,7 @@ while True: #control server open until CTRL+C
 					keepTxAlive[i].value = 1
 					txProcesses[i] = Process(target = txServer, args = (intf, keepTxAlive[i], [SERVER_IP, canPorts[canIntf][1]]))
 					txProcesses[i].start()
+
 	elif command == 'stream tcp socket tx off':
 		print("Turning off server port to send CAN frames")
 		if canIntf == 'any':
@@ -246,4 +249,37 @@ while True: #control server open until CTRL+C
 						txProcesses[i].join()
 					except:
 						print("Did you start the tx client on", intf, '?')
+
+	elif command == 'interface down':
+		if canIntf == 'any':
+			for i in range(len(intfOrder)):
+				print("Put", intfOrder[i],"down")
+		else:
+			print("Put", canIntf, "down")
+
+	elif command == 'interface up':
+		if canIntf == 'any':
+			for i in range(len(intfOrder)):
+				print("Put", intfOrder[i],"up")
+		else:
+			print("Put", canIntf, "up")
+
+	elif command == 'interface reset':
+		if canIntf == 'any':
+			for i in range(len(intfOrder)):
+				print("Reset", intfOrder[i])
+		else:
+			print("Reset", canIntf)
+
+	elif command == 'change bitrate':
+		try:
+			bitrateFormat = '>L'
+			bitrate = struct.unpack(bitrateFormat, b'\x00' + ethData[PARAM_START_IND:PARAM_START_IND+numParamBytes]) #bytes 2, 3 and 4 are bitrate
+			# 0x00 concatenated at beginning to make 4 bytes of data since it is unpacked as a four byte unsigned long
+		if canIntf == 'any':
+			for i in range(len(intfOrder)):
+				print("Change", intfOrder[i],"bitrate to", bitrate)
+		else:
+			print("Change", canIntf, "bitrate to", bitrate)
+
 conn.close()
