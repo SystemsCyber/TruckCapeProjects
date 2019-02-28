@@ -79,6 +79,10 @@ Examples:
 * An additional command exists with the form `python3 tcpCANClient.py <interface> cangen` where interface is can0 or can1.
 	- This command loops TCP packets containing CAN frames to the txservers which are transmitted on the vehicle network.
 	- txon must be used first
+* For the interface setting commands: down, up, reset, setbitrate
+    - Authentication is necessary for first command.
+    - Currently, the password authentication process is built into the server.
+    - The client does not accept or transfer the password. It would need to be encrypted if it did.
 
 ### Setting Up
 

@@ -5,6 +5,7 @@ from multiprocessing import Process, Value
 import time
 import select
 import struct
+import subprocess
 
 SERVER_IP = "127.0.0.1"
 try:
@@ -252,34 +253,51 @@ while True: #control server open until CTRL+C
 
 	elif command == 'interface down':
 		if canIntf == 'any':
-			for i in range(len(intfOrder)):
-				print("Put", intfOrder[i],"down")
+			for i in range(len(intfOrder)): #for each CAN interface
+				print("sudo ifconfig", intfOrder[i], "down")
+				subprocess.Popen(["sudo", "ifconfig", intfOrder[i], "down"]).wait() #turns off interface
+				#calls the command line call "sudo ifconfig intfOrder[i] down" and waits until it's done before continuing execution
+				#if authentication is necessary, it will prompt, take the password, and continue
+				#the remainder of use of subprocess.Popen().wait() in this file are used similarly
 		else:
-			print("Put", canIntf, "down")
+			print("sudo ifconfig",canIntf,"down") 
+			subprocess.Popen(["sudo", "ifconfig", canIntf, "down"]).wait() #turns on specified CAN interface
 
 	elif command == 'interface up':
 		if canIntf == 'any':
-			for i in range(len(intfOrder)):
-				print("Put", intfOrder[i],"up")
+			for i in range(len(intfOrder)): #for each CAN interface
+				p = subprocess.Popen(["sudo", "ifconfig", intfOrder[i], "up"]).wait() #turns on interface
+				print("sudo ifconfig", intfOrder[i],"up")
+
 		else:
-			print("Put", canIntf, "up")
+			p = subprocess.Popen(["sudo", "ifconfig", canIntf, "up"]).wait() #turns on specified CAN interface
+			print("sudo ifconfig", canIntf,"up")
 
 	elif command == 'interface reset':
 		if canIntf == 'any':
-			for i in range(len(intfOrder)):
-				print("Reset", intfOrder[i])
+			for i in range(len(intfOrder)): #for all CAN interfaces
+				subprocess.Popen(["sudo", "ifconfig", intfOrder[i], "down"]).wait() #turns off interface
+				print("sudo ifconfig", intfOrder[i], "down")
+				subprocess.Popen(["sudo", "ifconfig", intfOrder[i], "up"]).wait() #turns on interface
+				print("sudo ifconfig", intfOrder[i], "up")
 		else:
-			print("Reset", canIntf)
+			p = subprocess.Popen(["sudo", "ifconfig", canIntf, "down"]).wait() #turns off specified CAN interface
+			print("sudo ifconfig", canIntf, "down")
+			p = subprocess.Popen(["sudo", "ifconfig", canIntf, "up"]).wait() #turns on specified CAN interface
+			print("sudo ifconfig", canIntf, "up")
 
 	elif command == 'change bitrate':
 		try:
 			bitrateFormat = '>L'
-			bitrate = struct.unpack(bitrateFormat, b'\x00' + ethData[PARAM_START_IND:PARAM_START_IND+numParamBytes]) #bytes 2, 3 and 4 are bitrate
+			bitrate = str(struct.unpack(bitrateFormat, b'\x00' + ethData[PARAM_START_IND:PARAM_START_IND+numParamBytes])[0]) #bytes 2, 3 and 4 are bitrate
 			# 0x00 concatenated at beginning to make 4 bytes of data since it is unpacked as a four byte unsigned long
+		except Exception as e:
+			print("Not a valid bitrate. Setting bitrate to 250,000.\n")
+			bitrate = "250000"
 		if canIntf == 'any':
 			for i in range(len(intfOrder)):
-				print("Change", intfOrder[i],"bitrate to", bitrate)
+				print("Change", intfOrder[i],"bitrate to", bitrate+"\n")
 		else:
-			print("Change", canIntf, "bitrate to", bitrate)
+			print("Change", canIntf, "bitrate to", bitrate + "\n")
 
 conn.close()
