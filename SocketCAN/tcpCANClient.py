@@ -3,6 +3,8 @@
 import socket
 import sys
 import time
+import select
+import struct
 
 def printHelp():
     print("\n\nUsage: python3 tcpCANClient.py <CAN interface> <CAN command> [parameters]\n\n")
@@ -32,11 +34,14 @@ MAX_CAN_PER_TCP = 89
 CAN_ID_CANGEN = 0x98FEBF0B
 DLC_CANGEN = 8
 DELAY_BETWEEN_MSGS = 1 #seconds between TCP packets so buffer overflow doesn't happen
+BUFFER_SIZE = 2 # max number of bytes of response. 2 because only response is for busload which has 1 byte of interface and 1 byte of % busload
+TIMEOUT = 1 #max num of seconds to wait for replies with no response
 
 canInterfaces = {'can0': b'\x00', 'can1': b'\x01', 'any': b'\xFF'} #dictionary mapping interface name to byte value for tcp packet
+canBytes = {b'\x00': 'can0', b'\x01': 'can1'} #dict used to translate response interface byte to name
 
 canCommands = {'rxon':   [b'\x00',0],  'rxoff':  [b'\x01',0], 'txon':       [b'\x02',0], 'txoff':   [b'\x03',0], 'down':   [b'\x04',0],\
-               'up' :    [b'\x05',0],   'reset': [b'\x06',0], 'setbitrate': [b'\x07',3], 'busload': [b'\x08',0], 'rxmsgs': [b'\x09',0],
+               'up' :    [b'\x05',0],   'reset': [b'\x06',0], 'setbitrate': [b'\x07',3], 'busload': [b'\x08',3], 'rxmsgs': [b'\x09',0],
                'txmsgs': [b'\x10',0]} #dictionary correlating command line abbreviation with list of byte value of tcp packet to send and the number of bytes for parameters
 
 canPorts = {'can0': 2321, 'can1': 2323} # ports used for receiving CAN servers
@@ -106,4 +111,21 @@ except OSError:
 tcpSocket.send(ethData)
 print("Control Message Sent!")
 
-
+# percent busload is sent from the server in the following format
+#  [CAN Interface | Percent Busload]
+# CAN Interface is one byte distinguishing which interface the busload was measuring (can0 = 0x00, can1 = 0x01)
+# Percent Busload is the integer value of the estimated busload percentage
+if canComm == 'busload':
+    currentTime = time.time()
+    lastReadTime = time.time()
+    while currentTime - lastReadTime < TIMEOUT: #loops until timeout to wait for all busload estimations if using any
+        currentTime = time.time()
+        while select.select([tcpSocket], [], [], 1)[0]: #while a response has arrived
+            ethData = tcpSocket.recv(BUFFER_SIZE) #store the data
+            interface = canBytes[ethData[:1]] #interface is first byte. using dict to look up name of interface
+            busloadFormat = "<B"
+            busload = struct.unpack(busloadFormat, ethData[1:])[0] #gets busload as unsigned int
+            #print("Received:", str(ethData)+"\n")
+            print("Estimated Percentage Busload on", interface + ":", str(busload) + '%\n')
+            lastReadTime = time.time() #reset the lastReadtime
+        

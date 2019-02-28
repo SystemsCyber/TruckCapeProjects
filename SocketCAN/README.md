@@ -70,6 +70,7 @@ The server accepts commands from TCP packets in the following format.
     - txmsgs (0x10) Returns the number of messages transferred since the port has been open. Will return 0 if no messages transferred or txport is down.
 * Parameter(s): Variable number of bytes storing parameters associated with command. Default is 0 bytes unless specified here.
     - setbitrate: 3 bytes storing the desired bitrate in hexadecimal big-endian format.
+    - busload: 3 bytes storing the desired bitrate in hexadecimal big-endian format.
 
 Examples:
 - Turning on stream to transfer received vehicle messages on can0: b'\x00\x00' `python3 tcpCANClient.py can0 rxon`
@@ -103,15 +104,17 @@ This design is to ensure that the last messages are not dropped. This means, rxS
 
 The tcpCANClient.py is used to issue commands to the tcpCANServer.py. rxServers.py are the servers on the destination machine that receives the vehicle messages from the TCP connection.
 
-Transferring CAN messages for RX and TX is done in the following format
-
+#### TCPCAN Packet Format
+* Transferring CAN messages for RX and TX is done in the following format.
     ------------------------------------------------------------------
     | Number of CAN Frames | CAN Frame | CAN Frame | ... | CAN Frame |
     ------------------------------------------------------------------
 
 * Number of CAN Frames: One byte indicating number of CAN Frames that follow (0 to 89)
 * CAN Frame: 16 bytes similar to socketCAN format
-   
+
+#### CAN Frame Format
+* The following format is used for each CAN Frame.
     ------------------------------------
     | Identifier | DLC | Micros | Data |
     ------------------------------------
@@ -119,6 +122,14 @@ Transferring CAN messages for RX and TX is done in the following format
 - Data Length Code (DLC): 1 byte for the number of bytes in Data (0 to 8)
 - Micros: 3 bytes for an elapsed microseconds timer from start of transfer (Doesn't apply to TX)
 - Data: 0 to 8 bytes payload. (Will always have 8 bytes because of padding. DLC defines which bytes are actual data.)
+
+#### CAN Busload Communication Format
+* The following format is used to communicate the estimated percentage busload for the busload command.
+    -----------------------------------
+    | CAN Interface | Percent Busload |
+    -----------------------------------
+- CAN Interface: 1 byte to identify which interface the estimation is for (can0 or can1)
+- Percent Busload: 1 byte unsigned integer value of the percentage busload estimation from canbusload in can-utils
 
 ## Problems and Solutions
 

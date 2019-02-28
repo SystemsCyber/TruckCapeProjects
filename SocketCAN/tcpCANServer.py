@@ -32,9 +32,10 @@ print('---------------------------------------------------------------------')
 #  -> Parameters (variable) bytes necessary for the given command
 
 canInterfaces = {0x00: 'can0', 0x01: 'can1', 0xFF: 'any'} #dict for interface byte value to name
+canBytes = {'can0': b'\x00', 'can1': b'\x01'} #used for look up for canbusload command
 canCommands = {0x00: ['stream tcp socket rx on', 0], 0x01: ['stream tcp socket rx off', 0],    0x02: ['stream tcp socket tx on', 0], 0x03: ['stream tcp socket tx off', 0],\
                0x04: ['interface down', 0],          0x05: ['interface up', 0],                0x06: ['interface reset', 0],         0x07: ['change bitrate', 3],\
-               0x08: ['CAN busload', 0],             0x09: ['transferred rx CAN messages', 0], 0x10: ['transferred tx CAN messages', 0]}
+               0x08: ['CAN busload', 3],             0x09: ['transferred rx CAN messages', 0], 0x10: ['transferred tx CAN messages', 0]}
  #dict for command byte value to list of [name, number of bytes of parameter]
 canPorts = {'can0': [2320,2321], 'can1': [2322, 2323]} #dict for the ports used for each interface. key is interface, value is list of [rxPort, txPort]
 #rx is received messages from CAN interface, tx is CAN messages transmitted to CAN interface
@@ -313,11 +314,46 @@ while True: #control server open until CTRL+C
 			print("sudo ifconfig", canIntf, "up")
 
 	elif command == 'CAN busload':
+		try:
+			bitrateFormat = '>L'
+			bitrate = str(struct.unpack(bitrateFormat, b'\x00' + ethData[PARAM_START_IND:PARAM_START_IND+numParamBytes])[0]) #bytes 2, 3 and 4 are bitrate
+			# 0x00 concatenated at beginning to make 4 bytes of data since it is unpacked as a four byte unsigned long
+		except Exception as e:
+			print("Not a valid bitrate. Setting bitrate to 250,000.\n")
+			bitrate = "250000"
 		if canIntf == 'any':
-			for i in range(len(intfOrder)):
-				print("Busload for", intfOrder[i])
+			for i in range(len(intfOrder)): # for each interface
+				print("canbusload ",intfOrder[i] + "@" + bitrate)
+				p = subprocess.Popen(["canbusload", intfOrder[i] + "@" + bitrate], stdout=subprocess.PIPE) #runs canbusload on interface
+				output = p.stdout.readline().decode('utf-8').split(" ")
+				output = [x for x in output if x != ''] #removes blank elements in list
+				percBus = output[4].strip("%\n") #get the decimal number as a string of % busload
+				#print(output)
+				#print("Transmit:",percBus)
+				ethData = b''
+				if int(percBus) > 255: percBus = "255" #since only using 1 byte, set a max value
+				ethData = canBytes[intfOrder[i]] + int(percBus).to_bytes(1, 'little') #create data to send over eth
+				#print("Sending:", str(ethData))
+				conn.send(ethData)
+				print("Message Sent")
+				ethData = b''
+				p.kill() #kill the canbusload subprocess
 		else:
-			print("Busload for", canIntf)
+			print("canbusload ", canIntf + "@" + bitrate)
+			p = subprocess.Popen(["canbusload", canIntf + "@" + bitrate], stdout=subprocess.PIPE) #runs canbusload on specified interface
+			output = p.stdout.readline().decode('utf-8').split(" ")
+			output = [x for x in output if x != ''] #removes blank elements in list
+			percBus = output[4].strip("%\n") #get the decimal number as a string of % busload
+			#print(output)
+			#print("Transmit:",percBus)
+			ethData = b''
+			if int(percBus)> 255: percBus = "255" #since only using 1 byte set a max value
+			ethData = canBytes[canIntf] + int(percBus).to_bytes(1, 'little') #create data to send over eth
+			#print("Sending:", str(ethData))
+			conn.send(ethData)
+			print("Message Sent\n")
+			ethData = b''
+			p.kill() #kill thecanbusload subprocess
 
 	elif command == 'transferred rx CAN messages':
 		if canIntf == 'any':
