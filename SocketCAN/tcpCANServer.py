@@ -266,11 +266,11 @@ while True: #control server open until CTRL+C
 	elif command == 'interface up':
 		if canIntf == 'any':
 			for i in range(len(intfOrder)): #for each CAN interface
-				p = subprocess.Popen(["sudo", "ifconfig", intfOrder[i], "up"]).wait() #turns on interface
+				subprocess.Popen(["sudo", "ifconfig", intfOrder[i], "up"]).wait() #turns on interface
 				print("sudo ifconfig", intfOrder[i],"up")
 
 		else:
-			p = subprocess.Popen(["sudo", "ifconfig", canIntf, "up"]).wait() #turns on specified CAN interface
+			subprocess.Popen(["sudo", "ifconfig", canIntf, "up"]).wait() #turns on specified CAN interface
 			print("sudo ifconfig", canIntf,"up")
 
 	elif command == 'interface reset':
@@ -281,9 +281,9 @@ while True: #control server open until CTRL+C
 				subprocess.Popen(["sudo", "ifconfig", intfOrder[i], "up"]).wait() #turns on interface
 				print("sudo ifconfig", intfOrder[i], "up")
 		else:
-			p = subprocess.Popen(["sudo", "ifconfig", canIntf, "down"]).wait() #turns off specified CAN interface
+			subprocess.Popen(["sudo", "ifconfig", canIntf, "down"]).wait() #turns off specified CAN interface
 			print("sudo ifconfig", canIntf, "down")
-			p = subprocess.Popen(["sudo", "ifconfig", canIntf, "up"]).wait() #turns on specified CAN interface
+			subprocess.Popen(["sudo", "ifconfig", canIntf, "up"]).wait() #turns on specified CAN interface
 			print("sudo ifconfig", canIntf, "up")
 
 	elif command == 'change bitrate':
@@ -297,7 +297,40 @@ while True: #control server open until CTRL+C
 		if canIntf == 'any':
 			for i in range(len(intfOrder)):
 				print("Change", intfOrder[i],"bitrate to", bitrate+"\n")
+				subprocess.Popen(["sudo", "ifconfig", intfOrder[i], "down"]).wait() #turns off interface
+				print("sudo ifconfig", intfOrder[i], "down")
+				subprocess.Popen(["sudo", "ip", "link", "set", intfOrder[i], "type", "can", "bitrate", bitrate]).wait() #sets bitrate on interface
+				print("sudo ip link set", intfOrder[i], "type can bitrate", bitrate)
+				subprocess.Popen(["sudo", "ifconfig", intfOrder[i], "up"]).wait() #turns on interface
+				print("sudo ifconfig", intfOrder[i], "up")
 		else:
 			print("Change", canIntf, "bitrate to", bitrate + "\n")
+			subprocess.Popen(["sudo", "ifconfig", canIntf, "down"]).wait() #turns off specified CAN interface
+			print("sudo ifconfig", canIntf, "down")
+			subprocess.Popen(["sudo", "ip", "link", "set", canIntf, "type", "can", "bitrate", bitrate]).wait() #sets bitrate on specified CAN interface
+			print("sudo ip link set", canIntf,"type can bitrate", bitrate)
+			subprocess.Popen(["sudo", "ifconfig", canIntf, "up"]).wait() #turns on specified CAN interface
+			print("sudo ifconfig", canIntf, "up")
+
+	elif command == 'CAN busload':
+		if canIntf == 'any':
+			for i in range(len(intfOrder)):
+				print("Busload for", intfOrder[i])
+		else:
+			print("Busload for", canIntf)
+
+	elif command == 'transferred rx CAN messages':
+		if canIntf == 'any':
+			for i in range(len(intfOrder)):
+				print("RX Message Count for", intfOrder[i] + ":")
+		else:
+			print("RX Message Count for", canIntf, ":")
+
+	elif command == 'transferred tx CAN messages':
+		if canIntf == 'any':
+			for i in range(len(intfOrder)):
+				print("TX Message Count for", intfOrder[i] + ":")
+		else:
+			print("TX Message Count for", canIntf, ":")
 
 conn.close()
