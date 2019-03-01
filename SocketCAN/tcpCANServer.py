@@ -40,7 +40,13 @@ canCommands = {0x00: ['stream tcp socket rx on', 0], 0x01: ['stream tcp socket r
 canPorts = {'can0': [2320,2321], 'can1': [2322, 2323]} #dict for the ports used for each interface. key is interface, value is list of [rxPort, txPort]
 #rx is received messages from CAN interface, tx is CAN messages transmitted to CAN interface
 
-def rxClient(interface, isAlive, address): #method called for transferring CAN messages read from vehicle network and sending to a server via tcp client
+intfOrder = ['can0', 'can1'] #should be updated if more interfaces are added or process order storing in list needing to be different
+
+rxMsgCount = [Value('i', 0) for i in range(len(intfOrder))] #stores counts for the total number of received messages in order of intfOrder (shared between processes)
+txMsgCount = [Value('i', 0) for i in range(len(intfOrder))] #stores counts for the total number of transmitted messages in order of intfOrder (shared between processes)
+
+
+def rxClient(interface, isAlive, address, rxCount): #method called for transferring CAN messages read from vehicle network and sending to a server via tcp client
 	canSock = socket.socket(socket.PF_CAN, socket.SOCK_RAW, socket.CAN_RAW)
 	canSock.setsockopt(socket.SOL_CAN_RAW, socket.CAN_RAW_ERR_FILTER, socket.CAN_ERR_MASK) #allows socket to receive error frames
 	tcpSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -62,6 +68,13 @@ def rxClient(interface, isAlive, address): #method called for transferring CAN m
 	ethData = b'' # used to store payload of tcp packet
 	numCANFrames = 0 #stores num of CAN frames in specific TCP packet
 
+	padPackCANCount = 0 #number of frames for padded TCP packet case
+	canIntfIndex = -1 #index position of interface location within intfOrder
+	for i in range(len(intfOrder)):
+		if interface == intfOrder[i]: canIntfIndex = i #sets canIntfIndex to index of interface within intfOrder list
+
+	rxCount.value = 0 #start of transmission so reset counter
+
 	while isAlive.value: #shared variable, 1 true, 0 is false. Client is open until commanded to close on command port
 		#keep client alive and read messages, pack them into ethernet frame, and send
 		while currentTime - lastCANReadTime < TIMEOUT: #loop until timout of CAN messages occurs
@@ -74,13 +87,16 @@ def rxClient(interface, isAlive, address): #method called for transferring CAN m
 				if int((lastCANReadTime - startTime)*SEC_TO_MICROS) >= 0xFFFFFF: startTime = lastCANReadTime #resets start time to rollover timestamp
 				microTimer = (int((lastCANReadTime - startTime)*SEC_TO_MICROS)).to_bytes(3, byteorder='little')
 				ethData += canFrame[:5] + microTimer + canFrame[8:] #replaces padded bytes with microsecond timer
+				padPackCANCount += 1 #increment for 1 read CAN frame
 				if (numCANFrames >= MAX_CAN_PER_TCP):
 					ethData = bytes([numCANFrames]) + ethData #concatenates size as first byte of the frame
 					print("Sending full frame")
 					tcpSock.send(ethData)
 					msgSent = True # msg has just been sent. will reset to false after next message is read
+					rxCount.value += MAX_CAN_PER_TCP #adds 89 because 89 CAN frames in a full TCP frame
+					padPackCANCount = 0 #resets to 0 because this packet was a full frame
 					ethData = b''
-					numCANFrames = 0
+					numCANFrames = 0 
 					if not isAlive.value: break; #same as below, breaks from select.select while loop after message is sent
 					#only if the process should no longer be alive
 			if not isAlive.value and msgSent: break; #breaks out from reading CAN messages if the shared variable says the process is not alive,
@@ -91,6 +107,8 @@ def rxClient(interface, isAlive, address): #method called for transferring CAN m
 		ethData = bytes([numCANFrames]) + ethData #appends size as first byte of frame
 		print("Sending padded frame")
 		tcpSock.send(ethData)
+		rxCount.value += padPackCANCount #adds the num of CAN frames on the padded packet
+		padPackCANCount = 0 # resets counter
 		isAlive.value = 0 #sets value to false to kill itself if no messages on the bus for the timout period
 		currentTime = time.time() #resets current time
 		lastCANReadTime = time.time() #resets last read time so it can begin reading from vehicle network again
@@ -99,7 +117,7 @@ def rxClient(interface, isAlive, address): #method called for transferring CAN m
 	tcpSock.close()
 	return 0
 
-def txServer(interface, isAlive, address): #method called for receiving CAN messages on TCP Server and trasmitting on vehicle network
+def txServer(interface, isAlive, address, txCount): #method called for receiving CAN messages on TCP Server and trasmitting on vehicle network
 	canSock = socket.socket(socket.PF_CAN, socket.SOCK_RAW, socket.CAN_RAW)
 	canSock.setsockopt(socket.SOL_CAN_RAW, socket.CAN_RAW_ERR_FILTER, socket.CAN_ERR_MASK)
 	tcpSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -116,12 +134,15 @@ def txServer(interface, isAlive, address): #method called for receiving CAN mess
 	tcpSock.listen(1) #listens for tcp packets to parse and send on vehicle network
 	conn, addr = tcpSock.accept()
 	print("Connection Address:",addr)
+
+	txCount.value = 0 # start of transmission so reset counter
 	while isAlive.value: #shared variable when non-zero is true, 0 is false. Server open until commanded to close on command port
 		#keep server alive waiting for tcp messages containing CAN data
 		ethData = conn.recv(BUFFER_SIZE)
 		if not ethData: break;
 		#read the desginated number of frames decided by first byte in message, and send on specified CAN interface
 		print("Received", int(ethData[0]), "CAN Frames")
+		txCount.value += int(ethData[0])
 		print("Transmitting onto Vehicle Network Interface:", interface)
 		for i in range(int(ethData[0])): # for the number of can frames
 			can_packet = ethData[i*BYTES_PER_CANFRAME + COUNTER_OFFSET: i*BYTES_PER_CANFRAME + COUNTER_OFFSET + BYTES_PER_CANFRAME] #offset of 1 for the counter, multiply by 16 b/c 16 bytes per
@@ -141,11 +162,14 @@ def txServer(interface, isAlive, address): #method called for receiving CAN mess
 
 tcpSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-intfOrder = ['can0', 'can1'] #should be updated if more interfaces are added or process order storing in list needing to be different
+
 rxProcesses = [None for i in range(len(canInterfaces)-1)]
 txProcesses = [None for i in range(len(canInterfaces)-1)] #lists to store rx and tx clients/server processes. Assumes processes in order of intfOrder, excludes any
 keepRxAlive = [Value('i', 0) for i in range(len(canInterfaces) -1)] #list of shared variables. Used to determine if rx clients should still be running
 keepTxAlive = [Value('i', 0) for i in range(len(canInterfaces) -1)] #list of shared variables. Used to determine if tx servers should still be up
+
+
+
 
 
 try:
@@ -183,7 +207,7 @@ while True: #control server open until CTRL+C
 				print("Start RX Client for", intfOrder[i],'\n')
 				#start processes with intfOrder as parameter
 				keepRxAlive[i].value = 1 #set shared variable to 1
-				rxProcesses[i] = Process(target = rxClient, args=(intfOrder[i], keepRxAlive[i], [addr[0], canPorts[intfOrder[i]][0]])) #create process passing interfacename and shared value
+				rxProcesses[i] = Process(target = rxClient, args=(intfOrder[i], keepRxAlive[i], [addr[0], canPorts[intfOrder[i]][0]], rxMsgCount[i])) #create process passing interfacename and shared value
 				rxProcesses[i].start() #start the process
 		else: #if specific interface
 			print("Turning on client port to receive CAN frames connecting to port", canPorts[canIntf][0]) 
@@ -193,7 +217,7 @@ while True: #control server open until CTRL+C
 				if intf == canIntf:
 					print("Found the chosen interface", intf)
 					keepRxAlive[i].value = 1 #set shared variable
-					rxProcesses[i] = Process(target = rxClient, args=(intf, keepRxAlive[i], [addr[0], canPorts[canIntf][0]])) #create process
+					rxProcesses[i] = Process(target = rxClient, args=(intf, keepRxAlive[i], [addr[0], canPorts[canIntf][0]], rxMsgCount[i])) #create process
 					rxProcesses[i].start() #start process
 	
 	elif command == 'stream tcp socket rx off': #turn off stream for tcp client to send CAN frames
@@ -221,7 +245,7 @@ while True: #control server open until CTRL+C
 				print("Start TX Server for",intfOrder[i],'\n')
 				#start processes with each interface name and value to decide if server should still be running
 				keepTxAlive[i].value = 1
-				txProcesses[i] = Process(target = txServer, args=(intfOrder[i], keepTxAlive[i], [SERVER_IP, canPorts[intfOrder[i]][1]]))
+				txProcesses[i] = Process(target = txServer, args=(intfOrder[i], keepTxAlive[i], [SERVER_IP, canPorts[intfOrder[i]][1]], txMsgCount[i]))
 				txProcesses[i].start()
 		else:
 			print("Turning on server port to send CAn frames on port", canPorts[canIntf][1])
@@ -231,7 +255,7 @@ while True: #control server open until CTRL+C
 				if intf == canIntf:
 					print("Found the chosen interface", intf)
 					keepTxAlive[i].value = 1
-					txProcesses[i] = Process(target = txServer, args = (intf, keepTxAlive[i], [SERVER_IP, canPorts[canIntf][1]]))
+					txProcesses[i] = Process(target = txServer, args = (intf, keepTxAlive[i], [SERVER_IP, canPorts[canIntf][1]], txMsgCount[i]))
 					txProcesses[i].start()
 
 	elif command == 'stream tcp socket tx off':
@@ -358,15 +382,21 @@ while True: #control server open until CTRL+C
 	elif command == 'transferred rx CAN messages':
 		if canIntf == 'any':
 			for i in range(len(intfOrder)):
-				print("RX Message Count for", intfOrder[i] + ":")
+				print("RX Message Count for", intfOrder[i] + ":", rxMsgCount[i].value)
 		else:
-			print("RX Message Count for", canIntf, ":")
+			canIntfIndex = -1 #stores index of interface within intfOrder
+			for i in range(len(intfOrder)):
+				if intfOrder[i] == canIntf: canIntfIndex = i #sets canIntfIndex to index within intfOrder
+			print("RX Message Count for", canIntf, ":", rxMsgCount[canIntfIndex].value)
 
 	elif command == 'transferred tx CAN messages':
 		if canIntf == 'any':
 			for i in range(len(intfOrder)):
-				print("TX Message Count for", intfOrder[i] + ":")
+				print("TX Message Count for", intfOrder[i] + ":", txMsgCount[i].value)
 		else:
-			print("TX Message Count for", canIntf, ":")
+			canIntfIndex = -1 # stores index of interface within intfOrder
+			for i in range(len(intfOrder)): 
+				if intfOrder[i] == canIntf: canIntfIndex = i #sets canIntfIndex to index within intfOrder
+			print("TX Message Count for", canIntf, ":", txMsgCount[canIntfIndex].value)
 
 conn.close()

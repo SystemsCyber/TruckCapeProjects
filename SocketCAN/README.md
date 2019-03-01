@@ -1,11 +1,12 @@
 # Overview
 
 There are 2 functionalities regarding the scripts
-    - tcpCANrxServer.py
-    - tcpCANrxClient.py
-    - tcpCANClient.py
-    - tcpCANServer.py
-    - rxServers.py
+- tcpCANrxServer.py
+- tcpCANrxClient.py
+- tcpCANClient.py
+- tcpCANServer.py
+- rxServers.py
+
 1) tcpCANrxServer.py and tcpCANrxClient.py are used to establish a simple stream of CAN data from a node connected to a vehicle network to a remote server and to log the messages on the server.
 
 2) tcpCANServer.py, tcpCANClient.py, and rxServers.py extend **1)** by adding a control server to turn on/off data transfer read from a CAN interface and add more capabilities.
@@ -66,8 +67,8 @@ The server accepts commands from TCP packets in the following format.
     - reset (0x06) Resets the designated CAN Interface. Equivalent to a down command then an up command.
     - setbitrate (0x07) Changes the designated CAN Interface to the specified bitrate. Changing the bitrate is achieved using this command alone instead of combining it with down and up.
     - busload (0x08) Returns the estimated busload percentage of the designated CAN Interface by using can-utils.
-    - rxmsgs (0x09) Returns the number of messages received since the port has been open. Will return 0 if no messages received or rxport is down.
-    - txmsgs (0x10) Returns the number of messages transferred since the port has been open. Will return 0 if no messages transferred or txport is down.
+    - rxmsgs (0x09) Returns the number of messages from when the port was opened to when the port was closed. Should only be used after using rxoff.
+    - txmsgs (0x10) Returns the number of messages transferred from when the port was opened to when the port was closed. Should only be used after using txoff.
 * Parameter(s): Variable number of bytes storing parameters associated with command. Default is 0 bytes unless specified here.
     - setbitrate: 3 bytes storing the desired bitrate in hexadecimal big-endian format.
     - busload: 3 bytes storing the desired bitrate in hexadecimal big-endian format.
@@ -84,6 +85,12 @@ Examples:
     - Authentication is necessary for first command.
     - Currently, the password authentication process is built into the server.
     - The client does not accept or transfer the password. It would need to be encrypted if it did.
+* For the commands rxmsgs and txmsgs
+    - Data not transferred to server because it is used for packet dropping tests, mainly.
+    - Displays number of packets on server side for verification of the number of CAN messages received/transmitted.
+    - The received count displays the number of CAN messages that should be logged on the tcpCANClient.py side.
+    - The transmitted count displays the number of CAN messages that have been received to transmit on the CAN network. It shows the total count of messages that were received by the server, not the count that actually made it on the vehicle network.
+    - To get a count of a session, txon or rxon must first be used. At the end of the session, txoff or rxoff should be used, and rxmsgs or txmsgs will display the count of the last session.
 
 ### Setting Up
 
