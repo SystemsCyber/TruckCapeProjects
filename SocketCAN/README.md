@@ -105,7 +105,7 @@ This design is to ensure that the last messages are not dropped. This means, rxS
 The tcpCANClient.py is used to issue commands to the tcpCANServer.py. rxServers.py are the servers on the destination machine that receives the vehicle messages from the TCP connection.
 
 #### TCPCAN Packet Format
-* Transferring CAN messages for RX and TX is done in the following format.
+Transferring CAN messages for RX and TX is done in the following format.
     ------------------------------------------------------------------
     | Number of CAN Frames | CAN Frame | CAN Frame | ... | CAN Frame |
     ------------------------------------------------------------------
@@ -114,7 +114,7 @@ The tcpCANClient.py is used to issue commands to the tcpCANServer.py. rxServers.
 * CAN Frame: 16 bytes similar to socketCAN format
 
 #### CAN Frame Format
-* The following format is used for each CAN Frame.
+The following format is used for each CAN Frame.
     ------------------------------------
     | Identifier | DLC | Micros | Data |
     ------------------------------------
@@ -124,7 +124,7 @@ The tcpCANClient.py is used to issue commands to the tcpCANServer.py. rxServers.
 - Data: 0 to 8 bytes payload. (Will always have 8 bytes because of padding. DLC defines which bytes are actual data.)
 
 #### CAN Busload Communication Format
-* The following format is used to communicate the estimated percentage busload for the busload command.
+The following format is used to communicate the estimated percentage busload for the busload command.
     -----------------------------------
     | CAN Interface | Percent Busload |
     -----------------------------------
