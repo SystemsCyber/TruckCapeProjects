@@ -7,7 +7,7 @@ import sys
 
 # Open a socket and bind to it from SocketCAN
 sock = socket.socket(socket.PF_CAN, socket.SOCK_RAW, socket.CAN_RAW)
-
+sock.setsockopt(socket.SOL_CAN_RAW, socket.CAN_RAW_ERR_FILTER, socket.CAN_ERR_MASK) #allows socket to receive error frames
 # The interface can be seen from the command prompt (ifconfig)
 # The can channel must be configured using the ip link commands
 interface = "can1"
@@ -45,26 +45,26 @@ print("socket.CAN_ERR_FLAG = 0x{:08X}".format(socket.CAN_ERR_FLAG))
 
 # Enter a loop to read and display the data
 while True:
-	can_packet = sock.recv(16) 
-	can_id, can_dlc, can_data = struct.unpack(can_frame_format, can_packet)
+    can_packet = sock.recv(16) 
+    can_id, can_dlc, can_data = struct.unpack(can_frame_format, can_packet)
 
-	extended_frame = bool(can_id & socket.CAN_EFF_FLAG)
-	error_frame = bool(can_id & socket.CAN_ERR_FLAG)
-	remote_tx_req_frame = bool(can_id & socket.CAN_RTR_FLAG)
-	
-	if error_frame:
-		can_id &= socket.CAN_ERR_MASK
-		can_id_string = "{:08X} (ERROR)".format(can_id)
-	else: #Data Frame
-		if extended_frame:
-			can_id &= socket.CAN_EFF_MASK
-			can_id_string = "{:08X}".format(can_id)
-		else: #Standard Frame
-			can_id &= socket.CAN_SFF_MASK
-			can_id_string = "{:03X}".format(can_id)
-		
-	if remote_tx_req_frame:
-		can_id_string = "{:08X} (RTR)".format(can_id)
-	
-	hex_data_print = ' '.join(["{:02X}".format(can_byte) for can_byte in can_data])
-	print("{:12.6f} {} [{}] {}".format(time.time(), can_id_string, can_dlc, hex_data_print))
+    extended_frame = bool(can_id & socket.CAN_EFF_FLAG)
+    error_frame = bool(can_id & socket.CAN_ERR_FLAG)
+    remote_tx_req_frame = bool(can_id & socket.CAN_RTR_FLAG)
+    
+    if error_frame:
+        can_id &= socket.CAN_ERR_MASK
+        can_id_string = "{:08X} (ERROR)".format(can_id)
+    else: #Data Frame
+        if extended_frame:
+            can_id &= socket.CAN_EFF_MASK
+            can_id_string = "{:08X}".format(can_id)
+        else: #Standard Frame
+            can_id &= socket.CAN_SFF_MASK
+            can_id_string = "{:03X}".format(can_id)
+        
+    if remote_tx_req_frame:
+        can_id_string = "{:08X} (RTR)".format(can_id)
+    
+    hex_data_print = ' '.join(["{:02X}".format(can_byte) for can_byte in can_data])
+    print("{:12.6f} {} [{}] {}".format(time.time(), can_id_string, can_dlc, hex_data_print))
