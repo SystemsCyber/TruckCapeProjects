@@ -1,0 +1,31 @@
+Comment,Description,Designator,Footprint,Quantity,Manufacturer,PartNumber,Supplier 1,Supplier Part Number 1
+,,,,,,,,
+BBone Headers,"46 Positions Header, Breakaway Connector 0.100 (2.54mm) Through Hole Tin""",BeagleBoneBlack1,Beagleboneblack,2,Sullins Connector Solutions,PREC023DAAN-RC,Digi-Key,S2012EC-23-ND
+0.1uF,CAP CER 0.1UF 100V X7R RADIAL,"C1, C4, C5, C6, C9, C11",CAPR5-4X5,6,Vishay BC Components,K104K20X7RH53H5,Digi-Key,BC5139-ND
+1uF,CAP CER 1UF 100V X7R RADIAL,"C2, C3",CAPR5-4X5,2,Murata Electronics North America,RDER72A105K2M1H03A,Digi-Key,490-9198-1-ND
+220uF,"220µF 50V Aluminum Electrolytic Capacitors Radial, Can 175 mOhm @ 10kHz 5000 Hrs @ 105°C","C7, C8",Elec. Cap 5 x 10mm,2,EPCOS (TDK),B41858C6227M000,Digi-Key,495-6000-ND
+STPS2150,Diode Schottky 150V 2A Through Hole DO-15,D1,DO-41,1,STMicroelectronics,STPS2150,Digi-Key,497-3213-1-ND
+Molex 39-30-3056,"5 Positions Header Connector 0.165 (4.20mm) Through Hole - Right Angle Tin""",J5,5 POS MINI-FIT JR R/A Header,1,Molex,39-30-3055,Digi-Key,WM18448-ND
+10 Pos Mini-Fit Jr.,"10 Positions Header Connector 0.165 (4.20mm) Through Hole - Right Angle Tin""",J10,10 pos Mini-Fit Jr. R/A Header,1,Molex,39-30-1100,Digi-Key,WM1355-ND
+Vehicle Interface,"Receptacle Assembly, 15 Position, Right Angle, 8.08mm Series, Amplimite, with Screwlocks",J15,DB15,1,Amphenol FCI,D15S33E4GX00LF,Digi-Key,609-1499-ND
+Inductor B82131,14µH Unshielded Wirewound Inductor 700mA 760mOhm Axial,L1,AXIAL-0.9,1,TDK Electronics Inc.,B82131A5701M000,Digi-Key,495-5602-1-ND
+Use this part in J1-1 to J1-6,"CONN HEADER FEMALE 6POS .1 GOLD""",P1,HDR1X6,1,Sullins Connector Solutions,PPPC061LFBN-RC,Digi-Key,S7039-ND
+Shunt Switch,"2 (1 x 2) Position Shunt Connector Black Open Top 0.100 (2.54mm) Gold""",P2 Shunt,,1,Sullins Connector Solutions,QPC02SXGN-RC,Digi-Key,S9337-ND
+RKEF075,"Polymeric PTC Resettable Fuse 60V 750mA Ih Through Hole Radial, Disc",PTC1,PTC,1,Littelfuse Inc.,RKEF075,Digi-Key,RKEF075HF-ND
+4.7k,RES SMD 4.7K OHM 1% 1/10W 0603,"R1, R2, R3, R6, R7, R10, R11",Axial-0.4,7,Yageo,CFR-25JB-52-4K7,Digi-Key,4.7KQBK-ND
+47,"47 Ohms ±5% 0.25W, 1/4W Through Hole Resistor Axial  Carbon Film","R4, R5, R8, R9",Axial-0.4,4,Yageo,CFR-25JB-52-47R,Digi-Key,47QBK-ND
+SN74LS126AN,Quad 3-State Buffer,U1,N14A,1,Texas Instruments,SN74LS126AN,Digi-Key,296-3643-5-ND
+ULQ2003AN,"High voltage, high current Darlington arrays each containing seven open collector Darlington pairswith common emitters.",U2,DIP16,1,Texas Instruments,ULQ2003AN,Digi-Key,296-22623-5-ND
+MCP2562,1/1 Transceiver Half CAN 8-PDIP,"U3, U5",PDIP300-P8,2,Microchip Technology,MCP2562-E/P,Digi-Key,MCP2562-E/P-ND
+SN75HVD12,IC 3.3V DIFF TXRX 8-SOIC,"U4, U7",PDIP300-P8,2,Texas Instruments,SN75HVD12P,Digi-Key,296-14047-5-ND
+OKI-78SR,5V DC/DC Converter (7805 replacement),U6,OKI-78SR,1,Murata Power Solutions Inc.,OKI-78SR-5/1.5-W36H-C,Digi-Key,811-2692-ND
+SN74AHC14N,Inverter IC 6 Channel Schmitt Trigger 14-PDIP,U8,N14A,1,Texas Instruments,SN74AHC14N,Digi-Key,296-4550-5-ND
+TP1.5KE30CA,TVS DIODE 25.6V 41.4V DO201,Z1,DIODE-0.7,1,Littelfuse Inc.,TP1.5KE30CA,Digi-Key,F7610CT-ND
+Debug Port,CONN HEADER VERT 6POS 2.54MM,Debug,HDR1X6,1,Sullins Connector Solutions,PBC06SFAN,Digi-Key,S1211E-06-ND
+BeagleBone Black,BEAGLEBONE BLK REV C AM3358BZCZ,BBB,Beagleboneblack,1,"GHI Electronics, LLC",BBB01-SC-505,Digi-Key,BBB01-SC-505-ND
+Enclosure,"BOX ALUM BLACK 4.72""L X 3.07""W",Encl,,1,Hammond Manufacturing,1455K1202BK,Digi-Key,HM1724-ND
+COM Switch Header,CONN HEADER VERT 3POS 2.54MM,P2,HDR1X3,1,Sullins Connector Solutions,PBC03SFAN,Digi-Key,S1211E-03-ND
+Cord Grip,CABLE GLAND 5-7.5MM PG11 NYLON,CG1,,1,Bud Industries,NG-9513,Digi-Key,377-1923-ND
+Screws,JACK SCREW HEX 4-40 1=2,J15-Screws,,1,Keystone Electronics,7230-5,Digi-Key,36-7230-5-ND
+Cable,KL68-04 Deutsch 9Pin dual-headed to molex terminals,Cable1,,1,Cactus Electronics,KL68-04,Cactus Electronics,KL68-04
+P10,CONN RECEPT 10POS DUAL,P10,,1,Molex,39-01-2100,Digi-Key,WM3704-ND
