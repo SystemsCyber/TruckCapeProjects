@@ -8,3 +8,5 @@ PDFs of the schematics are available. The board in this design is available for 
 
 ## Errata
 The rev 4 board calls for a B82134 Inductor, but that component is too big. Instead, use a B82131 Inductor. The Bill of Materials for v4 accurately reflects this change. 
+
+The bottom silkscreen on the v4 PCB is mis labeled. It should match the schematic and have only 1 common supply (COM) and 4 open collector outputs (low-side switches).
