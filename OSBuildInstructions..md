@@ -293,12 +293,33 @@ debian@beaglebone:~$ candump any
   can1  0CF00400   [8]  00 7D 7D 00 00 00 F0 7D
 ```
 
-### Socket-CAN and CAN-UTILS
+### Socket-CAN and can-utils
+Get the latest version that supports J1939. Download the package using curl:
+
+```
+debian@beaglebone:~$ curl http://http.us.debian.org/debian/pool/main/c/can-utils/can-utils_2020.02.04-3_armhf.deb --output can-utils_2020.02.04-3_armhf.deb
+```
+
+Install the package using dpkg
+
+```
+debian@beaglebone:~$ sudo dpkg  -i can-utils_2020.02.04-3_armhf.deb
+(Reading database ... 72570 files and directories currently installed.)
+Preparing to unpack can-utils_2020.02.04-3_armhf.deb ...
+Unpacking can-utils (2020.02.04-3) over (2018.02.0-1) ...
+Setting up can-utils (2020.02.04-3) ...
+Processing triggers for man-db (2.8.5-2) ...
+```
+
 https://github.com/linux-can/can-utils
 
 This now has J1939.
 
+Test to see if this works. If connected to a J1939 network:
 
+```
+
+```
 
 This might be interesting: https://www.beyondlogic.org/example-c-socketcan-code/
 
@@ -306,6 +327,9 @@ This might be interesting: https://www.beyondlogic.org/example-c-socketcan-code/
 https://www.thomas-wedemeyer.de/beaglebone-canbus-python.html
 
 python-can
+
+
+https://justkding.me/thoughts/python-sae-j1939-socket-support
 
 
 ## J1708 drivers
