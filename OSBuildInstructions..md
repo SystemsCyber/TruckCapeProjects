@@ -1,4 +1,7 @@
 # Installing the Linux Operating System.
+
+These steps were taken to build the TruckCape recovery SD card. If you have a truck-cape from 2020, then these steps have already been done.
+
 1. Download 
 
 https://debian.beagleboard.org/images/bone-eMMC-flasher-debian-10.3-iot-armhf-2020-04-06-4gb.img.xz
@@ -79,7 +82,7 @@ Write the following commands to get the CAN hardware to access the pins upon boo
 Create a file in the home directory:
 
 ```
-nano /home/debian/pin_config.sh
+nano /etc/pin_config.sh
 ```
 Write the following into the directory:
 ```
@@ -113,12 +116,12 @@ exit 0
 ```
 Make the script executable:
 ```
-sudo chmod +x /home/debian/pin_config.sh
+sudo chmod +x /etc/pin_config.sh
 ```
 However, these commands need to be run upon boot, so let's make a script to do this and add it to a boot sequence.
 
 ```
-sudo nano /etc/systemd/system/pin_config.service
+sudo nano /lib/systemd/system/pin_config.service
 ```
 Add this to the file:
 ```
@@ -149,6 +152,13 @@ Enable the service at boot
 ```
 sudo systemctl enable pin_config.service
 ```
+To confirm the pin_config.service was enabled, look for a symbolic link in `/etc/systemd/system`
+
+```
+debian@beaglebone:/etc/systemd/system$ ls -la
+lrwxrwxrwx  1 root root   38 Sep 17 04:51 pin_config.service -> /lib/systemd/system/pin_config.service
+```
+
 Reboot and verify:
 
 ```
@@ -292,9 +302,13 @@ debian@beaglebone:~$ candump any
   can1  08FE6E0B   [8]  FF FE FF FE FF FE FF FE
   can1  0CF00400   [8]  00 7D 7D 00 00 00 F0 7D
 ```
+### Upgrade the Linux Kernel Module for SocketCAN
+We would like to include the version of the SocketCAN kernel module that support SAE J1939.
+
+TODO: Try this out. It still needs to be done. The remainder of this document needs to be developed.
 
 ### Socket-CAN and can-utils
-Get the latest version that supports J1939. Download the package using curl:
+Get the latest version of can-utils that supports J1939. Download the package using curl:
 
 ```
 debian@beaglebone:~$ curl http://http.us.debian.org/debian/pool/main/c/can-utils/can-utils_2020.02.04-3_armhf.deb --output can-utils_2020.02.04-3_armhf.deb
@@ -312,14 +326,6 @@ Processing triggers for man-db (2.8.5-2) ...
 ```
 
 https://github.com/linux-can/can-utils
-
-This now has J1939.
-
-Test to see if this works. If connected to a J1939 network:
-
-```
-
-```
 
 This might be interesting: https://www.beyondlogic.org/example-c-socketcan-code/
 
