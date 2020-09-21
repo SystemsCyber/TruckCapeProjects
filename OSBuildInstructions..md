@@ -71,6 +71,18 @@ disable_uboot_overlay_adc=1
 ```
 Be sure to keep the emmc line commented, since that's the root file system.
 
+Also, enable the universal overlay. This ensures the kernel has access to the hardware pin multiplexers. 
+
+```
+###Additional custom capes
+uboot_overlay_addr4=/lib/firmware/cape-universal.dtbo
+#uboot_overlay_addr5=/lib/firmware/<file5>.dtbo
+#uboot_overlay_addr6=/lib/firmware/<file6>.dtbo
+#uboot_overlay_addr7=/lib/firmware/<file7>.dtbo
+###
+
+```
+
 Save and reboot: `sudo shutdown -r now`
 
 
@@ -102,10 +114,9 @@ config-pin p8.38 uart
 # PWMs
 config-pin p8.46 pwm
 config-pin p8.45 pwm
-config-pin p8.44 pwm
-config-pin p8.43 pwm
+config-pin p8.34 pwm
+config-pin p8.36 pwm
 # GPIO
-config-pin p8.36 gpio
 config-pin p9.12 gpio
 config-pin p9.14 gpio
 
@@ -152,7 +163,11 @@ sudo systemctl enable pin_config.service
 Reboot and verify:
 
 ```
-config-pin -q p9.24
+debian@beaglebone:~$ config-pin -q p9.24
+
+Current mode for P9_24 is:     can
+
+
 ```
 
 Verify the status of the pin_config.service was successful by looking for an output like this:
@@ -165,16 +180,16 @@ debian@beaglebone:~$ sudo systemctl status pin_config.service
   Process: 856 ExecStart=/bin/bash /home/debian/pin_config.sh (code=exited, status=0/SUCCESS)
  Main PID: 856 (code=exited, status=0/SUCCESS)
 
-Sep 08 23:52:05 beaglebone bash[856]: Current mode for P8_37 is:     uart
-Sep 08 23:52:05 beaglebone bash[856]: Current mode for P8_38 is:     uart
-Sep 08 23:52:06 beaglebone bash[856]: Current mode for P8_46 is:     pwm
-Sep 08 23:52:06 beaglebone bash[856]: Current mode for P8_45 is:     pwm
-Sep 08 23:52:06 beaglebone bash[856]: Current mode for P8_44 is:     pwm
-Sep 08 23:52:06 beaglebone bash[856]: Current mode for P8_43 is:     pwm
-Sep 08 23:52:06 beaglebone bash[856]: Current mode for P8_36 is:     gpio
-Sep 08 23:52:06 beaglebone bash[856]: Current mode for P9_12 is:     gpio
-Sep 08 23:52:06 beaglebone bash[856]: Current mode for P9_14 is:     gpio
-Sep 08 23:52:06 beaglebone systemd[1]: pin_config.service: Succeeded.
+Sep 21 14:06:18 beaglebone bash[2040]: Current mode for P9_13 is:     uart
+Sep 21 14:06:18 beaglebone bash[2040]: Current mode for P8_37 is:     uart
+Sep 21 14:06:18 beaglebone bash[2040]: Current mode for P8_38 is:     uart
+Sep 21 14:06:18 beaglebone bash[2040]: Current mode for P8_46 is:     pwm
+Sep 21 14:06:18 beaglebone bash[2040]: Current mode for P8_45 is:     pwm
+Sep 21 14:06:18 beaglebone bash[2040]: Current mode for P8_34 is:     pwm
+Sep 21 14:06:18 beaglebone bash[2040]: Current mode for P8_36 is:     pwm
+Sep 21 14:06:18 beaglebone bash[2040]: Current mode for P9_12 is:     gpio
+Sep 21 14:06:18 beaglebone bash[2040]: Current mode for P9_14 is:     gpio
+Sep 21 14:06:18 beaglebone systemd[1]: pin_config.service: Succeeded.
 ```
 If this doesn't work, be sure to disable the overlays in the uEnv.txt file.
 
@@ -292,6 +307,45 @@ debian@beaglebone:~$ candump any
   can1  08FE6E0B   [8]  FF FE FF FE FF FE FF FE
   can1  0CF00400   [8]  00 7D 7D 00 00 00 F0 7D
 ```
+<<<<<<< Updated upstream
+=======
+
+## Write a recovery SD card
+To duplicate the firmware image on the eMMC of the current Beagle Bone Black, do the following:
+1. Remove the BBBlack from the truck cape. Power up with USB. 
+1. Insert a blank SD card 4GB or bigger as soon as the user LEDs flash on boot. This timing seems to help ensure the SD card is recognized by the kernel. Plugging in the SD card later may not work. This is a physical hack to ensure the SD card can work.
+1. Connect the Ethernet to a live internet connection.
+2. Login 
+1. Update the scripts
+```
+cd /opt/scripts
+git pull
+```
+2. Run the command 
+```
+sudo /opt/scripts/tools/eMMC/beaglebone-black-make-microSD-flasher-from-eMMC.sh 
+```
+3. Wait for the program to finish.
+```
+================================================================================
+eMMC has been flashed: please wait for device to power down.
+================================================================================
+Calling shutdown
+```
+4. Eject the card. It is ready to use.
+
+If the process fails, double check the SD card insertion and timing. 
+
+## Future Work
+
+### Upgrade the Linux Kernel Module for SocketCAN
+We would like to include the version of the SocketCAN kernel module that support SAE J1939.
+
+TODO: Try this out. It still needs to be done. The remainder of this document needs to be developed.
+
+### Socket-CAN and can-utils
+Get the latest version of can-utils that supports J1939. Download the package using curl:
+>>>>>>> Stashed changes
 
 ### Socket-CAN and CAN-UTILS
 https://github.com/linux-can/can-utils
