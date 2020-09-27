@@ -19,7 +19,7 @@ The new pins for PWM2 and PWM3 are P8.34 and P8.36, respectively. However, the P
 
 ![Pins_P8-44and43_removed.jpg](Pins_P8-44and43_removed.jpg)
 
-The handannotated schematic is available ![TruckCape v4 Schematic Modified.pdf]("TruckCape v4 Schematic Modified.pdf")
+The handannotated schematic is available ![TruckCape v4 Schematic Modified.pdf](TruckCape v4 Schematic Modified.pdf)
 
 ## External Cable Connections
 The board cutout can accomodate a 10-pin Molex Mini-Fit Jr connector to break out the J1939 connector. The cable for this is specified with the ![Cable Drawing](KL68-04-9P-dual-headed.pdf).
@@ -31,7 +31,7 @@ To assemble this component, follow these steps:
 1. Cut a hole in the side panel to fit a cord grip.
 1. Insert the cable through the cord grip.
 1. Tighten the cord grip in the side panel with the hole. Don't tighten the grip around the cable yet.
-2. insert the wires into the Molex 10 pin connector (part number ![39-01-2100](https://www.digikey.com/product-detail/en/molex/0039012100/WM3704-ND/61385)) according to the following table:
+2. insert the wires into the Molex 10 pin connector (part number 39-01-2100 from https://www.digikey.com/product-detail/en/molex/0039012100/WM3704-ND/61385) according to the following table:
 
 | Signal | Deutsch 9-pin Label | Color | Molex Cavity |
 | --- | --- | --- | --- |
