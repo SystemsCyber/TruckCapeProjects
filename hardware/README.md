@@ -21,6 +21,35 @@ The new pins for PWM2 and PWM3 are P8.34 and P8.36, respectively. However, the P
 
 The handannotated schematic is available ![TruckCape v4 Schematic Modified.pdf]("TruckCape v4 Schematic Modified.pdf")
 
+## External Cable Connections
+The board cutout can accomodate a 10-pin Molex Mini-Fit Jr connector to break out the J1939 connector. The cable for this is specified with the ![Cable Drawing](KL68-04-9P-dual-headed.pdf).
+
+
+![Cable in Cord Grip](9-pinCable.jpg)
+
+To assemble this component, follow these steps:
+1. Cut a hole in the side panel to fit a cord grip.
+1. Insert the cable through the cord grip.
+1. Tighten the cord grip in the side panel with the hole. Don't tighten the grip around the cable yet.
+2. insert the wires into the Molex 10 pin connector (part number ![39-01-2100](https://www.digikey.com/product-detail/en/molex/0039012100/WM3704-ND/61385)) according to the following table:
+
+| Signal | Deutsch 9-pin Label | Color | Molex Cavity |
+| --- | --- | --- | --- |
+| Ground | A | Yellow | 1 |
+| Power | B | Orange | 2 |
+| J1939 H | C | Green | 3 |
+| J1939L | D | Brown | 4 |
+| Shield | E | Bare (Blk) | 5 |
+| J1708H | F | Red | 6 |
+| J1708L | G | Black | 7 |
+| CAN2H	 | H | Purple | 8 |
+| CAN2L	 | J | Blue | 9 |
+
+![Top Side](Molex10pinTop.jpg)
+
+![Bottom Side](Molex10pinBottom.jpg)
+
+
 
 ### Trace Routing and Enclosure Issues
 There are traces under the solder mask that coincide with the aluminum rails. This is not a short-term issue, but if the mask is scratched, it could short to the aluminum enclosure. Perhaps a layer of kapton tape could improve the reliability. 
