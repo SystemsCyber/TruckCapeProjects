@@ -372,7 +372,7 @@ debian@beaglebone:~$ sudo apt-get install linux-headers-`uname -r`
 
 ```
 
-Once downloaded, navigate to the "j1939" directory.
+Once installed, navigate to the "j1939" directory and compile the kernel module using the "make" command.
 ```
 debian@beaglebone:~$ cd ~/TruckCapeProjects/kernel_modules/j1939
 ```
@@ -380,9 +380,16 @@ Now we need to compile the kernel module.
 ```
 debian@beaglebone:~/TruckCapeProjects/kernel_modules/j1939$ sudo make
 ```
-After making the can-j1939 module, we need to load it into the kernel.
+After making the can-j1939 module, we need to put it into the correct folder.
+
 ```
-debian@beaglebone:~/TruckCapeProjects/kernel_modules/j1939$ sudo insmod ./can-j1939.ko
+debian@beaglebone:~/TruckCapeProjects/kernel_modules/j1939$ sudo mkdir /lib/modules/5.4.66-ti-r18/kernel/net/can/j1939
+debian@beaglebone:~/TruckCapeProjects/kernel_modules/j1939$ sudo cp can-j1939.ko /lib/modules/5.4.66-ti-r18/kernel/net/can/j1939
+```
+
+```
+debian@beaglebone:~$ sudo depmod
+debian@beaglebone:~$ sudo modprobe can-j1939
 ```
 The beaglebone kernel has now been upgraded and includes the j1939 module.
 
