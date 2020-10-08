@@ -141,7 +141,7 @@ Description=Setup for BBB
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /home/debian/pin_config.sh
+ExecStart=/bin/bash /etc/pin_config.sh
 
 [Install]
 WantedBy=multi-user.target
@@ -333,7 +333,7 @@ git pull
 ```
 sudo /opt/scripts/tools/eMMC/beaglebone-black-make-microSD-flasher-from-eMMC.sh 
 ```
-3. Wait for the prog24ram to finish.
+3. Wait for the program to finish.
 ```
 ================================================================================
 eMMC has been flashed: please wait for device to power down.
@@ -347,9 +347,44 @@ If the process fails, double check the SD card insertion and timing.
 ## Future Work
 
 ### Upgrade the Linux Kernel Module for SocketCAN
-We would like to include the version of the SocketCAN kernel module that support SAE J1939.
 
-TODO: Try this out. It still needs to be done. The remainder of this document needs to be developed.
+First, we must upgrade the kernel version on the beaglebone. This step requires a connection between the beaglebone and the internet.
+From: https://elinux.org/Beagleboard:BeagleBoneBlack_Debian#Kernel_Upgrade
+
+
+```
+debian@beaglebone:~$ cd /opt/scripts/tools/
+debian@beaglebone:~$ git pull
+debian@beaglebone:~$ sudo ./update_kernel.sh --lts-5_4
+debian@beaglebone:~$ sudo reboot
+```
+
+As of October 7, 2020, this updates to beaglebone kernel 5.4.66-ti-r18.
+
+Next, we need the files for the can-j1939 kernel module. These may be found in the kernel_modules directory of the repository. If the TruckCapeProjects repository is not downloaded, you may download it with the following commands:
+```
+debian@beaglebone:~$ sudo git clone -b v4Hardware https://github.com/SystemsCyber/TruckCapeProjects.git
+```
+We also need to install the linux headers to build modules natively on the beaglebone.
+
+```
+debian@beaglebone:~$ sudo apt-get install linux-headers-`uname -r`
+
+```
+
+Once downloaded, navigate to the "j1939" directory.
+```
+debian@beaglebone:~$ cd ~/TruckCapeProjects/kernel_modules/j1939
+```
+Now we need to compile the kernel module.
+```
+debian@beaglebone:~/TruckCapeProjects/kernel_modules/j1939$ sudo make
+```
+After making the can-j1939 module, we need to load it into the kernel.
+```
+debian@beaglebone:~/TruckCapeProjects/kernel_modules/j1939$ sudo insmod ./can-j1939.ko
+```
+The beaglebone kernel has now been upgraded and includes the j1939 module.
 
 ### Socket-CAN and can-utils
 Get the latest version of can-utils that supports J1939. Download the package using curl:
