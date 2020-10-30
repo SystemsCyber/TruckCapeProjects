@@ -393,6 +393,15 @@ debian@beaglebone:~$ sudo modprobe can-j1939
 ```
 The beaglebone kernel has now been upgraded and includes the j1939 module.
 
+As a final step, we need to install the correct Linux Header Files for local code compilation.
+
+```
+debian@beaglebone:~$ sudo apt-get install linux-headers-`uname -r`
+debian@beaglebone:~$ sudo cp -r ~/TruckCapeProjects/header_files/include /usr/
+```
+
+The beaglebone kernel is now upgraded to 5.4.x and has the capability to both run and compile code which uses the can-j1939 kernel module.
+
 ### Socket-CAN and can-utils
 Get the latest version of can-utils that supports J1939. Download the package using curl:
 
