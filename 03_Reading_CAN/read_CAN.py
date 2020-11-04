@@ -30,8 +30,9 @@ sock.bind((interface,))
 #             __u8    data[8] __attribute__((aligned(8)));
 #     };   
 
-# To match this data structure, the following struct format can be used:
-can_frame_format = "<LB3x8s"
+# To match this data structure, determine the correct struct for the format
+# hint: the CANID format is "<L". Start with this and add subsequent 
+can_frame_format = "change this"
 
 #Here we are going to read 100 messages.
 for i in range(100):
