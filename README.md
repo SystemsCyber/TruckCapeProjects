@@ -1,6 +1,13 @@
 # TruckCapeProjects
 Projects teaching the basics of using the TruckDuck or Truck Cape on a Beagle Bone Black with Python.
 
+## Getting Started
+Login to your beaglebone and run the following command to copy this repository into your directory:
+
+```git clone https://github.com/SystemsCyber/TruckCapeProjects.git```
+
+Once this is copied in, you can update the repository by changing directory into the repostory and running ```git pull```
+
 ## Hardware
 See the docs directory for details. You can buy the board directly from OSHPark and source the parts from Digikey or Mouser. 
 
