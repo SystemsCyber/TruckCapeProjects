@@ -12,7 +12,7 @@ Inductor B82131,14µH Unshielded Wirewound Inductor 700mA 760mOhm Axial,L1,AXIAL-
 Use this part in J1-1 to J1-6,"CONN HEADER FEMALE 6POS .1 GOLD""",P1,HDR1X6,1,Sullins Connector Solutions,PPPC061LFBN-RC,Digi-Key,S7039-ND
 Shunt Switch,"2 (1 x 2) Position Shunt Connector Black Open Top 0.100 (2.54mm) Gold""",P2 Shunt,,1,Sullins Connector Solutions,QPC02SXGN-RC,Digi-Key,S9337-ND
 RKEF075,"Polymeric PTC Resettable Fuse 60V 750mA Ih Through Hole Radial, Disc",PTC1,PTC,1,Littelfuse Inc.,RKEF075,Digi-Key,RKEF075HF-ND
-4.7k,RES SMD 4.7K OHM 1% 1/10W 0603,"R1, R2, R3, R6, R7, R10, R11",Axial-0.4,7,Yageo,CFR-25JB-52-4K7,Digi-Key,4.7KQBK-ND
+4.7k,RES SMD 4.7K OHM 1% 1/10W 0603,"R1, R2, R3, R6, R7, R10",Axial-0.4,6,Yageo,CFR-25JB-52-4K7,Digi-Key,4.7KQBK-ND
 47,"47 Ohms ±5% 0.25W, 1/4W Through Hole Resistor Axial  Carbon Film","R4, R5, R8, R9",Axial-0.4,4,Yageo,CFR-25JB-52-47R,Digi-Key,47QBK-ND
 SN74LS126AN,Quad 3-State Buffer,U1,N14A,1,Texas Instruments,SN74LS126AN,Digi-Key,296-3643-5-ND
 ULQ2003AN,"High voltage, high current Darlington arrays each containing seven open collector Darlington pairswith common emitters.",U2,DIP16,1,Texas Instruments,ULQ2003AN,Digi-Key,296-22623-5-ND
