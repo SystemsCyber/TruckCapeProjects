@@ -4,6 +4,24 @@ This solution should demonstrate the way raw controller area network data is rea
 
 See https://docs.python.org/3/library/struct.html for help with the interpretation string.
 
+Once successful, the output may look something like this:
+
+```debian@beaglebone:~/TruckCapeProjects/03_Reading_CAN/solution$ python3 read_CAN.py 
+vcan0 18FEF200 [8] 8C 00 00 00 0D 06 0D FF
+vcan0 18FEF500 [8] C4 FF FF 26 25 FF FF FF
+vcan0 18FEC100 [8] 52 C5 3C 09 FF FF FF FF
+vcan0 18FEE000 [8] FF FF FF FF 40 97 5E 00
+vcan0 18FEBD00 [8] FF F0 00 00 FF FF FF FF
+vcan0 18FEE400 [8] F0 FF FF FC F0 FF FF FF
+vcan0 18FEF700 [8] FF FF FF FF 20 01 FF FF
+vcan0 18FD7C00 [8] F8 F3 F3 FF FF FF E3 FF
+vcan0 18EA3100 [3] E6 FE 00
+vcan0 1CECFF0F [8] 20 13 00 03 FF E1 FE 00
+vcan0 0CF00400 [8] 50 89 91 2C 15 00 F0 FF
+vcan0 0CF00400 [8] 30 89 8F 2C 15 00 F0 FF
+vcan0 08FE6E0B [8] E0 01 A0 01 A0 01 60 01
+```
+
 ## Troubleshooting
 
 ### No such device
