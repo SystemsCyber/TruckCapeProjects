@@ -1,0 +1,4062 @@
+{
+    "J1939PGNdb": {
+        "0": {
+            "Label": "TSC1",
+            "Name": "Torque/Speed Control 1",
+            "PGNLength": "8",
+            "Rate": "To engine: Control Purpose dependent or 10 ms To retarder: 50 ms",
+            "SPNs": [
+                695,
+                696,
+                897,
+                518,
+                3349,
+                3350,
+                4191,
+                4206,
+                4207,
+                898
+            ]
+        },
+        "1024": {
+            "Label": "XBR",
+            "Name": "External Brake Request",
+            "PGNLength": "8",
+            "Rate": "When active: 20 ms; else 200 ms",
+            "SPNs": [
+                2914,
+                2915,
+                2916,
+                4099,
+                3189,
+                3188,
+                2920
+            ]
+        },
+        "59392": {
+            "Label": "ACKM",
+            "Name": "Acknowledgment Message",
+            "PGNLength": "8",
+            "Rate": "Upon reception of a Parameter Group Number that requires this form of acknowledgment.",
+            "SPNs": [
+                2541,
+                2542,
+                2543,
+                2544,
+                2545,
+                2546,
+                2547,
+                2548,
+                2549
+            ]
+        },
+        "59904": {
+            "Label": "RQST",
+            "Name": "Request:3",
+            "PGNLength": "Per user requirements",
+            "Rate": " generally recommended that requests occur no more than 2 or 3 times per second.",
+            "SPNs": [
+                2540
+            ]
+        },
+        "60160": {
+            "Label": "TP.DT",
+            "Name": "Transport Protocol - Data Transfer",
+            "PGNLength": "8",
+            "Rate": "Per the Parameter Group to be transferred",
+            "SPNs": [
+                2572,
+                2573
+            ]
+        },
+        "60416": {
+            "Label": "TP.CM.xx",
+            "Name": "Transport Protocol - Connection Mgmt",
+            "PGNLength": "8",
+            "Rate": "Per the Parameter Group to be transferred",
+            "SPNs": [
+                2556,
+                2560,
+                2561,
+                2563,
+                2566,
+                2569,
+                2571
+            ]
+        },
+        "60672": {
+            "Label": "N.xx",
+            "Name": "Network Layer",
+            "PGNLength": "Variable",
+            "Rate": "100 ms",
+            "SPNs": []
+        },
+        "60928": {
+            "Label": "AC",
+            "Name": "Address Claimed",
+            "PGNLength": "8",
+            "Rate": "As required",
+            "SPNs": [
+                2848
+            ]
+        },
+        "61184": {
+            "Label": "PropA",
+            "Name": "Proprietary A",
+            "PGNLength": "Variable",
+            "Rate": "Per user requirements",
+            "SPNs": [
+                2550
+            ]
+        },
+        "61440": {
+            "Label": "ERC1",
+            "Name": "Electronic Retarder Controller 1",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                900,
+                571,
+                572,
+                520,
+                1085,
+                1082,
+                1667,
+                4233,
+                4234,
+                1480,
+                1715,
+                1716,
+                1717
+            ]
+        },
+        "61441": {
+            "Label": "EBC1",
+            "Name": "Electronic Brake Controller 1",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                561,
+                562,
+                563,
+                1121,
+                521,
+                575,
+                576,
+                577,
+                1238,
+                972,
+                971,
+                970,
+                969,
+                973,
+                1243,
+                1439,
+                1438,
+                1793,
+                1481,
+                2911,
+                1836,
+                1792
+            ]
+        },
+        "61442": {
+            "Label": "ETC1",
+            "Name": "Electronic Transmission Controller 1",
+            "PGNLength": "8",
+            "Rate": "10 ms",
+            "SPNs": [
+                560,
+                573,
+                574,
+                4816,
+                522,
+                606,
+                607,
+                5015,
+                1482,
+                191,
+                161
+            ]
+        },
+        "61443": {
+            "Label": "EEC2",
+            "Name": "Electronic Engine Controller 2",
+            "PGNLength": "8",
+            "Rate": "50 msec (preferred) or Engine Speed Dependent (if required by application)",
+            "SPNs": [
+                558,
+                559,
+                1437,
+                2970,
+                91,
+                92,
+                974,
+                29,
+                2979,
+                5021,
+                5399,
+                5400,
+                3357,
+                5398
+            ]
+        },
+        "61444": {
+            "Label": "EEC1",
+            "Name": "Electronic Engine Controller 1",
+            "PGNLength": "8",
+            "Rate": "engine speed dependent",
+            "SPNs": [
+                899,
+                4154,
+                512,
+                513,
+                1483,
+                1675,
+                2432,
+                190
+            ]
+        },
+        "61445": {
+            "Label": "ETC2",
+            "Name": "Electronic Transmission Controller 2",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                524,
+                523,
+                526,
+                162,
+                163
+            ]
+        },
+        "61446": {
+            "Label": "EAC1",
+            "Name": "Electronic Axle Controller 1",
+            "PGNLength": "8",
+            "Rate": "500 ms",
+            "SPNs": [
+                927,
+                567,
+                568,
+                569,
+                570,
+                564,
+                565,
+                566,
+                3819,
+                3820
+            ]
+        },
+        "61447": {
+            "Label": "FLI1",
+            "Name": "Forward Lane Image urgent msg",
+            "PGNLength": "8",
+            "Rate": "50 ms (only when active)",
+            "SPNs": [
+                3565,
+                3566,
+                1701,
+                1700
+            ]
+        },
+        "61448": {
+            "Label": "HPG",
+            "Name": "Hydraulic Pressure Governor Info",
+            "PGNLength": "8",
+            "Rate": "50 ms",
+            "SPNs": [
+                1763,
+                1764,
+                2599,
+                1762
+            ]
+        },
+        "61449": {
+            "Label": "VDC2",
+            "Name": "Vehicle Dynamic Stability Control 2",
+            "PGNLength": "8",
+            "Rate": "10 ms",
+            "SPNs": [
+                1811,
+                1812,
+                1810,
+                1807,
+                1808,
+                1809
+            ]
+        },
+        "61450": {
+            "Label": "EGF1",
+            "Name": "Engine Gas Flow Rate",
+            "PGNLength": "8",
+            "Rate": "50 ms",
+            "SPNs": [
+                2659,
+                132,
+                5257
+            ]
+        },
+        "61451": {
+            "Label": "ESC1",
+            "Name": "Electronic Steering Control",
+            "PGNLength": "8",
+            "Rate": "20 ms",
+            "SPNs": [
+                2928,
+                2923,
+                2922,
+                2924,
+                2925,
+                2926,
+                2927
+            ]
+        },
+        "61452": {
+            "Label": "ETC8",
+            "Name": "Electronic Transmission Controller #8:8",
+            "PGNLength": "20 ms when torque converter unlocked",
+            "Rate": " 100 ms when torque converter locked",
+            "SPNs": [
+                3030,
+                5052
+            ]
+        },
+        "61453": {
+            "Label": "LOI",
+            "Name": "Land Leveling System Operational Information",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                3156,
+                3157,
+                3158,
+                3334,
+                3335,
+                3336,
+                3337,
+                3338,
+                3339,
+                5405,
+                5406
+            ]
+        },
+        "61454": {
+            "Label": "AT1IG1",
+            "Name": "Aftertreatment 1 Intake Gas 1",
+            "PGNLength": "8",
+            "Rate": "50 ms",
+            "SPNs": [
+                3218,
+                3219,
+                3220,
+                3221,
+                3222,
+                3223,
+                3224,
+                5713,
+                3225,
+                3216,
+                3217
+            ]
+        },
+        "61455": {
+            "Label": "AT1OG1",
+            "Name": "Aftertreatment 1 Outlet Gas 1",
+            "PGNLength": "8",
+            "Rate": "50 ms",
+            "SPNs": [
+                3228,
+                3229,
+                3230,
+                3231,
+                3232,
+                3233,
+                3234,
+                5714,
+                3235,
+                3226,
+                3227
+            ]
+        },
+        "61456": {
+            "Label": "AT2IG1",
+            "Name": "Aftertreatment 2 Intake Gas 1",
+            "PGNLength": "8",
+            "Rate": "50 ms",
+            "SPNs": [
+                3257,
+                3258,
+                3259,
+                3260,
+                3261,
+                3262,
+                3263,
+                5715,
+                3264,
+                3255,
+                3256
+            ]
+        },
+        "61457": {
+            "Label": "AT2OG1",
+            "Name": "Aftertreatment 2 Outlet Gas 1",
+            "PGNLength": "8",
+            "Rate": "50 ms",
+            "SPNs": [
+                3267,
+                3268,
+                3269,
+                3270,
+                3271,
+                3272,
+                3273,
+                5716,
+                3274,
+                3265,
+                3266
+            ]
+        },
+        "61458": {
+            "Label": "FWSS1",
+            "Name": "Fifth Wheel Smart Systems 1",
+            "PGNLength": "8",
+            "Rate": "50 ms",
+            "SPNs": [
+                3317,
+                3308,
+                3309,
+                3310
+            ]
+        },
+        "61459": {
+            "Label": "SSI",
+            "Name": "Slope Sensor Information",
+            "PGNLength": "8",
+            "Rate": "10 ms",
+            "SPNs": [
+                3323,
+                3324,
+                3325,
+                3326,
+                3327,
+                3318,
+                3319,
+                3322
+            ]
+        },
+        "61460": {
+            "Label": "BI",
+            "Name": "Blade Information",
+            "PGNLength": "8",
+            "Rate": "50 ms",
+            "SPNs": [
+                3366,
+                3367,
+                3332,
+                3365,
+                3331
+            ]
+        },
+        "61461": {
+            "Label": "RGTACRP",
+            "Name": "Requested Generator Total AC Reactive Power",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                3385,
+                3383,
+                3384
+            ]
+        },
+        "61462": {
+            "Label": "CCS",
+            "Name": "Cylinder Combustion Status:8",
+            "PGNLength": "Engine speed dependent when there is no combustion",
+            "Rate": " once every 5 seconds otherwise",
+            "SPNs": [
+                3387,
+                3388,
+                3389,
+                3390,
+                3391,
+                3392,
+                3393,
+                3394,
+                3395,
+                3396,
+                3397,
+                3398,
+                3399,
+                3400,
+                3401,
+                3402,
+                3403,
+                3404,
+                3405,
+                3406,
+                3407,
+                3408,
+                3409,
+                3410
+            ]
+        },
+        "61463": {
+            "Label": "KL1",
+            "Name": "Engine Knock Level #1:8",
+            "PGNLength": "Engine speed dependent when knock present",
+            "Rate": " once every 5 seconds otherwise",
+            "SPNs": [
+                1352,
+                1353,
+                1354,
+                1355,
+                1356,
+                1357,
+                1358,
+                1359
+            ]
+        },
+        "65156": {
+            "Label": "IT3",
+            "Name": "Ignition Timing 3",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1421,
+                1422,
+                1423,
+                1424
+            ]
+        },
+        "65157": {
+            "Label": "IT4",
+            "Name": "Ignition Timing 4",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1425,
+                1426,
+                1427,
+                1428
+            ]
+        },
+        "65158": {
+            "Label": "IT5",
+            "Name": "Ignition Timing 5",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1429,
+                1430,
+                1431,
+                1432
+            ]
+        },
+        "65159": {
+            "Label": "IT6",
+            "Name": "Ignition Timing 6",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1433,
+                1434,
+                1435,
+                1436
+            ]
+        },
+        "65160": {
+            "Label": "ISO1",
+            "Name": "Ignition Transformer Secondary Output 1",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1393,
+                1394,
+                1395,
+                1396,
+                1397,
+                1398,
+                1399,
+                1400
+            ]
+        },
+        "65161": {
+            "Label": "ISO2",
+            "Name": "Ignition Transformer Secondary Output 2",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1401,
+                1402,
+                1403,
+                1404,
+                1405,
+                1406,
+                1407,
+                1408
+            ]
+        },
+        "65162": {
+            "Label": "ISO3",
+            "Name": "Ignition Transformer Secondary Output 3",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1409,
+                1410,
+                1411,
+                1412
+            ]
+        },
+        "65163": {
+            "Label": "GFP",
+            "Name": "Gaseous Fuel Pressure",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1390,
+                1391,
+                1392,
+                2980
+            ]
+        },
+        "65164": {
+            "Label": "AAI",
+            "Name": "Auxiliary Analog Information",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                441,
+                442,
+                1387,
+                1388,
+                354,
+                3087
+            ]
+        },
+        "65165": {
+            "Label": "VEP2",
+            "Name": "Vehicle Electrical Power #2",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                444,
+                3597,
+                3598,
+                3599
+            ]
+        },
+        "65166": {
+            "Label": "S2",
+            "Name": "Service 2",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1379,
+                1350
+            ]
+        },
+        "65167": {
+            "Label": "SP2",
+            "Name": "Supply Pressure 2",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1320
+            ]
+        },
+        "65168": {
+            "Label": "ETH",
+            "Name": "Engine Torque History",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                1246,
+                1250,
+                1251,
+                1252,
+                1254,
+                1632,
+                1247,
+                1248,
+                1249,
+                1253,
+                1255,
+                1256,
+                1257,
+                1258,
+                1259,
+                1260,
+                1261,
+                1262,
+                1263
+            ]
+        },
+        "65169": {
+            "Label": "FL",
+            "Name": "Fuel Leakage",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1239,
+                1240
+            ]
+        },
+        "65170": {
+            "Label": "EI",
+            "Name": "Engine Information",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                1208,
+                1210,
+                1209,
+                1241,
+                1242
+            ]
+        },
+        "65171": {
+            "Label": "EES",
+            "Name": "Engine Electrical System/Module Information",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                1205,
+                1204
+            ]
+        },
+        "65172": {
+            "Label": "EAC",
+            "Name": "Engine Auxiliary Coolant",
+            "PGNLength": "8",
+            "Rate": "0.5 s",
+            "SPNs": [
+                1203,
+                1212,
+                2435,
+                20
+            ]
+        },
+        "65173": {
+            "Label": "RBI",
+            "Name": "Rebuild Information",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1193
+            ]
+        },
+        "65174": {
+            "Label": "TCW",
+            "Name": "Turbocharger Wastegate",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                1188,
+                1189,
+                1190,
+                1191,
+                1192,
+                5370,
+                5371,
+                5372,
+                5373
+            ]
+        },
+        "65175": {
+            "Label": "TCI5",
+            "Name": "Turbocharger Information 5",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1184,
+                1185,
+                1186,
+                1187
+            ]
+        },
+        "65176": {
+            "Label": "TCI4",
+            "Name": "Turbocharger Information 4",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1180,
+                1181,
+                1182,
+                1183
+            ]
+        },
+        "65177": {
+            "Label": "TCI3",
+            "Name": "Turbocharger Information 3",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1176,
+                1177,
+                1178,
+                1179
+            ]
+        },
+        "65178": {
+            "Label": "TCI2",
+            "Name": "Turbocharger Information 2",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1172,
+                1173,
+                1174,
+                1175
+            ]
+        },
+        "65179": {
+            "Label": "TCI1",
+            "Name": "Turbocharger Information 1",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1168,
+                1169,
+                1170,
+                1171
+            ]
+        },
+        "65180": {
+            "Label": "MBT3",
+            "Name": "Main Bearing Temperature 3",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1165,
+                1166,
+                1167
+            ]
+        },
+        "65181": {
+            "Label": "MBT2",
+            "Name": "Main Bearing Temperature 2",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1161,
+                1162,
+                1163,
+                1164
+            ]
+        },
+        "65182": {
+            "Label": "MBT1",
+            "Name": "Main Bearing Temperature 1",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1157,
+                1158,
+                1159,
+                1160
+            ]
+        },
+        "65183": {
+            "Label": "EPT5",
+            "Name": "Exhaust Port Temperature 5",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1153,
+                1154,
+                1155,
+                1156
+            ]
+        },
+        "65184": {
+            "Label": "EPT4",
+            "Name": "Exhaust Port Temperature 4",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1149,
+                1150,
+                1151,
+                1152
+            ]
+        },
+        "65185": {
+            "Label": "EPT3",
+            "Name": "Exhaust Port Temperature 3",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1145,
+                1146,
+                1147,
+                1148
+            ]
+        },
+        "65186": {
+            "Label": "EPT2",
+            "Name": "Exhaust Port Temperature 2",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1141,
+                1142,
+                1143,
+                1144
+            ]
+        },
+        "65187": {
+            "Label": "EPT1",
+            "Name": "Exhaust Port Temperature 1",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1137,
+                1138,
+                1139,
+                1140
+            ]
+        },
+        "65188": {
+            "Label": "ET2",
+            "Name": "Engine Temperature 2",
+            "PGNLength": "8",
+            "Rate": "1s",
+            "SPNs": [
+                1135,
+                1136,
+                411,
+                412
+            ]
+        },
+        "65189": {
+            "Label": "IMT2",
+            "Name": "Intake Manifold Information 2",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1131,
+                1132,
+                1133,
+                1802,
+                1803
+            ]
+        },
+        "65190": {
+            "Label": "IMT1",
+            "Name": "Intake Manifold Information 1",
+            "PGNLength": "8",
+            "Rate": "0.5 s",
+            "SPNs": [
+                1127,
+                1128,
+                1129,
+                1130
+            ]
+        },
+        "65191": {
+            "Label": "AT",
+            "Name": "Alternator Temperature",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                1122,
+                1123,
+                1124,
+                1125,
+                1126
+            ]
+        },
+        "65192": {
+            "Label": "ACTL",
+            "Name": "Articulation Control",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1120
+            ]
+        },
+        "65193": {
+            "Label": "EO1",
+            "Name": "Exhaust Oxygen 1",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1695,
+                1696,
+                1117,
+                1118,
+                1119
+            ]
+        },
+        "65194": {
+            "Label": "AF2",
+            "Name": "Alternate Fuel 2",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1116,
+                1693,
+                1694,
+                1692
+            ]
+        },
+        "65195": {
+            "Label": "ETC6",
+            "Name": "Electronic Transmission Controller 6",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1113,
+                1115,
+                1114,
+                2983
+            ]
+        },
+        "65196": {
+            "Label": "EBC4",
+            "Name": "Wheel Brake Lining Remaining Information",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1099,
+                1100,
+                1101,
+                1102,
+                1103,
+                1104,
+                1105,
+                1106
+            ]
+        },
+        "65197": {
+            "Label": "EBC3",
+            "Name": "Wheel Application Pressure High Range Information",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                1091,
+                1092,
+                1093,
+                1094,
+                1095,
+                1096,
+                1097,
+                1098
+            ]
+        },
+        "65198": {
+            "Label": "AIR1",
+            "Name": "Air Supply Pressure",
+            "PGNLength": "8",
+            "Rate": "1 sec",
+            "SPNs": [
+                46,
+                1086,
+                1087,
+                1088,
+                1089,
+                1090,
+                1351
+            ]
+        },
+        "65199": {
+            "Label": "GFC",
+            "Name": "Fuel Consumption (Gaseous)",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1039,
+                1040
+            ]
+        },
+        "65200": {
+            "Label": "TTI2",
+            "Name": "Trip Time Information 2",
+            "PGNLength": "20",
+            "Rate": "On request",
+            "SPNs": [
+                1034,
+                1035,
+                1036,
+                1037,
+                1038
+            ]
+        },
+        "65201": {
+            "Label": "EH",
+            "Name": "ECU History",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1032,
+                1033
+            ]
+        },
+        "65202": {
+            "Label": "GFI1",
+            "Name": "Fuel Information 1 (Gaseous)",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1030,
+                1031,
+                1389
+            ]
+        },
+        "65203": {
+            "Label": "LFI",
+            "Name": "Fuel Information (Liquid)",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1028,
+                1029,
+                5458
+            ]
+        },
+        "65204": {
+            "Label": "TTI1",
+            "Name": "Trip Time Information 1",
+            "PGNLength": "16",
+            "Rate": "On request",
+            "SPNs": [
+                1024,
+                1025,
+                1026,
+                1027
+            ]
+        },
+        "65205": {
+            "Label": "TSI",
+            "Name": "Trip Shutdown Information",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1020,
+                1021,
+                1022,
+                1023
+            ]
+        },
+        "65206": {
+            "Label": "TVI",
+            "Name": "Trip Vehicle Speed/Cruise Distance Information",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1018,
+                1019
+            ]
+        },
+        "65207": {
+            "Label": "LF",
+            "Name": "Engine Speed/Load Factor Information",
+            "PGNLength": "10",
+            "Rate": "On request",
+            "SPNs": [
+                1015,
+                1016,
+                1013,
+                1014,
+                1017
+            ]
+        },
+        "65208": {
+            "Label": "GTFI",
+            "Name": "Trip Fuel Information (Gaseous)",
+            "PGNLength": "22",
+            "Rate": "On request",
+            "SPNs": [
+                1007,
+                1008,
+                1009,
+                1010,
+                1011,
+                1012
+            ]
+        },
+        "65209": {
+            "Label": "LTFI",
+            "Name": "Trip Fuel Information (Liquid)",
+            "PGNLength": "22",
+            "Rate": "On request",
+            "SPNs": [
+                1001,
+                1002,
+                1003,
+                1004,
+                1005,
+                1006
+            ]
+        },
+        "65210": {
+            "Label": "TDI",
+            "Name": "Trip Distance Information",
+            "PGNLength": "12",
+            "Rate": "On request",
+            "SPNs": [
+                998,
+                999,
+                1000
+            ]
+        },
+        "65211": {
+            "Label": "TFI",
+            "Name": "Trip Fan Information",
+            "PGNLength": "16",
+            "Rate": "On request",
+            "SPNs": [
+                994,
+                995,
+                996,
+                997
+            ]
+        },
+        "65212": {
+            "Label": "CBI",
+            "Name": "Compression/Service Brake Information",
+            "PGNLength": "16",
+            "Rate": "On request",
+            "SPNs": [
+                990,
+                991,
+                992,
+                993
+            ]
+        },
+        "65213": {
+            "Label": "FD1",
+            "Name": "Fan Drive #1",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                975,
+                977,
+                4212,
+                1639,
+                4211
+            ]
+        },
+        "65214": {
+            "Label": "EEC4",
+            "Name": "Electronic Engine Controller 4",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                3669,
+                5465,
+                3671,
+                166,
+                189
+            ]
+        },
+        "65215": {
+            "Label": "EBC2",
+            "Name": "Wheel Speed Information",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                905,
+                906,
+                907,
+                908,
+                909,
+                910,
+                904
+            ]
+        },
+        "65216": {
+            "Label": "SERV",
+            "Name": "Service Information",
+            "PGNLength": "8 bytes or variable",
+            "Rate": "On request",
+            "SPNs": [
+                911,
+                912,
+                915,
+                913,
+                914,
+                916
+            ]
+        },
+        "65217": {
+            "Label": "VDHR",
+            "Name": "High Resolution Vehicle Distance",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                917,
+                918
+            ]
+        },
+        "65218": {
+            "Label": "ERC2",
+            "Name": "Electronic Retarder Controller 2:8",
+            "PGNLength": "Every 1 s and on change of state but no faster than every 100 ms.  Grandfathered definition for systems that implemented this message prior to July",
+            "Rate": " 2010: 1 s when active; or on change of state",
+            "SPNs": [
+                748
+            ]
+        },
+        "65219": {
+            "Label": "ETC5",
+            "Name": "Electronic Transmission Controller 5",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                778,
+                779,
+                767,
+                604,
+                903
+            ]
+        },
+        "65220": {
+            "Label": "EBS22",
+            "Name": "Reserved for ISO 11992",
+            "PGNLength": "8",
+            "Rate": "100 ms +/- 10 ms",
+            "SPNs": []
+        },
+        "65221": {
+            "Label": "ETC4",
+            "Name": "Electronic Transmission Controller 4",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                53,
+                54
+            ]
+        },
+        "65222": {
+            "Label": "EBS23",
+            "Name": "Reserved for ISO 11992",
+            "PGNLength": "8",
+            "Rate": "100 ms +/- 10 ms",
+            "SPNs": []
+        },
+        "65223": {
+            "Label": "ETC3",
+            "Name": "Electronic Transmission Controller 3",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                59,
+                60,
+                780,
+                781,
+                782,
+                772,
+                773,
+                783,
+                784,
+                768,
+                769,
+                770,
+                771,
+                788,
+                740,
+                786,
+                787
+            ]
+        },
+        "65224": {
+            "Label": "GPM22",
+            "Name": "Reserved for ISO 11992",
+            "PGNLength": "8",
+            "Rate": "100 ms +/- 10 ms",
+            "SPNs": []
+        },
+        "65225": {
+            "Label": "EBS12",
+            "Name": "Reserved for ISO 11992",
+            "PGNLength": "8",
+            "Rate": "100 ms +/- 10 ms",
+            "SPNs": []
+        },
+        "65226": {
+            "Label": "DM01",
+            "Name": "Active Diagnostic Trouble Codes",
+            "PGNLength": "Variable",
+            "Rate": "1 s or on change",
+            "SPNs": [
+                987,
+                624,
+                623,
+                1213,
+                3041,
+                3040,
+                3039,
+                3038,
+                1215,
+                1216,
+                1706,
+                1214
+            ]
+        },
+        "65227": {
+            "Label": "DM02",
+            "Name": "Previously Active Diagnostic Trouble Codes",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                987,
+                624,
+                623,
+                1213,
+                3041,
+                3040,
+                3039,
+                3038,
+                1215,
+                1216,
+                1706,
+                1214
+            ]
+        },
+        "65228": {
+            "Label": "DM03",
+            "Name": "Diagnostics Data Clear/Reset for Previously Active DTCs",
+            "PGNLength": "",
+            "Rate": "",
+            "SPNs": []
+        },
+        "65229": {
+            "Label": "DM04",
+            "Name": "Freeze Frame Parameters",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                1217,
+                1215,
+                1216,
+                1706,
+                1214,
+                4263
+            ]
+        },
+        "65230": {
+            "Label": "DM05",
+            "Name": "Diagnostic Readiness 1",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                1218,
+                1219,
+                1220,
+                1221,
+                1222,
+                1223
+            ]
+        },
+        "65231": {
+            "Label": "DM06",
+            "Name": "Pending DTCs",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                987,
+                624,
+                623,
+                1213,
+                3041,
+                3040,
+                3039,
+                3038,
+                1215,
+                1216,
+                1706,
+                1214
+            ]
+        },
+        "65232": {
+            "Label": "DM08",
+            "Name": "Test Results for Non-continuously Monitored Systems",
+            "PGNLength": "Variable",
+            "Rate": "Sent in response to PGN 58112 when the results are available",
+            "SPNs": [
+                1224,
+                1225,
+                1226,
+                1227,
+                1228
+            ]
+        },
+        "65233": {
+            "Label": "DM09",
+            "Name": "Oxygen Sensor Test Results",
+            "PGNLength": "N/A",
+            "Rate": "N/A",
+            "SPNs": []
+        },
+        "65234": {
+            "Label": "DM10",
+            "Name": "Non-continuously Monitored System Test Identifiers Support",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                1229
+            ]
+        },
+        "65235": {
+            "Label": "DM11",
+            "Name": "Diagnostic Data Clear/Reset for Active DTCs",
+            "PGNLength": "0",
+            "Rate": "On request",
+            "SPNs": []
+        },
+        "65236": {
+            "Label": "DM12",
+            "Name": "Emissions Related Active DTCs",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                987,
+                624,
+                623,
+                1213,
+                3041,
+                3040,
+                3039,
+                3038,
+                1215,
+                1216,
+                1706,
+                1214
+            ]
+        },
+        "65237": {
+            "Label": "AS",
+            "Name": "Alternator Information",
+            "PGNLength": "8",
+            "Rate": "1 sec",
+            "SPNs": [
+                3353,
+                3354,
+                3355,
+                3356,
+                589
+            ]
+        },
+        "65238": {
+            "Label": "RESV1",
+            "Name": "Reserved for Network Management",
+            "PGNLength": "",
+            "Rate": "",
+            "SPNs": []
+        },
+        "65240": {
+            "Label": "CA",
+            "Name": "Commanded Address",
+            "PGNLength": "9",
+            "Rate": "As required",
+            "SPNs": [
+                2847,
+                2849
+            ]
+        },
+        "65241": {
+            "Label": "AUXIO1",
+            "Name": "Auxiliary Input/Output Status 1:8",
+            "PGNLength": "manufacturer defined",
+            "Rate": " not faster than 100 ms",
+            "SPNs": [
+                704,
+                703,
+                702,
+                701,
+                708,
+                707,
+                706,
+                705,
+                712,
+                711,
+                710,
+                709,
+                716,
+                715,
+                714,
+                713,
+                1083,
+                1084
+            ]
+        },
+        "65242": {
+            "Label": "SOFT",
+            "Name": "Software Identification",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                965,
+                234
+            ]
+        },
+        "65243": {
+            "Label": "EFL/P2",
+            "Name": "Engine Fluid Level/Pressure 2",
+            "PGNLength": "8",
+            "Rate": "0.5 s",
+            "SPNs": [
+                164,
+                157,
+                156,
+                1349
+            ]
+        },
+        "65244": {
+            "Label": "IO",
+            "Name": "Idle Operation",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                236,
+                235
+            ]
+        },
+        "65245": {
+            "Label": "TC",
+            "Name": "Turbocharger",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                104,
+                1665,
+                103
+            ]
+        },
+        "65246": {
+            "Label": "AIR2",
+            "Name": "Air Start Pressure",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                82
+            ]
+        },
+        "65247": {
+            "Label": "EEC3",
+            "Name": "Electronic Engine Controller 3",
+            "PGNLength": "8",
+            "Rate": "250 msec (preferred) or Engine Speed Dependent (if required by application)",
+            "SPNs": [
+                514,
+                519,
+                2978,
+                3237,
+                3238,
+                3239,
+                3240,
+                515,
+                3236
+            ]
+        },
+        "65248": {
+            "Label": "VD",
+            "Name": "Vehicle Distance",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                244,
+                245
+            ]
+        },
+        "65249": {
+            "Label": "RC",
+            "Name": "Retarder Configuration",
+            "PGNLength": "19",
+            "Rate": "Every 5 s and on change of torque/speed points of more than 10% since last transmission but no faster than every 500 ms",
+            "SPNs": [
+                901,
+                902,
+                557,
+                551,
+                552,
+                553,
+                554,
+                555,
+                546,
+                548,
+                549,
+                550,
+                547,
+                556
+            ]
+        },
+        "65250": {
+            "Label": "TCFG",
+            "Name": "Transmission Configuration",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                958,
+                957,
+                581
+            ]
+        },
+        "65251": {
+            "Label": "EC1",
+            "Name": "Engine Configuration 1",
+            "PGNLength": "39",
+            "Rate": "Every 5 s and on change of torque/speed points of more than 10% since last transmission but no faster than every 500 ms",
+            "SPNs": [
+                539,
+                540,
+                541,
+                542,
+                543,
+                534,
+                535,
+                536,
+                537,
+                538,
+                3344,
+                3345,
+                3346,
+                3347,
+                3348,
+                188,
+                528,
+                529,
+                530,
+                531,
+                532,
+                545,
+                544,
+                533,
+                1712,
+                1794,
+                1846
+            ]
+        },
+        "65252": {
+            "Label": "SHUTDN",
+            "Name": "Shutdown",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                593,
+                594,
+                592,
+                590,
+                591,
+                985,
+                875,
+                605,
+                1081,
+                1110,
+                1109,
+                1108,
+                1107,
+                1111,
+                2815,
+                2814,
+                2813,
+                2812,
+                3667,
+                5404,
+                5566
+            ]
+        },
+        "65253": {
+            "Label": "HOURS",
+            "Name": "Engine Hours: Revolutions",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                247,
+                249
+            ]
+        },
+        "65254": {
+            "Label": "TD",
+            "Name": "Time/Date",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                959,
+                960,
+                961,
+                963,
+                962,
+                964,
+                1601,
+                1602
+            ]
+        },
+        "65255": {
+            "Label": "VH",
+            "Name": "Vehicle Hours",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                246,
+                248
+            ]
+        },
+        "65256": {
+            "Label": "VDS",
+            "Name": "Vehicle Direction/Speed",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                165,
+                517,
+                583,
+                580
+            ]
+        },
+        "65257": {
+            "Label": "LFC",
+            "Name": "Fuel Consumption (Liquid)",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                182,
+                250
+            ]
+        },
+        "65258": {
+            "Label": "VW",
+            "Name": "Vehicle Weight",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                928,
+                582,
+                180,
+                181
+            ]
+        },
+        "65259": {
+            "Label": "CI",
+            "Name": "Component Identification",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                586,
+                587,
+                588,
+                233
+            ]
+        },
+        "65260": {
+            "Label": "VI",
+            "Name": "Vehicle Identification",
+            "PGNLength": "Variable",
+            "Rate": "On request",
+            "SPNs": [
+                237
+            ]
+        },
+        "65261": {
+            "Label": "CCSS",
+            "Name": "Cruise Control/Vehicle Speed Setup",
+            "PGNLength": "8",
+            "Rate": "On request",
+            "SPNs": [
+                74,
+                87,
+                88
+            ]
+        },
+        "65262": {
+            "Label": "ET1",
+            "Name": "Engine Temperature 1",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                110,
+                174,
+                52,
+                1134,
+                175,
+                176
+            ]
+        },
+        "65263": {
+            "Label": "EFL/P1",
+            "Name": "Engine Fluid Level/Pressure 1",
+            "PGNLength": "8",
+            "Rate": "0.5 s",
+            "SPNs": [
+                94,
+                22,
+                98,
+                100,
+                109,
+                111,
+                101
+            ]
+        },
+        "65264": {
+            "Label": "PTO",
+            "Name": "Power Takeoff Information",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                90,
+                980,
+                979,
+                978,
+                984,
+                983,
+                982,
+                981,
+                2897,
+                3447,
+                3448,
+                186,
+                187
+            ]
+        },
+        "65265": {
+            "Label": "CCVS1",
+            "Name": "Cruise Control/Vehicle Speed 1",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                69,
+                70,
+                1633,
+                3807,
+                595,
+                596,
+                597,
+                598,
+                599,
+                600,
+                601,
+                602,
+                86,
+                976,
+                527,
+                968,
+                967,
+                966,
+                1237,
+                84
+            ]
+        },
+        "65266": {
+            "Label": "LFE1",
+            "Name": "Fuel Economy (Liquid)",
+            "PGNLength": "8",
+            "Rate": "100 ms",
+            "SPNs": [
+                51,
+                3673,
+                183,
+                184,
+                185
+            ]
+        },
+        "65267": {
+            "Label": "VP",
+            "Name": "Vehicle Position",
+            "PGNLength": "8",
+            "Rate": "5 s",
+            "SPNs": [
+                584,
+                585
+            ]
+        },
+        "65268": {
+            "Label": "TIRE",
+            "Name": "Tire Condition",
+            "PGNLength": "8",
+            "Rate": "10 s",
+            "SPNs": [
+                929,
+                241,
+                1699,
+                1698,
+                1697,
+                2587,
+                242,
+                2586
+            ]
+        },
+        "65269": {
+            "Label": "AMB",
+            "Name": "Ambient Conditions",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                108,
+                172,
+                170,
+                171,
+                79
+            ]
+        },
+        "65270": {
+            "Label": "IC1",
+            "Name": "Intake/Exhaust Conditions 1",
+            "PGNLength": "8",
+            "Rate": "0.5 s",
+            "SPNs": [
+                81,
+                102,
+                105,
+                106,
+                107,
+                112,
+                173
+            ]
+        },
+        "65271": {
+            "Label": "VEP1",
+            "Name": "Vehicle Electrical Power 1",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                114,
+                115,
+                167,
+                168,
+                158
+            ]
+        },
+        "65272": {
+            "Label": "TRF1",
+            "Name": "Transmission Fluids 1",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                123,
+                124,
+                126,
+                127,
+                3027,
+                3028,
+                3026,
+                177
+            ]
+        },
+        "65273": {
+            "Label": "AI",
+            "Name": "Axle Information",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                75,
+                930,
+                579,
+                578,
+                2613,
+                2614
+            ]
+        },
+        "65274": {
+            "Label": "B",
+            "Name": "Brakes",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                116,
+                117,
+                118,
+                619,
+                3557,
+                3808
+            ]
+        },
+        "65275": {
+            "Label": "RF",
+            "Name": "Retarder fluids",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                119,
+                120,
+                5346
+            ]
+        },
+        "65276": {
+            "Label": "DD",
+            "Name": "Dash Display",
+            "PGNLength": "8",
+            "Rate": "1s",
+            "SPNs": [
+                80,
+                96,
+                95,
+                99,
+                38,
+                169
+            ]
+        },
+        "65277": {
+            "Label": "A1",
+            "Name": "Alternate Fuel 1",
+            "PGNLength": "8",
+            "Rate": "500 ms",
+            "SPNs": [
+                72,
+                159
+            ]
+        },
+        "65278": {
+            "Label": "AWPP",
+            "Name": "Auxiliary Water Pump Pressure",
+            "PGNLength": "8",
+            "Rate": "1 s",
+            "SPNs": [
+                73
+            ]
+        },
+        "65279": {
+            "Label": "OI",
+            "Name": "Operator indicators",
+            "PGNLength": "8",
+            "Rate": "10 s or on change but no more often than 1s",
+            "SPNs": [
+                97,
+                5675,
+                5825,
+                5826
+            ]
+        }
+    },
+    "J1939SATabledb": {
+        "0": "Engine #1",
+        "1": "Engine #2",
+        "10": "Axle - Drive #2",
+        "11": "Brakes - System Controller",
+        "12": "Brakes - Steer Axle",
+        "13": "Brakes - Drive axle #1",
+        "14": "Brakes - Drive Axle #2",
+        "15": "Retarder - Engine",
+        "16": "Retarder - Driveline",
+        "17": "Cruise Control",
+        "18": "Fuel System",
+        "19": "Steering Controller",
+        "2": "Turbocharger",
+        "20": "Suspension - Steer Axle",
+        "21": "Suspension - Drive Axle #1",
+        "22": "Suspension - Drive Axle #2",
+        "23": "Instrument Cluster #1",
+        "24": "Trip Recorder",
+        "248": "File Server / Printer",
+        "249": "Off Board Diagnostic-Service Tool #1",
+        "25": "Passenger-Operator Climate Control #1",
+        "250": "Off Board Diagnostic-Service Tool #2",
+        "251": "On-Board Data Logger",
+        "252": "Reserved for Experimental Use",
+        "253": "Reserved for OEM",
+        "254": "Null Address",
+        "255": "GLOBAL (All-Any Node)",
+        "26": "Alternator/Electrical Charging System",
+        "27": "Aerodynamic Control",
+        "28": "Vehicle Navigation",
+        "29": "Vehicle Security",
+        "3": "Transmission #1",
+        "30": "Electrical System",
+        "31": "Starter System",
+        "32": "Tractor-Trailer Bridge #1",
+        "33": "Body Controller",
+        "34": "Auxiliary Valve Control or Engine Air System Valve Control",
+        "35": "Hitch Control",
+        "36": "Power TakeOff (Front or Secondary)",
+        "37": "Off Vehicle Gateway",
+        "38": "Virtual Terminal (in cab)",
+        "39": "Management Computer #1",
+        "4": "Transmission #2",
+        "40": "Cab Display #1",
+        "41": "Retarder, Exhaust, Engine #1",
+        "42": "Headway Controller",
+        "43": "On-Board Diagnostic Unit",
+        "44": "Retarder, Exhaust, Engine #2",
+        "45": "Endurance Braking System",
+        "46": "Hydraulic Pump Controller",
+        "47": "Suspension - System Controller #1",
+        "48": "Pneumatic - System Controller",
+        "49": "Cab Controller - Primary",
+        "5": "Shift Console - Primary",
+        "50": "Cab Controller - Secondary",
+        "51": "Tire Pressure Controller",
+        "52": "Ignition Control Module #1",
+        "53": "Ignition Control Module #2",
+        "54": "Seat Control #1",
+        "55": "Lighting - Operator Controls",
+        "56": "Rear Axle Steering Controller #1",
+        "57": "Water Pump Controller",
+        "58": "Passenger-Operator Climate Control #2",
+        "59": "Transmission Display - Primary",
+        "6": "Shift Console - Secondary",
+        "60": "Transmission Display - Secondary",
+        "61": "Exhaust Emission Controller",
+        "62": "Vehicle Dynamic Stability Controller",
+        "63": "Oil Sensor",
+        "64": "Suspension - System Controller #2",
+        "65": "Information System Controller #1",
+        "66": "Ramp Control",
+        "67": "Clutch/Converter Unit",
+        "68": "Auxiliary Heater #1",
+        "69": "Auxiliary Heater #2",
+        "7": "Power TakeOff - (Main or Rear)",
+        "70": "Engine Valve Controller",
+        "71": "Chassis Controller #1",
+        "72": "Chassis Controller #2",
+        "73": "Propulsion Battery Charger",
+        "74": "Communications Unit, Cellular",
+        "75": "Communications Unit, Satellite",
+        "76": "Communications Unit, Radio",
+        "77": "Steering Column Unit",
+        "78": "Fan Drive Controller",
+        "79": "Seat Control #2",
+        "8": "Axle - Steering",
+        "80": "Parking brake controller",
+        "81": "Aftertreatment #1 system gas intake",
+        "82": "Aftertreatment #1 system gas outlet",
+        "83": "Safety Restraint System",
+        "84": "Cab Display #2",
+        "85": "Diesel Particulate Filter Controller",
+        "86": "Aftertreatment #2 system gas intake",
+        "87": "Aftertreatment #2 system gas outlet",
+        "88": "Safety Restraint System #S",
+        "89": "Atmospheric Sensor",
+        "9": "Axle - Drive #1"
+    },
+    "J1939SPNdb": {
+        "190": {
+            "Acronym": "EEC1",
+            "DataRange": "0 to 8,031.875 rpm",
+            "EndBit": 39,
+            "Name": "Engine Speed",
+            "Offset": 0.0,
+            "OperationalHigh": 8031.875,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.125,
+            "SPN": 190,
+            "SPNLength": 16,
+            "StartBit": 24,
+            "TransmissionRate": "engine speed dependent",
+            "Units": "rpm"
+        },
+        "20": {
+            "Acronym": "EAC",
+            "DataRange": "0.0 to 145.037738 psi",
+            "EndBit": 31,
+            "Name": "Engine Extended Range Coolant Pressure",
+            "Offset": 0.0,
+            "OperationalHigh": 145.037738,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.580150952,
+            "SPN": 20,
+            "SPNLength": 8,
+            "StartBit": 24,
+            "TransmissionRate": "0.5 s",
+            "Units": "psi"
+        },
+        "22": {
+            "Acronym": "EFL/P1",
+            "DataRange": "0.0 to 1.812971725 psi",
+            "EndBit": 15,
+            "Name": "Engine Extended Crankcase Blow-by Pressure",
+            "Offset": 0.0,
+            "OperationalHigh": 1.812971725,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.0072518869,
+            "SPN": 22,
+            "SPNLength": 8,
+            "StartBit": 8,
+            "TransmissionRate": "0.5 s",
+            "Units": "psi"
+        },
+        "2256": {
+            "Acronym": "AV08MF",
+            "DataRange": "0.0 to 46596.99927595 psi",
+            "EndBit": 31,
+            "Name": "Aux Valve 8 Extend Port Pressure",
+            "Offset": 0.0,
+            "OperationalHigh": 46596.99927595,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.72518869,
+            "SPN": 2256,
+            "SPNLength": 16,
+            "StartBit": 16,
+            "TransmissionRate": "100 ms",
+            "Units": "psi"
+        },
+        "2257": {
+            "Acronym": "AV08MF",
+            "DataRange": "0.0 to 46596.99927595 psi",
+            "EndBit": 47,
+            "Name": "Aux Valve 8 Retract Port Pressure",
+            "Offset": 0.0,
+            "OperationalHigh": 46596.99927595,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.72518869,
+            "SPN": 2257,
+            "SPNLength": 16,
+            "StartBit": 32,
+            "TransmissionRate": "100 ms",
+            "Units": "psi"
+        },
+        "2258": {
+            "Acronym": "AV08MF",
+            "DataRange": "0.0 to 580.150952 psi",
+            "EndBit": 55,
+            "Name": "Aux Valve 8 Return Port Pressure",
+            "Offset": 0.0,
+            "OperationalHigh": 580.150952,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 2.320603808,
+            "SPN": 2258,
+            "SPNLength": 8,
+            "StartBit": 48,
+            "TransmissionRate": "100 ms",
+            "Units": "psi"
+        },
+        "2259": {
+            "Acronym": "AV08C",
+            "DataRange": "0 to 100 %",
+            "EndBit": 7,
+            "Name": "Aux Valve 8 Port Flow Command",
+            "Offset": 0.0,
+            "OperationalHigh": 100.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.4,
+            "SPN": 2259,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "Minimum rate of 1 second between messages for each valve or when a parameter is required to change state.\n\n??? What's the fastest Rate > or < 100 ms ??",
+            "Units": "%"
+        },
+        "770": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 37,
+            "Name": "Transmission Splitter Direct Actuator",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 770,
+            "SPNLength": 2,
+            "StartBit": 36,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "771": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 39,
+            "Name": "Transmission Splitter Indirect Actuator",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 771,
+            "SPNLength": 2,
+            "StartBit": 38,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "772": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 25,
+            "Name": "Transmission Shift Finger Rail Actuator 1",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 772,
+            "SPNLength": 2,
+            "StartBit": 24,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "773": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 27,
+            "Name": "Transmission Shift Finger Gear Actuator 1",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 773,
+            "SPNLength": 2,
+            "StartBit": 26,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "778": {
+            "Acronym": "ETC5",
+            "DataRange": "0 to 3",
+            "EndBit": 1,
+            "Name": "Transmission High Range Sense Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 778,
+            "SPNLength": 2,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "779": {
+            "Acronym": "ETC5",
+            "DataRange": "0 to 3",
+            "EndBit": 3,
+            "Name": "Transmission Low Range Sense Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 779,
+            "SPNLength": 2,
+            "StartBit": 2,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "780": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 17,
+            "Name": "Transmission Shift Finger Neutral Indicator",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 780,
+            "SPNLength": 2,
+            "StartBit": 16,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "781": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 19,
+            "Name": "Transmission Shift Finger Engagement Indicator",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 781,
+            "SPNLength": 2,
+            "StartBit": 18,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "782": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 21,
+            "Name": "Transmission Shift Finger Center Rail Indicator",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 782,
+            "SPNLength": 2,
+            "StartBit": 20,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "783": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 29,
+            "Name": "Transmission Shift Finger Rail Actuator 2",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 783,
+            "SPNLength": 2,
+            "StartBit": 28,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "784": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 31,
+            "Name": "Transmission Shift Finger Gear Actuator 2",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 784,
+            "SPNLength": 2,
+            "StartBit": 30,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "786": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 45,
+            "Name": "Transmission Defuel Actuator",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 786,
+            "SPNLength": 2,
+            "StartBit": 44,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "787": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 47,
+            "Name": "Transmission Inertia Brake Actuator",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 787,
+            "SPNLength": 2,
+            "StartBit": 46,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "788": {
+            "Acronym": "ETC3",
+            "DataRange": "0 to 3",
+            "EndBit": 41,
+            "Name": "Transmission Clutch Actuator",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 788,
+            "SPNLength": 2,
+            "StartBit": 40,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "79": {
+            "Acronym": "AMB",
+            "DataRange": "-459.40000000000003 to 3154.94375 deg F",
+            "EndBit": 63,
+            "Name": "Road Surface Temperature",
+            "Offset": -459.40000000000003,
+            "OperationalHigh": 3154.94375,
+            "OperationalLow": -459.40000000000003,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.05625,
+            "SPN": 79,
+            "SPNLength": 16,
+            "StartBit": 48,
+            "TransmissionRate": "1 s",
+            "Units": "deg F"
+        },
+        "80": {
+            "Acronym": "DD",
+            "DataRange": "0 to 100 %",
+            "EndBit": 7,
+            "Name": "Washer Fluid Level",
+            "Offset": 0.0,
+            "OperationalHigh": 100.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.4,
+            "SPN": 80,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "1s",
+            "Units": "%"
+        },
+        "81": {
+            "Acronym": "IC1",
+            "DataRange": "0.0 to 18.12971725 psi",
+            "EndBit": 7,
+            "Name": "Engine Diesel Particulate Filter Intake Pressure",
+            "Offset": 0.0,
+            "OperationalHigh": 18.12971725,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.072518869,
+            "SPN": 81,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "0.5 s",
+            "Units": "psi"
+        },
+        "82": {
+            "Acronym": "AIR2",
+            "DataRange": "0.0 to 145.037738 psi",
+            "EndBit": 7,
+            "Name": "Engine Air Start Pressure",
+            "Offset": 0.0,
+            "OperationalHigh": 145.037738,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.580150952,
+            "SPN": 82,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "psi"
+        },
+        "84": {
+            "Acronym": "CCVS1",
+            "DataRange": "0.0 to 155.961635516 mph",
+            "EndBit": 23,
+            "Name": "Wheel-Based Vehicle Speed",
+            "Offset": 0.0,
+            "OperationalHigh": 155.961635516,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.00242723046875,
+            "SPN": 84,
+            "SPNLength": 16,
+            "StartBit": 8,
+            "TransmissionRate": "100 ms",
+            "Units": "mph"
+        },
+        "86": {
+            "Acronym": "CCVS1",
+            "DataRange": "0.0 to 155.34275 mph",
+            "EndBit": 47,
+            "Name": "Cruise Control Set Speed",
+            "Offset": 0.0,
+            "OperationalHigh": 155.34275,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.621371,
+            "SPN": 86,
+            "SPNLength": 8,
+            "StartBit": 40,
+            "TransmissionRate": "100 ms",
+            "Units": "mph"
+        },
+        "87": {
+            "Acronym": "CCSS",
+            "DataRange": "0.0 to 155.34275 mph",
+            "EndBit": 15,
+            "Name": "Cruise Control High Set Limit Speed",
+            "Offset": 0.0,
+            "OperationalHigh": 155.34275,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.621371,
+            "SPN": 87,
+            "SPNLength": 8,
+            "StartBit": 8,
+            "TransmissionRate": "On request",
+            "Units": "mph"
+        },
+        "875": {
+            "Acronym": "SHUTDN",
+            "DataRange": "0 to 3",
+            "EndBit": 19,
+            "Name": "Refrigerant Low Pressure Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 875,
+            "SPNLength": 2,
+            "StartBit": 18,
+            "TransmissionRate": "1 s",
+            "Units": "bit"
+        },
+        "88": {
+            "Acronym": "CCSS",
+            "DataRange": "0.0 to 155.34275 mph",
+            "EndBit": 23,
+            "Name": "Cruise Control Low Set Limit Speed",
+            "Offset": 0.0,
+            "OperationalHigh": 155.34275,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.621371,
+            "SPN": 88,
+            "SPNLength": 8,
+            "StartBit": 16,
+            "TransmissionRate": "On request",
+            "Units": "mph"
+        },
+        "897": {
+            "Acronym": "TSC1",
+            "DataRange": "0 to 3",
+            "EndBit": 5,
+            "Name": "Override Control Mode Priority",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 897,
+            "SPNLength": 2,
+            "StartBit": 4,
+            "TransmissionRate": "To engine: Control Purpose dependent or 10 ms\nTo retarder: 50 ms",
+            "Units": "bit"
+        },
+        "898": {
+            "Acronym": "TSC1",
+            "DataRange": "0 to 8,031.875 rpm",
+            "EndBit": 23,
+            "Name": "Engine Requested Speed/Speed Limit",
+            "Offset": 0.0,
+            "OperationalHigh": 8031.875,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.125,
+            "SPN": 898,
+            "SPNLength": 16,
+            "StartBit": 8,
+            "TransmissionRate": "To engine: Control Purpose dependent or 10 ms\nTo retarder: 50 ms",
+            "Units": "rpm"
+        },
+        "899": {
+            "Acronym": "EEC1",
+            "DataRange": "0 to 15",
+            "EndBit": 3,
+            "Name": "Engine Torque Mode",
+            "Offset": 0.0,
+            "OperationalHigh": 15.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 899,
+            "SPNLength": 4,
+            "StartBit": 0,
+            "TransmissionRate": "engine speed dependent",
+            "Units": "bit"
+        },
+        "90": {
+            "Acronym": "PTO",
+            "DataRange": "-40.0 to 410.0 deg F",
+            "EndBit": 7,
+            "Name": "Power Takeoff Oil Temperature",
+            "Offset": -40.0,
+            "OperationalHigh": 410.0,
+            "OperationalLow": -40.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1.8,
+            "SPN": 90,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "100 ms",
+            "Units": "deg F"
+        },
+        "900": {
+            "Acronym": "ERC1",
+            "DataRange": "0 to 15",
+            "EndBit": 3,
+            "Name": "Retarder Torque Mode",
+            "Offset": 0.0,
+            "OperationalHigh": 15.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 900,
+            "SPNLength": 4,
+            "StartBit": 0,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "901": {
+            "Acronym": "RC",
+            "DataRange": "0 to 15",
+            "EndBit": 3,
+            "Name": "Retarder Type",
+            "Offset": 0.0,
+            "OperationalHigh": 15.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "19",
+            "Resolution": 1,
+            "SPN": 901,
+            "SPNLength": 4,
+            "StartBit": 0,
+            "TransmissionRate": "Every 5 s and on change of torque/speed points of more than 10% since last transmission but no faster than every 500 ms",
+            "Units": "bit"
+        },
+        "902": {
+            "Acronym": "RC",
+            "DataRange": "0 to 15",
+            "EndBit": 7,
+            "Name": "Retarder Location",
+            "Offset": 0.0,
+            "OperationalHigh": 15.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "19",
+            "Resolution": 1,
+            "SPN": 902,
+            "SPNLength": 4,
+            "StartBit": 4,
+            "TransmissionRate": "Every 5 s and on change of torque/speed points of more than 10% since last transmission but no faster than every 500 ms",
+            "Units": "bit"
+        },
+        "903": {
+            "Acronym": "ETC5",
+            "DataRange": "0 to 3",
+            "EndBit": 13,
+            "Name": "Transmission Forward Direction Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 903,
+            "SPNLength": 2,
+            "StartBit": 12,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "904": {
+            "Acronym": "EBC2",
+            "DataRange": "0.0 to 155.961635516 mph",
+            "EndBit": 15,
+            "Name": "Front Axle Speed",
+            "Offset": 0.0,
+            "OperationalHigh": 155.961635516,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.00242723046875,
+            "SPN": 904,
+            "SPNLength": 16,
+            "StartBit": 0,
+            "TransmissionRate": "100 ms",
+            "Units": "mph"
+        },
+        "905": {
+            "Acronym": "EBC2",
+            "DataRange": "-4.8544609375 to 4.8544609375 mph",
+            "EndBit": 23,
+            "Name": "Relative Speed; Front Axle, Left Wheel",
+            "Offset": -4.46222049375,
+            "OperationalHigh": 4.8544609375,
+            "OperationalLow": -4.8544609375,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.0388356875,
+            "SPN": 905,
+            "SPNLength": 8,
+            "StartBit": 16,
+            "TransmissionRate": "100 ms",
+            "Units": "mph"
+        },
+        "906": {
+            "Acronym": "EBC2",
+            "DataRange": "-4.8544609375 to 4.8544609375 mph",
+            "EndBit": 31,
+            "Name": "Relative Speed; Front Axle, Right Wheel",
+            "Offset": -4.46222049375,
+            "OperationalHigh": 4.8544609375,
+            "OperationalLow": -4.8544609375,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.0388356875,
+            "SPN": 906,
+            "SPNLength": 8,
+            "StartBit": 24,
+            "TransmissionRate": "100 ms",
+            "Units": "mph"
+        },
+        "907": {
+            "Acronym": "EBC2",
+            "DataRange": "-4.8544609375 to 4.8544609375 mph",
+            "EndBit": 39,
+            "Name": "Relative Speed; Rear Axle #1, Left Wheel",
+            "Offset": -4.46222049375,
+            "OperationalHigh": 4.8544609375,
+            "OperationalLow": -4.8544609375,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.0388356875,
+            "SPN": 907,
+            "SPNLength": 8,
+            "StartBit": 32,
+            "TransmissionRate": "100 ms",
+            "Units": "mph"
+        },
+        "908": {
+            "Acronym": "EBC2",
+            "DataRange": "-4.8544609375 to 4.8544609375 mph",
+            "EndBit": 47,
+            "Name": "Relative Speed; Rear Axle #1, Right Wheel",
+            "Offset": -4.46222049375,
+            "OperationalHigh": 4.8544609375,
+            "OperationalLow": -4.8544609375,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.0388356875,
+            "SPN": 908,
+            "SPNLength": 8,
+            "StartBit": 40,
+            "TransmissionRate": "100 ms",
+            "Units": "mph"
+        },
+        "909": {
+            "Acronym": "EBC2",
+            "DataRange": "-4.8544609375 to 4.8544609375 mph",
+            "EndBit": 55,
+            "Name": "Relative Speed; Rear Axle #2, Left Wheel",
+            "Offset": -4.46222049375,
+            "OperationalHigh": 4.8544609375,
+            "OperationalLow": -4.8544609375,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.0388356875,
+            "SPN": 909,
+            "SPNLength": 8,
+            "StartBit": 48,
+            "TransmissionRate": "100 ms",
+            "Units": "mph"
+        },
+        "91": {
+            "Acronym": "EEC2",
+            "DataRange": "0 to 100 %",
+            "EndBit": 15,
+            "Name": "Accelerator Pedal Position 1",
+            "Offset": 0.0,
+            "OperationalHigh": 100.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.4,
+            "SPN": 91,
+            "SPNLength": 8,
+            "StartBit": 8,
+            "TransmissionRate": "50 msec (preferred) or Engine Speed Dependent (if required by application)",
+            "Units": "%"
+        },
+        "910": {
+            "Acronym": "EBC2",
+            "DataRange": "-4.8544609375 to 4.8544609375 mph",
+            "EndBit": 63,
+            "Name": "Relative Speed; Rear Axle #2, Right Wheel",
+            "Offset": -4.46222049375,
+            "OperationalHigh": 4.8544609375,
+            "OperationalLow": -4.8544609375,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.0388356875,
+            "SPN": 910,
+            "SPNLength": 8,
+            "StartBit": 56,
+            "TransmissionRate": "100 ms",
+            "Units": "mph"
+        },
+        "911": {
+            "Acronym": "SERV",
+            "DataRange": "0 to 250 ID",
+            "EndBit": 7,
+            "Name": "Service Component Identification",
+            "Offset": 0.0,
+            "OperationalHigh": 250.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8 bytes or variable",
+            "Resolution": 1,
+            "SPN": 911,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "ID"
+        },
+        "912": {
+            "Acronym": "SERV",
+            "DataRange": "0 to 250 ID",
+            "EndBit": 31,
+            "Name": "Service Component Identification",
+            "Offset": 0.0,
+            "OperationalHigh": 250.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8 bytes or variable",
+            "Resolution": 1,
+            "SPN": 912,
+            "SPNLength": 8,
+            "StartBit": 24,
+            "TransmissionRate": "On request",
+            "Units": "ID"
+        },
+        "913": {
+            "Acronym": "SERV",
+            "DataRange": "0 to 250 ID",
+            "EndBit": 47,
+            "Name": "Service Component Identification",
+            "Offset": 0.0,
+            "OperationalHigh": 250.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8 bytes or variable",
+            "Resolution": 1,
+            "SPN": 913,
+            "SPNLength": 8,
+            "StartBit": 40,
+            "TransmissionRate": "On request",
+            "Units": "ID"
+        },
+        "914": {
+            "Acronym": "SERV",
+            "DataRange": "-160,635 to 160,640 km",
+            "EndBit": 23,
+            "Name": "Service Distance",
+            "Offset": -160635000.0,
+            "OperationalHigh": 160640.0,
+            "OperationalLow": -160635.0,
+            "OperationalRange": "",
+            "PGNLength": "8 bytes or variable",
+            "Resolution": 5,
+            "SPN": 914,
+            "SPNLength": 16,
+            "StartBit": 8,
+            "TransmissionRate": "On request",
+            "Units": "m"
+        },
+        "915": {
+            "Acronym": "SERV",
+            "DataRange": "-125 to 125 weeks",
+            "EndBit": 39,
+            "Name": "Service Delay/Calendar Time Based",
+            "Offset": -125.0,
+            "OperationalHigh": 125.0,
+            "OperationalLow": -125.0,
+            "OperationalRange": "",
+            "PGNLength": "8 bytes or variable",
+            "Resolution": 1,
+            "SPN": 915,
+            "SPNLength": 8,
+            "StartBit": 32,
+            "TransmissionRate": "On request",
+            "Units": "Weeks"
+        },
+        "916": {
+            "Acronym": "SERV",
+            "DataRange": "-32,127 to 32,128 hr",
+            "EndBit": 63,
+            "Name": "Service Delay/Operational Time Based",
+            "Offset": -115657200.0,
+            "OperationalHigh": 32128.0,
+            "OperationalLow": -32127.0,
+            "OperationalRange": "",
+            "PGNLength": "8 bytes or variable",
+            "Resolution": 1,
+            "SPN": 916,
+            "SPNLength": 16,
+            "StartBit": 48,
+            "TransmissionRate": "On request",
+            "Units": "hours"
+        },
+        "917": {
+            "Acronym": "VDHR",
+            "DataRange": "0 to 21055406000 meters",
+            "EndBit": 31,
+            "Name": "High Resolution Total Vehicle Distance",
+            "Offset": 0.0,
+            "OperationalHigh": 21055406000.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 5,
+            "SPN": 917,
+            "SPNLength": 32,
+            "StartBit": 0,
+            "TransmissionRate": "1 s",
+            "Units": "meters"
+        },
+        "918": {
+            "Acronym": "VDHR",
+            "DataRange": "0 to 21055406000 meters",
+            "EndBit": 63,
+            "Name": "High Resolution Trip Distance",
+            "Offset": 0.0,
+            "OperationalHigh": 21055406000.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 5,
+            "SPN": 918,
+            "SPNLength": 32,
+            "StartBit": 32,
+            "TransmissionRate": "1 s",
+            "Units": "meters"
+        },
+        "92": {
+            "Acronym": "EEC2",
+            "DataRange": "0 to 250 %",
+            "EndBit": 23,
+            "Name": "Engine Percent Load At Current Speed",
+            "Offset": 0.0,
+            "OperationalHigh": 125.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "0 to 125%",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 92,
+            "SPNLength": 8,
+            "StartBit": 16,
+            "TransmissionRate": "50 msec (preferred) or Engine Speed Dependent (if required by application)",
+            "Units": "%"
+        },
+        "927": {
+            "Acronym": "EAC1",
+            "DataRange": "0 to 255",
+            "EndBit": 7,
+            "Name": "Location",
+            "Offset": 0.0,
+            "OperationalHigh": 255.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 927,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "500 ms",
+            "Units": "bit"
+        },
+        "928": {
+            "Acronym": "VW",
+            "DataRange": "0 to 255",
+            "EndBit": 7,
+            "Name": "Axle Location",
+            "Offset": 0.0,
+            "OperationalHigh": 255.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 928,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "929": {
+            "Acronym": "TIRE",
+            "DataRange": "0 to 255",
+            "EndBit": 7,
+            "Name": "Tire Location",
+            "Offset": 0.0,
+            "OperationalHigh": 255.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 929,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "10 s",
+            "Units": "bit"
+        },
+        "930": {
+            "Acronym": "AI",
+            "DataRange": "0 to 255",
+            "EndBit": 15,
+            "Name": "Drive Axle Location",
+            "Offset": 0.0,
+            "OperationalHigh": 255.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 930,
+            "SPNLength": 8,
+            "StartBit": 8,
+            "TransmissionRate": "1 s",
+            "Units": "bit"
+        },
+        "94": {
+            "Acronym": "EFL/P1",
+            "DataRange": "0.0 to 145.037738 psi",
+            "EndBit": 7,
+            "Name": "Engine Fuel Delivery Pressure",
+            "Offset": 0.0,
+            "OperationalHigh": 145.037738,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.580150952,
+            "SPN": 94,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "0.5 s",
+            "Units": "psi"
+        },
+        "95": {
+            "Acronym": "DD",
+            "DataRange": "0.0 to 72.518869 psi",
+            "EndBit": 23,
+            "Name": "Engine Fuel Filter Differential Pressure",
+            "Offset": 0.0,
+            "OperationalHigh": 72.518869,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.290075476,
+            "SPN": 95,
+            "SPNLength": 8,
+            "StartBit": 16,
+            "TransmissionRate": "1s",
+            "Units": "psi"
+        },
+        "957": {
+            "Acronym": "TCFG",
+            "DataRange": "0 to 250",
+            "EndBit": 15,
+            "Name": "Number of Forward Gear Ratios",
+            "Offset": 0.0,
+            "OperationalHigh": 125.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "0 to 125 gear ratios",
+            "PGNLength": "Variable",
+            "Resolution": 1,
+            "SPN": 957,
+            "SPNLength": 8,
+            "StartBit": 8,
+            "TransmissionRate": "On request",
+            "Units": "gear value"
+        },
+        "958": {
+            "Acronym": "TCFG",
+            "DataRange": "0 to 250",
+            "EndBit": 7,
+            "Name": "Number of Reverse Gear Ratios",
+            "Offset": 0.0,
+            "OperationalHigh": 125.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "0 to 125 gear ratios",
+            "PGNLength": "Variable",
+            "Resolution": 1,
+            "SPN": 958,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "gear value"
+        },
+        "959": {
+            "Acronym": "TD",
+            "DataRange": "0 to 62.5 s",
+            "EndBit": 7,
+            "Name": "Seconds",
+            "Offset": 0.0,
+            "OperationalHigh": 59.75,
+            "OperationalLow": 0.0,
+            "OperationalRange": "0 to 59.75 sec",
+            "PGNLength": "8",
+            "Resolution": 0.25,
+            "SPN": 959,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "Seconds"
+        },
+        "96": {
+            "Acronym": "DD",
+            "DataRange": "0 to 100 %",
+            "EndBit": 15,
+            "Name": "Fuel Level 1",
+            "Offset": 0.0,
+            "OperationalHigh": 100.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.4,
+            "SPN": 96,
+            "SPNLength": 8,
+            "StartBit": 8,
+            "TransmissionRate": "1s",
+            "Units": "%"
+        },
+        "960": {
+            "Acronym": "TD",
+            "DataRange": "0 to 250 mins",
+            "EndBit": 15,
+            "Name": "Minutes",
+            "Offset": 0.0,
+            "OperationalHigh": 59.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "0 to 59 min",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 960,
+            "SPNLength": 8,
+            "StartBit": 8,
+            "TransmissionRate": "On request",
+            "Units": "minutes"
+        },
+        "961": {
+            "Acronym": "TD",
+            "DataRange": "0 to 250 hr",
+            "EndBit": 23,
+            "Name": "Hours",
+            "Offset": 0.0,
+            "OperationalHigh": 23.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "0 to 23 hr",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 961,
+            "SPNLength": 8,
+            "StartBit": 16,
+            "TransmissionRate": "On request",
+            "Units": "hours"
+        },
+        "962": {
+            "Acronym": "TD",
+            "DataRange": "0 to 62.5 days",
+            "EndBit": 39,
+            "Name": "Day",
+            "Offset": 0.0,
+            "OperationalHigh": 31.75,
+            "OperationalLow": 0.25,
+            "OperationalRange": "0.25 to 31.75 day",
+            "PGNLength": "8",
+            "Resolution": 0.25,
+            "SPN": 962,
+            "SPNLength": 8,
+            "StartBit": 32,
+            "TransmissionRate": "On request",
+            "Units": "Days"
+        },
+        "963": {
+            "Acronym": "TD",
+            "DataRange": "0 to 250 months",
+            "EndBit": 31,
+            "Name": "Month",
+            "Offset": 0.0,
+            "OperationalHigh": 12.0,
+            "OperationalLow": 1.0,
+            "OperationalRange": "1 to 12 month",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 963,
+            "SPNLength": 8,
+            "StartBit": 24,
+            "TransmissionRate": "On request",
+            "Units": "Months"
+        },
+        "964": {
+            "Acronym": "TD",
+            "DataRange": "1985 to 2235 years",
+            "EndBit": 47,
+            "Name": "Year",
+            "Offset": 1985.0,
+            "OperationalHigh": 2235.0,
+            "OperationalLow": 1985.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 964,
+            "SPNLength": 8,
+            "StartBit": 40,
+            "TransmissionRate": "On request",
+            "Units": "Years"
+        },
+        "965": {
+            "Acronym": "SOFT",
+            "DataRange": "0 to 250 steps",
+            "EndBit": 7,
+            "Name": "Number of Software Identification Fields",
+            "Offset": 0.0,
+            "OperationalHigh": 125.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "0 to 125",
+            "PGNLength": "Variable",
+            "Resolution": 1,
+            "SPN": 965,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "step"
+        },
+        "966": {
+            "Acronym": "CCVS1",
+            "DataRange": "0 to 3",
+            "EndBit": 61,
+            "Name": "Engine Test Mode Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 966,
+            "SPNLength": 2,
+            "StartBit": 60,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "967": {
+            "Acronym": "CCVS1",
+            "DataRange": "0 to 3",
+            "EndBit": 59,
+            "Name": "Engine Idle Decrement Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 967,
+            "SPNLength": 2,
+            "StartBit": 58,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "968": {
+            "Acronym": "CCVS1",
+            "DataRange": "0 to 3",
+            "EndBit": 57,
+            "Name": "Engine Idle Increment Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 968,
+            "SPNLength": 2,
+            "StartBit": 56,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "969": {
+            "Acronym": "EBC1",
+            "DataRange": "0 to 3",
+            "EndBit": 31,
+            "Name": "Remote Accelerator Enable Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 969,
+            "SPNLength": 2,
+            "StartBit": 30,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "97": {
+            "Acronym": "OI",
+            "DataRange": "0 to 3",
+            "EndBit": 1,
+            "Name": "Water In Fuel Indicator",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 97,
+            "SPNLength": 2,
+            "StartBit": 0,
+            "TransmissionRate": "10 s or on change but no more often than 1s",
+            "Units": "bit"
+        },
+        "970": {
+            "Acronym": "EBC1",
+            "DataRange": "0 to 3",
+            "EndBit": 29,
+            "Name": "Engine Auxiliary Shutdown Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 970,
+            "SPNLength": 2,
+            "StartBit": 28,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "971": {
+            "Acronym": "EBC1",
+            "DataRange": "0 to 3",
+            "EndBit": 27,
+            "Name": "Engine Derate Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 971,
+            "SPNLength": 2,
+            "StartBit": 26,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "972": {
+            "Acronym": "EBC1",
+            "DataRange": "0 to 3",
+            "EndBit": 25,
+            "Name": "Accelerator Interlock Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 972,
+            "SPNLength": 2,
+            "StartBit": 24,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "973": {
+            "Acronym": "EBC1",
+            "DataRange": "0 to 100 %",
+            "EndBit": 39,
+            "Name": "Engine Retarder Selection",
+            "Offset": 0.0,
+            "OperationalHigh": 100.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.4,
+            "SPN": 973,
+            "SPNLength": 8,
+            "StartBit": 32,
+            "TransmissionRate": "100 ms",
+            "Units": "%"
+        },
+        "974": {
+            "Acronym": "EEC2",
+            "DataRange": "0 to 100 %",
+            "EndBit": 31,
+            "Name": "Remote Accelerator Pedal Position",
+            "Offset": 0.0,
+            "OperationalHigh": 100.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.4,
+            "SPN": 974,
+            "SPNLength": 8,
+            "StartBit": 24,
+            "TransmissionRate": "50 msec (preferred) or Engine Speed Dependent (if required by application)",
+            "Units": "%"
+        },
+        "975": {
+            "Acronym": "FD1",
+            "DataRange": "0 to 100 %",
+            "EndBit": 7,
+            "Name": "Estimated Percent Fan Speed",
+            "Offset": 0.0,
+            "OperationalHigh": 100.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.4,
+            "SPN": 975,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "1 s",
+            "Units": "%"
+        },
+        "976": {
+            "Acronym": "CCVS1",
+            "DataRange": "0 to 31",
+            "EndBit": 52,
+            "Name": "PTO Governor State",
+            "Offset": 0.0,
+            "OperationalHigh": 31.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 976,
+            "SPNLength": 5,
+            "StartBit": 48,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "977": {
+            "Acronym": "FD1",
+            "DataRange": "0 to 15",
+            "EndBit": 11,
+            "Name": "Fan Drive State",
+            "Offset": 0.0,
+            "OperationalHigh": 15.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 977,
+            "SPNLength": 4,
+            "StartBit": 8,
+            "TransmissionRate": "1 s",
+            "Units": "bit"
+        },
+        "978": {
+            "Acronym": "PTO",
+            "DataRange": "0 to 3",
+            "EndBit": 45,
+            "Name": "Engine Remote PTO Governor Variable Speed Control Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 978,
+            "SPNLength": 2,
+            "StartBit": 44,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "979": {
+            "Acronym": "PTO",
+            "DataRange": "0 to 3",
+            "EndBit": 43,
+            "Name": "Engine Remote PTO Governor Preprogrammed Speed Control Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 979,
+            "SPNLength": 2,
+            "StartBit": 42,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "98": {
+            "Acronym": "EFL/P1",
+            "DataRange": "0 to 100 %",
+            "EndBit": 23,
+            "Name": "Engine Oil Level",
+            "Offset": 0.0,
+            "OperationalHigh": 100.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.4,
+            "SPN": 98,
+            "SPNLength": 8,
+            "StartBit": 16,
+            "TransmissionRate": "0.5 s",
+            "Units": "%"
+        },
+        "980": {
+            "Acronym": "PTO",
+            "DataRange": "0 to 3",
+            "EndBit": 41,
+            "Name": "Engine PTO Governor Enable Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 980,
+            "SPNLength": 2,
+            "StartBit": 40,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "981": {
+            "Acronym": "PTO",
+            "DataRange": "0 to 3",
+            "EndBit": 55,
+            "Name": "Engine PTO Governor Accelerate Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 981,
+            "SPNLength": 2,
+            "StartBit": 54,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "982": {
+            "Acronym": "PTO",
+            "DataRange": "0 to 3",
+            "EndBit": 53,
+            "Name": "Engine PTO Governor Resume Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 982,
+            "SPNLength": 2,
+            "StartBit": 52,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "983": {
+            "Acronym": "PTO",
+            "DataRange": "0 to 3",
+            "EndBit": 51,
+            "Name": "Engine PTO Governor Coast/Decelerate Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 983,
+            "SPNLength": 2,
+            "StartBit": 50,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "984": {
+            "Acronym": "PTO",
+            "DataRange": "0 to 3",
+            "EndBit": 49,
+            "Name": "Engine PTO Governor Set Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 984,
+            "SPNLength": 2,
+            "StartBit": 48,
+            "TransmissionRate": "100 ms",
+            "Units": "bit"
+        },
+        "985": {
+            "Acronym": "SHUTDN",
+            "DataRange": "0 to 3",
+            "EndBit": 17,
+            "Name": "A/C High Pressure Fan Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 985,
+            "SPNLength": 2,
+            "StartBit": 16,
+            "TransmissionRate": "1 s",
+            "Units": "bit"
+        },
+        "986": {
+            "Acronym": "CM1",
+            "DataRange": "0 to 100 %",
+            "EndBit": 7,
+            "Name": "Requested Percent Fan Speed",
+            "Offset": 0.0,
+            "OperationalHigh": 100.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.4,
+            "SPN": 986,
+            "SPNLength": 8,
+            "StartBit": 0,
+            "TransmissionRate": "1 s",
+            "Units": "%"
+        },
+        "987": {
+            "Acronym": "DM12",
+            "DataRange": "0 to 3",
+            "EndBit": 1,
+            "Name": "Protect Lamp",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "Variable",
+            "Resolution": 1,
+            "SPN": 987,
+            "SPNLength": 2,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "bit"
+        },
+        "988": {
+            "Acronym": "RESET",
+            "DataRange": "0 to 3",
+            "EndBit": 1,
+            "Name": "Trip Group 1",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 988,
+            "SPNLength": 2,
+            "StartBit": 0,
+            "TransmissionRate": "When needed",
+            "Units": "bit"
+        },
+        "989": {
+            "Acronym": "RESET",
+            "DataRange": "0 to 3",
+            "EndBit": 3,
+            "Name": "Trip Group 2 - Proprietary",
+            "Offset": 0.0,
+            "OperationalHigh": 3.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 1,
+            "SPN": 989,
+            "SPNLength": 2,
+            "StartBit": 2,
+            "TransmissionRate": "When needed",
+            "Units": "bit"
+        },
+        "99": {
+            "Acronym": "DD",
+            "DataRange": "0.0 to 18.12971725 psi",
+            "EndBit": 31,
+            "Name": "Engine Oil Filter Differential Pressure",
+            "Offset": 0.0,
+            "OperationalHigh": 18.12971725,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "8",
+            "Resolution": 0.072518869,
+            "SPN": 99,
+            "SPNLength": 8,
+            "StartBit": 24,
+            "TransmissionRate": "1s",
+            "Units": "psi"
+        },
+        "990": {
+            "Acronym": "CBI",
+            "DataRange": "0 to 526,385,151.9 km",
+            "EndBit": 31,
+            "Name": "Total Compression Brake Distance",
+            "Offset": 0.0,
+            "OperationalHigh": 526385151.9,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "16",
+            "Resolution": 0.125,
+            "SPN": 990,
+            "SPNLength": 32,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "m"
+        },
+        "991": {
+            "Acronym": "CBI",
+            "DataRange": "0.0 to 327080468.2212549 mile",
+            "EndBit": 63,
+            "Name": "Trip Compression Brake Distance",
+            "Offset": 0.0,
+            "OperationalHigh": 327080468.2212549,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "16",
+            "Resolution": 0.077671375,
+            "SPN": 991,
+            "SPNLength": 32,
+            "StartBit": 32,
+            "TransmissionRate": "On request",
+            "Units": "miles"
+        },
+        "992": {
+            "Acronym": "CBI",
+            "DataRange": "0.0 to 327080468.2212549 mile",
+            "EndBit": 95,
+            "Name": "Trip Service Brake Distance",
+            "Offset": 0.0,
+            "OperationalHigh": 327080468.2212549,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "16",
+            "Resolution": 0.077671375,
+            "SPN": 992,
+            "SPNLength": 32,
+            "StartBit": 64,
+            "TransmissionRate": "On request",
+            "Units": "miles"
+        },
+        "993": {
+            "Acronym": "CBI",
+            "DataRange": "0 to 4,227,858,431 appl",
+            "EndBit": 127,
+            "Name": "Trip Service Brake Applications",
+            "Offset": 0.0,
+            "OperationalHigh": 4227858431.0,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "16",
+            "Resolution": 1,
+            "SPN": 993,
+            "SPNLength": 32,
+            "StartBit": 96,
+            "TransmissionRate": "On request",
+            "Units": "brake appl"
+        },
+        "994": {
+            "Acronym": "TFI",
+            "DataRange": "0 to 210,554,060.75 hr",
+            "EndBit": 31,
+            "Name": "Trip Fan On Time",
+            "Offset": 0.0,
+            "OperationalHigh": 210554060.75,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "16",
+            "Resolution": 0.05,
+            "SPN": 994,
+            "SPNLength": 32,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "hours"
+        },
+        "995": {
+            "Acronym": "TFI",
+            "DataRange": "0 to 210,554,060.75 hr",
+            "EndBit": 63,
+            "Name": "Trip Fan On Time Due to the Engine System",
+            "Offset": 0.0,
+            "OperationalHigh": 210554060.75,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "16",
+            "Resolution": 0.05,
+            "SPN": 995,
+            "SPNLength": 32,
+            "StartBit": 32,
+            "TransmissionRate": "On request",
+            "Units": "hours"
+        },
+        "996": {
+            "Acronym": "TFI",
+            "DataRange": "0 to 210,554,060.75 hr",
+            "EndBit": 95,
+            "Name": "Trip Fan On Time Due to a Manual Switch",
+            "Offset": 0.0,
+            "OperationalHigh": 210554060.75,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "16",
+            "Resolution": 0.05,
+            "SPN": 996,
+            "SPNLength": 32,
+            "StartBit": 64,
+            "TransmissionRate": "On request",
+            "Units": "hours"
+        },
+        "997": {
+            "Acronym": "TFI",
+            "DataRange": "0 to 210,554,060.75 hr",
+            "EndBit": 127,
+            "Name": "Trip Fan On Time Due to the A/C System",
+            "Offset": 0.0,
+            "OperationalHigh": 210554060.75,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "16",
+            "Resolution": 0.05,
+            "SPN": 997,
+            "SPNLength": 32,
+            "StartBit": 96,
+            "TransmissionRate": "On request",
+            "Units": "hours"
+        },
+        "998": {
+            "Acronym": "TDI",
+            "DataRange": "0.0 to 327080468.2212549 mile",
+            "EndBit": 31,
+            "Name": "Trip Distance on VSL",
+            "Offset": 0.0,
+            "OperationalHigh": 327080468.2212549,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "12",
+            "Resolution": 0.077671375,
+            "SPN": 998,
+            "SPNLength": 32,
+            "StartBit": 0,
+            "TransmissionRate": "On request",
+            "Units": "miles"
+        },
+        "999": {
+            "Acronym": "TDI",
+            "DataRange": "0.0 to 327080468.2212549 mile",
+            "EndBit": 63,
+            "Name": "Trip Gear Down Distance",
+            "Offset": 0.0,
+            "OperationalHigh": 327080468.2212549,
+            "OperationalLow": 0.0,
+            "OperationalRange": "",
+            "PGNLength": "12",
+            "Resolution": 0.077671375,
+            "SPN": 999,
+            "SPNLength": 32,
+            "StartBit": 32,
+            "TransmissionRate": "On request",
+            "Units": "miles"
+        }
+    }
+}
