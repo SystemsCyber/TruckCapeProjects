@@ -13,7 +13,7 @@ https://debian.beagleboard.org/images/bone-eMMC-flasher-debian-10.3-iot-armhf-20
 1. Insert the flasher image SD card into to the BeagleBone Black. Power on the BBB (i.e. plug in the USB) while depressing the SD boot button until the 4 user LEDs come on. After about 30 seconds, the flasher program will start as indicated by the user leds cycling in a back-and-forth pattern. The reflashing process could take 10-15 minutes, depending on the speed of the SD card. 
 
 ## Testing the System
-Using an SSH client, like Putty, and a USB to computer connection, connect to the Beagle Bone Black SSH using IP 192.168.7.2 on port 22.
+Using an SSH client, like PuTTYy, and a USB to computer connection, connect to the Beagle Bone Black SSH using IP 192.168.7.2 on port 22.
 
 The new login uses the following credentials:
 
@@ -21,16 +21,18 @@ U: debian
 
 P: temppwd
 
-The availability to boot is longer than you might like, but be patient, the board will finish booting and enumerate as a drive on your host computer. 
+The availability if this connection may take longer than you might like, but be patient, the board will finish booting and enumerate as a drive on your host computer. 
 
 
-Connect an active Ethernet cable into your BeagleBone. Check to see if you have a valid IP address on `eth0`:
+Connect a live Internet connection by the Ethernet cable into your Beagle Bone Black. Check to see if you have a valid IP address on `eth0`:
 
 ```
 sudo ifconfig
 ```
 
 ### What Version do you have?
+If you are having troubles, be sure you are using the same version that's documented here. When the kernel changes, the results may be different. 
+
 Enter the following command `cat /etc/dogtag`:
 
 ```
@@ -91,7 +93,7 @@ Save and reboot: `sudo shutdown -r now`
 
 ### Configure the pins
 Write the following commands to get the CAN hardware to access the pins upon boot. 
-Create a file in the home directory:
+Create a file in the /etc directory:
 
 ```
 nano /etc/pin_config.sh
@@ -176,7 +178,6 @@ Reboot and verify:
 debian@beaglebone:~$ config-pin -q p9.24
 
 Current mode for P9_24 is:     can
-
 
 ```
 
@@ -317,6 +318,102 @@ debian@beaglebone:~$ candump any
   can1  08FE6E0B   [8]  FF FE FF FE FF FE FF FE
   can1  0CF00400   [8]  00 7D 7D 00 00 00 F0 7D
 ```
+### Add virtual CAN drivers
+The vcan interfaces are great ways to develop hardware without needing to troubleshoot physical CAN connections or have access to a truck.
+
+Write a script to stand up some vcan devices. 
+```
+sudo nano /etc/network/vcan-start.sh
+```
+Enter these commands into the file:
+```
+#!/bin/sh -e
+ip link add type vcan 
+ip link set vcan0 up
+ip link add dev vcan1 type vcan
+ip link set vcan1 up
+ip link add dev vcan2 type vcan
+ip link set vcan2 up
+exit 0
+```
+
+Make the script executable:
+```
+sudo chmod +x /etc/network/vcan-start.sh
+```
+This script should be run upon boot, so let's make a script to do this and add it to a boot sequence.
+
+```
+sudo nano /lib/systemd/system/vcan.service
+```
+Add this to the file:
+```
+[Unit]
+Description=Turn on virtual CAN interfaces
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /etc/network/vcan-start.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Start the service
+
+```
+sudo systemctl start vcan.service
+```
+
+Verify the service
+
+```
+sudo systemctl status vcan.service
+```
+Enable the service at boot
+
+```
+sudo systemctl enable vcan.service
+```
+To confirm the pin_config.service was enabled, look for a symbolic link in `/etc/systemd/system`
+
+```
+ls -la /etc/systemd/system/multi-user.target.wants/
+lrwxrwxrwx  1 root root   32 Nov  7 15:27 vcan.service -> /lib/systemd/system/vcan.service
+```
+should show a line
+```
+lrwxrwxrwx  1 root root   32 Nov  7 15:27 vcan.service -> /lib/systemd/system/vcan.service
+```
+
+Reboot and verify:
+```
+debian@beaglebone:~$ ifconfig
+
+
+vcan0: flags=193<UP,RUNNING,NOARP>  mtu 72
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vcan1: flags=193<UP,RUNNING,NOARP>  mtu 72
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vcan2: flags=193<UP,RUNNING,NOARP>  mtu 72
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+
+Now there are 3 vcan channels ready for use. 
 
 ## Write a recovery SD card
 To duplicate the firmware image on the eMMC of the current Beagle Bone Black, do the following:
@@ -345,6 +442,7 @@ Calling shutdown
 If the process fails, double check the SD card insertion and timing. 
 
 ## Future Work
+This section documents some experimentation for upgrading the kernel and working with the J1939 SocketCAN extension. None of the examples or exercises use this section. In fact, none of the examples in this repository have been verified to work with this upgrade. 
 
 ### Upgrade the Linux Kernel Module for SocketCAN
 
@@ -363,12 +461,12 @@ As of October 7, 2020, this updates to beaglebone kernel 5.4.66-ti-r18.
 
 Next, we need the files for the can-j1939 kernel module. These may be found in the kernel_modules directory of the repository. If the TruckCapeProjects repository is not downloaded, you may download it with the following commands:
 ```
-debian@beaglebone:~$ sudo git clone -b v4Hardware https://github.com/SystemsCyber/TruckCapeProjects.git
+debian@beaglebone:~$ sudo git clone https://github.com/SystemsCyber/TruckCapeProjects.git
 ```
 We also need to install the linux headers to build modules natively on the beaglebone.
 
 ```
-debian@beaglebone:~$ sudo apt-get install linux-headers-`uname -r`
+debian@beaglebone:~$ sudo apt install linux-headers-`uname -r`
 
 ```
 
@@ -391,7 +489,7 @@ debian@beaglebone:~/TruckCapeProjects/kernel_modules/j1939$ sudo cp can-j1939.ko
 debian@beaglebone:~$ sudo depmod
 debian@beaglebone:~$ sudo modprobe can-j1939
 ```
-The beaglebone kernel has now been upgraded and includes the j1939 module.
+The beaglebone kernel has now been upgraded and includes the j1939 module for SocketCAN.
 
 As a final step, we need to install the correct Linux Header Files for local code compilation.
 
