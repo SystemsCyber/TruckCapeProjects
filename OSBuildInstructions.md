@@ -415,6 +415,24 @@ vcan2: flags=193<UP,RUNNING,NOARP>  mtu 72
 
 Now there are 3 vcan channels ready for use. 
 
+### Add Software Packages
+Run these commands to get the latest versions.
+```
+sudo apt update
+sudo apt upgrade
+```
+
+Run these commands to get dependencies for the beaglebone. 
+```
+pip3 install jupyter
+sudo apt install libjpeg-dev -y
+sudo apt install zlib1g-dev -y
+sudo apt install libfreetype6-dev -y
+sudo apt install zip -y
+sudo apt install libopenjp2-7 -y
+sudo apt install libtiff5 -y
+```
+
 ## Write a recovery SD card
 To duplicate the firmware image on the eMMC of the current Beagle Bone Black, do the following:
 1. Remove the BBBlack from the truck cape. Power up with USB. 
