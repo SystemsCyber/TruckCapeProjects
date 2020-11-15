@@ -88,15 +88,31 @@ uboot_overlay_addr4=/lib/firmware/cape-universal.dtbo
 
 ```
 
+Finally, enable uio_pruss kernel module for the Programmable Realtime Unit (PRU).
+```
+###PRUSS OPTIONS
+###pru_rproc (4.14.x-ti kernel)
+#uboot_overlay_pru=/lib/firmware/AM335X-PRU-RPROC-4-14-TI-00A0.dtbo
+###pru_rproc (4.19.x-ti kernel)
+#uboot_overlay_pru=/lib/firmware/AM335X-PRU-RPROC-4-19-TI-00A0.dtbo
+###pru_uio (4.14.x-ti, 4.19.x-ti & mainline/bone kernel)
+uboot_overlay_pru=/lib/firmware/AM335X-PRU-UIO-00A0.dtbo
+###
+```
+
 Save and reboot: `sudo shutdown -r now`
 
+Verify the uio_pruss kernel module is running:
+```
+lsmod | grep pru
+```
 
 ### Configure the pins
 Write the following commands to get the CAN hardware to access the pins upon boot. 
 Create a file in the /etc directory:
 
 ```
-nano /etc/pin_config.sh
+sudo nano /etc/pin_config.sh
 ```
 Write the following into the directory:
 ```
@@ -172,7 +188,7 @@ debian@beaglebone:/etc/systemd/system$ ls -la
 lrwxrwxrwx  1 root root   38 Sep 17 04:51 pin_config.service -> /lib/systemd/system/pin_config.service
 ```
 
-Reboot and verify:
+Reboot and verify. `sudo shutdown -r now`
 
 ```
 debian@beaglebone:~$ config-pin -q p9.24
@@ -386,7 +402,7 @@ should show a line
 lrwxrwxrwx  1 root root   32 Nov  7 15:27 vcan.service -> /lib/systemd/system/vcan.service
 ```
 
-Reboot and verify:
+Reboot and verify. `sudo shutdown -r now`
 ```
 debian@beaglebone:~$ ifconfig
 
@@ -422,22 +438,152 @@ sudo apt update
 sudo apt upgrade
 ```
 
-Run these commands to get dependencies for the beaglebone. 
+Run these commands to get dependencies for the Beagle Bone Black. 
+
+Install Jupyter so we can run Jupyter notebooks on the Beagle Bone Black
 ```
-pip3 install jupyter
+sudo pip3 install jupyter
+```
+
+You can launch a jupyter notebook server from the Beagle Bone:
+```
+jupyter notebook --ip 192.168.7.2 --no-browser
+```
+
+These dependencies are needed for the Jupyter live plotting examples.
+```
 sudo apt install libjpeg-dev -y
 sudo apt install zlib1g-dev -y
 sudo apt install libfreetype6-dev -y
 sudo apt install zip -y
 sudo apt install libopenjp2-7 -y
-sudo apt install libtiff5 -y
 ```
 
+Also, install the cryptography library:
+```
+sudo pip3 install cryptography
+```
+This should report  `Successfully installed cryptography-3.2.1`
+
+
+### Truck Cape Projects
+Clone the Git Repository
+```
+cd ~
+git clone https://github.com/SystemsCyber/TruckCapeProjects.git
+```
+
+## J1708 drivers
+
+Install PyPRUSS for both Python 2.7 and 3.7
+```
+git clone https://bitbucket.org/intelligentagent/pypruss.git  
+cd pypruss
+sudo python setup.py install
+sudo python3 setup.py install
+#export LD_LIBRARY_PATH=/usr/local/lib
+```
+
+
+
+### hv_networks
+Install the hv_networks drivers. First, clone the repository, then install the packages.
+```
+git clone https://github.com/SystemsCyber/py-hv-networks.git
+cd py-hv-networks
+sudo python3 setup.py install
+```
+
+Copy the PRU files to the OS:
+```
+sudo cp -r bbonePRU /opt/
+```
+
+Create an init script to load the PRU drivers.
+```
+sudo nano /etc/load_j1708_drivers.sh 
+```
+
+Add the following contents:
+```
+#!/bin/sh -e
+/opt/bbonePRU/ecm_driver.py
+/opt/bbonePRU/non_ecm_driver.py
+exit 0
+```
+
+Make the script executable:
+```
+sudo chmod +x /etc/load_j1708_drivers.sh 
+```
+
+Write a service to run this script on boot.
+```
+sudo nano /lib/systemd/system/ecm_driver.service
+```
+Add this to the file:
+```
+[Unit]
+Description=Load Python Drivers to Load J1708 PRU code
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=3
+ExecStart=/opt/bbonePRU/ecm_driver.py
+
+[Install]
+WantedBy=multi-user.target
+```
+
+It's important to include the restart features because the first time the script is run, it usually fails. The script gets invoked before all the PRU infrastructure is loaded. 
+
+Test the service:
+```
+sudo systemctl start ecm_driver.service
+```
+
+Enable the service at boot:
+```
+sudo systemctl enable ecm_driver.service
+```
+
+Verify the ecm_drivers loaded:
+```
+sudo systemctl status ecm_driver.service
+```
+
+Repeat the a creation of the same service, but substitute `non_ecm_driver` for `ecm_driver`.
+
+
+Reboot and see if things worked: `sudo shutdown -r now`
+
+After rebooting, you can check the status of the service:
+```
+debian@beaglebone:~$ sudo systemctl status ecm_driver.service
+● ecm_driver.service - Load Python Drivers to Load J1708 PRU code
+   Loaded: loaded (/lib/systemd/system/ecm_driver.service; enabled; vendor preset: enabled)
+   Active: active (running) since Sat 2020-11-14 21:27:36 UTC; 36s ago
+ Main PID: 2420 (python2.7)
+    Tasks: 3 (limit: 1026)
+   Memory: 2.7M
+   CGroup: /system.slice/ecm_driver.service
+           └─2420 python2.7 /opt/bbonePRU/ecm_driver.py
+
+Nov 14 21:27:36 beaglebone systemd[1]: Started Load Python Drivers to Load J1708 PRU code.
+Nov 14 21:27:37 beaglebone ecm_driver.py[2420]: AM33XX
+Nov 14 21:27:37 beaglebone ecm_driver.py[2420]: File /opt/bbonePRU/text1.bin open passed
+```
+
+For more on the PRU: https://github.com/nesl/Cyclops-PRU
+
+
 ## Write a recovery SD card
+With the heavy vehicle specific software installed, we can 
 To duplicate the firmware image on the eMMC of the current Beagle Bone Black, do the following:
 1. Remove the BBBlack from the truck cape. Power up with USB. 
 1. Insert a blank SD card 4GB or bigger as soon as the user LEDs flash on boot. This timing seems to help ensure the SD card is recognized by the kernel. Plugging in the SD card later may not work. This is a physical hack to ensure the SD card can work.
-1. Connect the Ethernet to a live internet connection.
+1. Connect the Ethernet to a live Internet connection.
 2. Login 
 1. Update the scripts
 ```
@@ -464,7 +610,7 @@ This section documents some experimentation for upgrading the kernel and working
 
 ### Upgrade the Linux Kernel Module for SocketCAN
 
-First, we must upgrade the kernel version on the beaglebone. This step requires a connection between the beaglebone and the internet.
+First, we must upgrade the kernel version on the beaglebone. This step requires a connection between the beaglebone and the Internet.
 From: https://elinux.org/Beagleboard:BeagleBoneBlack_Debian#Kernel_Upgrade
 
 
