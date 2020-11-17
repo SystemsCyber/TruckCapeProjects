@@ -1,6 +1,14 @@
 # TruckCapeProjects
 Projects teaching the basics of using the TruckDuck or Truck Cape on a Beagle Bone Black with Python.
 
+Checkout the Jupyter directory for Python code embedded in a Juptyer notebook. To start a jupyter server on the Beagle Bone, use this command:
+
+```
+jupyter notebook --ip 192.168.7.2 --no-browser
+```
+
+Note: this is not secure, so only use this on a local network or USB connection.
+
 ## Getting Started
 Login to your beaglebone and run the following command to copy this repository into your directory:
 
@@ -14,7 +22,10 @@ See the docs directory for details. You can buy the board directly from OSHPark 
 ## Linux
 The Linux image to run on the BeagleBone's eMMC can be downloaded, decompressed, imaged to an SD card. When the BeagleBone Black boots from the SD card, it will burn the eMMC to have the necessary contents to run the exercises in this repository. 
 
-Follow the guidance in [](OSBuildInstructions.md)
+For the impatient, here is a link to the most current image based on the modifications 
+[TruckCapeImage-2020-11-14_4.19.img.xz](https://www.engr.colostate.edu/~jdaily/files/TruckCapeImage-2020-11-14_4.19.img.xz)
+
+This image was built based on the guidance in [OSBuildInstructions.md](OSBuildInstructions.md).
 
 ## Getting Started
 ### Windows Software
@@ -36,6 +47,10 @@ Please change the password if this is connected to the Internet.
 
 ### Logging Out or Shutting Down
 The system may shut down if the +12V feed is removed, even if the USB or 5V power jack is connected. Be sure to shut down the Linux system before unplugging the device. 
+
+```
+sudo shutdown -h now
+```
 
 ### Change the Baud Rate
 To figure out the bitrate of the devices, issue the following command
@@ -63,7 +78,7 @@ Enter the following commmands to change the CAN bitrate to 666000 on the CAN0 ch
 CAN0 on SocketCAN is the CAN2 channel on the J1939 connector.
 ```
 sudo ip link set can0 down
-sudo ip link set can0 type can bitrate 666000
+sudo ip link set can0 type can bitrate 666666
 sudo ip link set can0 up
 ```
 The resulting terminal should display something like this if CAN0 is connected to a 666k CAN network.
@@ -88,9 +103,6 @@ Adapt the startup script to log all data from the J1939 (CAN1), CAN0, and Both J
 
 ### Automatic RTC
 Add the ability to set the time using the an I2C based Real Time Clock chip. Normal operation relies on a network connection to get time.
-
-### Add LIN 
-A LIN transceiver is on some versions of the Truck Cape. Enable this feature by using a built in serial port. 
 
 ### Send and Receive CAN messages over UDP
 Build a network bridge for CAN and Ethernet. 
