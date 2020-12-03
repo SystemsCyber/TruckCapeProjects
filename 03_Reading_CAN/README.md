@@ -2,9 +2,13 @@
 
 This solution should demonstrate the way raw controller area network data is read from SocketCAN.
 
+If you don't have a truck network to connect to, run this command to see network traffic virtually:
+```canplayer -l i -I candump_kw_drive.txt vcan0=can1 &```
+
+The challenge is to setup the correct struct format string to properly read the data from the SocketCAN interface. 
 See https://docs.python.org/3/library/struct.html for help with the interpretation string.
 
-Once successful, the output may look something like this:
+Once your program is successful, the output may look something like this:
 
 ```debian@beaglebone:~/TruckCapeProjects/03_Reading_CAN/solution$ python3 read_CAN.py 
 vcan0 18FEF200 [8] 8C 00 00 00 0D 06 0D FF
@@ -44,7 +48,7 @@ Solution: Use canplayer to send messages to the virtual CAN device. You'll need 
 
 Use the following command to run the canplayer in the background in an infinite loop:
 
-```canplayer -l i -I candump_kw_drive.txt vcan0=can1&```
+```canplayer -l i -I candump_kw_drive.txt vcan0=can1 &```
 
 
 
