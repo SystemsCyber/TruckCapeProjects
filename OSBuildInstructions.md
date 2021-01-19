@@ -424,6 +424,13 @@ https://github.com/linux-can/can-utils
 
 This might be interesting: https://www.beyondlogic.org/example-c-socketcan-code/
 
+### C, C++ Cross Compiler
+To use programs like clion to cross compile for BeagleBone, use the commands below to install necessary packages:
+```
+debian@beaglebone:~/repositories/AMP-Challenge-03-Brake-Flasher-BBB$ sudo apt-get install cmake
+debian@beaglebone:~/repositories/AMP-Challenge-03-Brake-Flasher-BBB$ sudo apt-get install gdb
+```
+
 ### Python and CAN
 https://www.thomas-wedemeyer.de/beaglebone-canbus-python.html
 
