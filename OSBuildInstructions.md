@@ -440,6 +440,12 @@ sudo apt upgrade
 
 Run these commands to get dependencies for the Beagle Bone Black. 
 
+Install pip3 (python 3 package manager)
+
+```
+sudo apt install python3-pip
+```
+
 Install Jupyter so we can run Jupyter notebooks on the Beagle Bone Black
 ```
 sudo pip3 install jupyter
