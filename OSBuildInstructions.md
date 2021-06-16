@@ -29,6 +29,23 @@ Connect a live Internet connection by the Ethernet cable into your Beagle Bone B
 ```
 sudo ifconfig
 ```
+If you would like to test internet connectivity execute the following `ping` command which will send network packets to Google's external server using its IP address.
+
+```
+ping -c 2 8.8.8.8
+```
+
+The above command connection will show the following output. Successful communication should result in `0% packet loss`.
+
+```
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=54 time=10.4 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=54 time=10.2 ms
+
+--- 8.8.8.8 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1006ms
+rtt min/avg/max/mdev = 10.157/10.291/10.425/0.134 ms
+```
 
 ### What Version do you have?
 If you are having troubles, be sure you are using the same version that's documented here. When the kernel changes, the results may be different. 
