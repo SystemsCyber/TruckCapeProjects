@@ -93,7 +93,7 @@ disable_uboot_overlay_adc=1
 ```
 Be sure to keep the emmc line is commented, since that's the root file system.
 
-Also, enable the universal overlay. This ensures the kernel has access to the hardware pin multiplexers. 
+Also, enable the universal overlay. Changing to `cape-universal` ensures the kernel has access to the hardware pin multiplexers. 
 
 ```
 ###Additional custom capes
