@@ -91,7 +91,7 @@ disable_uboot_overlay_wireless=1
 disable_uboot_overlay_adc=1
 ###
 ```
-Be sure to keep the emmc line commented, since that's the root file system.
+Be sure to keep the emmc line is commented, since that's the root file system.
 
 Also, enable the universal overlay. This ensures the kernel has access to the hardware pin multiplexers. 
 
