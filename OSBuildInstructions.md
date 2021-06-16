@@ -120,8 +120,11 @@ uboot_overlay_pru=/lib/firmware/AM335X-PRU-UIO-00A0.dtbo
 Save and reboot: `sudo shutdown -r now`
 
 Verify the uio_pruss kernel module is running:
+
 ```
-lsmod | grep pru
+debian@beaglebone:~$ lsmod | grep pru
+uio_pruss              16384  0
+uio                    20480  2 uio_pruss,uio_pdrv_genirq
 ```
 
 ### Configure the pins
