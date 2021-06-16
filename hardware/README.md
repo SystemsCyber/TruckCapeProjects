@@ -15,7 +15,7 @@ PWM2 and PWM4 signals went to non-PWM pins. These pins were also loaded because 
 
 ![ReworkPWM2and3.jpg](ReworkPWM2and3.jpg)
 
-The new pins for PWM2 and PWM3 are P8.34 and P8.36, respectively. However, the PWM6_OUT was tied to P8.36. This signal line needs to be cut. PWM6_OUT also has R11 pulling the signal high. Since this is now an output for PWM3, the pullup resistor needs to be removed. Be sure R11 is not populated.
+The new pins for PWM2 and PWM3 are P8.34 and P8.36, respectively. However, the PWM6_OUT was tied to P8.36. This signal line needs to be cut. PWM6_OUT also has R11 pulling the signal high. Since this is now an output for PWM3, the pullup resistor needs to be removed. Therefore, ensure R11 and C11 are not populated.
 
 ![Pins_P8-44and43_removed.jpg](Pins_P8-44and43_removed.jpg)
 
