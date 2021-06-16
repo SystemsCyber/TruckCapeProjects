@@ -134,7 +134,7 @@ Create a file in the /etc directory:
 ```
 sudo nano /etc/pin_config.sh
 ```
-Write the following into the directory:
+Write the following into the file:
 ```
 #!/bin/sh -e
 # DCAN1
@@ -183,6 +183,12 @@ ExecStart=/bin/bash /etc/pin_config.sh
 
 [Install]
 WantedBy=multi-user.target
+```
+
+Update the service file permission
+
+```
+sudo chmod 644 /lib/systemd/system/pin_config.service
 ```
 
 Start the service
